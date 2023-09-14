@@ -8,5 +8,8 @@ public interface IRepositoryManager
     IDireccionAcudienteRepository DireccionAcudiente { get; }
     ITelefonoAcudienteRepository TelefonoAcudiente { get; }
     ICupoRepository Cupo { get; }
+    IRespuestaCupoRepository RespuestaCupo { get; }
+    IPreMatriculaRepository PreMatricula { get; }
+    IMatriculaRepository Matricula { get; }
     void Save();
 }

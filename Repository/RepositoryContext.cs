@@ -19,6 +19,9 @@ public class RepositoryContext : DbContext
         modelBuilder.ApplyConfiguration(new DireccionAcudienteConfiguration());
         modelBuilder.ApplyConfiguration(new TelefonoAcudienteConfiguration());
         modelBuilder.ApplyConfiguration(new CupoConfiguration());
+        modelBuilder.ApplyConfiguration(new RespuestaCupoConfiguration());
+        modelBuilder.ApplyConfiguration(new PreMatriculaConfiguration());
+        modelBuilder.ApplyConfiguration(new MatriculaConfiguration());
     }
 
 	public DbSet<CandidatoEstudiante>? CandidatoEstudiantes { get; set; }

@@ -8,5 +8,8 @@ public interface IServiceManager
     IDireccionAcudienteService DireccionAcudienteService { get; }
     ITelefonoAcudienteService TelefonoAcudienteService { get; }
     ICupoService CupoService { get; }
+    IRespuestaCupoService RespuestaCupoService { get; }
+    IPreMatriculaService PreMatriculaService { get; }
+    IMatriculaService MatriculaService { get; }
 }
 

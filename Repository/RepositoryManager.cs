@@ -11,16 +11,31 @@ public sealed class RepositoryManager : IRepositoryManager
     private readonly Lazy<IDireccionAcudienteRepository> _direccionAcudienteRepository;
     private readonly Lazy<ITelefonoAcudienteRepository> _telefonoAcudienteRepository;
     private readonly Lazy<ICupoRepository> _cupoRepository;
+    private readonly Lazy<IRespuestaCupoRepository> _respuestaCupoRepository;
+    private readonly Lazy<IPreMatriculaRepository> _preMatriculaRepository;
+    private readonly Lazy<IMatriculaRepository> _matriculaRepository;
 
     public RepositoryManager(RepositoryContext repositoryContext)
 	{
 		_repositoryContext = repositoryContext;
+        
         _candidatoEstudianteRepository = new Lazy<ICandidatoEstudianteRepository>(() => new CandidatoEstudianteRepository(repositoryContext));
+       
         _estudianteDocumentosRepository = new Lazy<IEstudianteDocumentosRepository>(() => new EstudianteDocumentosRepository(repositoryContext));
+        
         _acudientesRepository = new Lazy<IAcudienteRepository>(() => new AcudienteRepository(repositoryContext));
+        
         _direccionAcudienteRepository = new Lazy<IDireccionAcudienteRepository>(() => new DireccionAcudienteRepository(repositoryContext));
+       
         _telefonoAcudienteRepository = new Lazy<ITelefonoAcudienteRepository>(() => new TelefonoAcudienteRepository(repositoryContext));
+        
         _cupoRepository = new Lazy<ICupoRepository>(() => new CupoRepository(repositoryContext));
+
+        _respuestaCupoRepository = new Lazy<IRespuestaCupoRepository>(() => new RespuestaCupoRepository(repositoryContext));
+
+        _preMatriculaRepository = new Lazy<IPreMatriculaRepository>(() => new PreMatriculaRepository(repositoryContext));
+
+        _matriculaRepository = new Lazy<IMatriculaRepository>(() => new MatriculaRepository(repositoryContext));
 
     }
 
@@ -35,6 +50,12 @@ public sealed class RepositoryManager : IRepositoryManager
     public ITelefonoAcudienteRepository TelefonoAcudiente => _telefonoAcudienteRepository.Value;
 
     public ICupoRepository Cupo => _cupoRepository.Value;
+
+    public IRespuestaCupoRepository RespuestaCupo => _respuestaCupoRepository.Value;
+
+    public IPreMatriculaRepository PreMatricula => _preMatriculaRepository.Value;
+
+    public IMatriculaRepository Matricula => _matriculaRepository.Value;
 
     public void Save() => _repositoryContext.SaveChanges();
 }

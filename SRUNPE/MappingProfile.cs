@@ -50,6 +50,17 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Tipo, opt => opt.MapFrom(src => src.Tipo))
             .ForMember(dest => dest.Indicativo, opt => opt.MapFrom(src => src.Indicativo));
 
+        CreateMap<DireccionAcudienteForUpdateDto, DireccionAcudiente>();
+        CreateMap<DireccionAcudiente, DireccionAcudienteDto>()
+            .ForMember(dest => dest.DireccionAcudienteId, opt => opt.MapFrom(src => src.DireccionAcudienteId))
+            .ForMember(dest => dest.AcudienteId, opt => opt.MapFrom(src => src.AcudienteId))
+            .ForMember(dest => dest.Calle, opt => opt.MapFrom(src => src.Calle))
+            .ForMember(dest => dest.ColoniaBarrio, opt => opt.MapFrom(src => src.ColoniaBarrio))
+            .ForMember(dest => dest.CiudadLocalidad, opt => opt.MapFrom(src => src.CiudadLocalidad))
+            .ForMember(dest => dest.CodigoPostal, opt => opt.MapFrom(src => src.CodigoPostal))
+            .ForMember(dest => dest.EstadoProvincia, opt => opt.MapFrom(src => src.EstadoProvincia))
+            .ForMember(dest => dest.Pais, opt => opt.MapFrom(src => src.Pais));
+
         CreateMap<CupoForUpdateDto, Cupo>();
         CreateMap<Cupo, CupoDto>()
             .ForMember(dest => dest.CupoId, opt => opt.MapFrom(src => src.CupoId))
@@ -63,6 +74,39 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.CandidatoEstudianteId, opt => opt.MapFrom(src => src.CandidatoEstudianteId))
             .ForMember(dest => dest.Comentarios, opt => opt.MapFrom(src => src.Comentarios));
 
+        CreateMap<RespuestaCupoForUpdateDto, RespuestaCupo>();
+        CreateMap<RespuestaCupo, RespuestaCupoDto>()
+            .ForMember(dest => dest.RespuestaCupoId, opt => opt.MapFrom(src => src.RespuestaCupoId))
+            .ForMember(dest => dest.FechaRespuesta, opt => opt.MapFrom(src => src.FechaRespuesta))
+            .ForMember(dest => dest.EstadoRespuesta, opt => opt.MapFrom(src => src.EstadoRespuesta))
+            .ForMember(dest => dest.MensajeRespuesta, opt => opt.MapFrom(src => src.MensajeRespuesta))
+            .ForMember(dest => dest.FechaVencimiento, opt => opt.MapFrom(src => src.FechaVencimiento))
+            .ForMember(dest => dest.UsuarioRespuesta, opt => opt.MapFrom(src => src.UsuarioRespuesta))
+            .ForMember(dest => dest.TipoRespuesta, opt => opt.MapFrom(src => src.TipoRespuesta))
+            .ForMember(dest => dest.DuracionRespuesta, opt => opt.MapFrom(src => src.DuracionRespuesta))
+            .ForMember(dest => dest.Prioridad, opt => opt.MapFrom(src => src.Prioridad));
+
+        CreateMap<MatriculaForUpdateDto, Matricula>();
+        CreateMap<Matricula, MatriculaDto>()
+            .ForMember(dest => dest.MatriculaId, opt => opt.MapFrom(src => src.MatriculaId))
+            .ForMember(dest => dest.FechaMatricula, opt => opt.MapFrom(src => src.FechaMatricula))
+            .ForMember(dest => dest.EstadoMatricula, opt => opt.MapFrom(src => src.EstadoMatricula))
+            .ForMember(dest => dest.TipoMatricula, opt => opt.MapFrom(src => src.TipoMatricula))
+            .ForMember(dest => dest.PeriodoAcademico, opt => opt.MapFrom(src => src.PeriodoAcademico))
+            .ForMember(dest => dest.Comentarios, opt => opt.MapFrom(src => src.Comentarios))
+            .ForMember(dest => dest.CategoriaMatricula, opt => opt.MapFrom(src => src.CategoriaMatricula))
+            .ForMember(dest => dest.InformacionPlanEstudios, opt => opt.MapFrom(src => src.InformacionPlanEstudios))
+            .ForMember(dest => dest.RegistroCambios, opt => opt.MapFrom(src => src.RegistroCambios));
+
+        CreateMap<PreMatriculaForUpdateDto, PreMatricula>();
+        CreateMap<PreMatricula, PreMatriculaDto>()
+            .ForMember(dest => dest.PreMatriculaId, opt => opt.MapFrom(src => src.PreMatriculaId))
+            .ForMember(dest => dest.GradoONivel, opt => opt.MapFrom(src => src.GradoONivel))
+            .ForMember(dest => dest.Turno, opt => opt.MapFrom(src => src.Turno))
+            .ForMember(dest => dest.Observaciones, opt => opt.MapFrom(src => src.Observaciones))
+            .ForMember(dest => dest.EstadoPreMatricula, opt => opt.MapFrom(src => src.EstadoPreMatricula))
+            .ForMember(dest => dest.RequisitosDocumentacion, opt => opt.MapFrom(src => src.RequisitosDocumentacion));
+
 
 
         //MapCreate
@@ -70,6 +114,11 @@ public class MappingProfile : Profile
         CreateMap<AcudienteForCreationDto, Acudiente>();
         CreateMap<EstudianteDocumentosForCreationDto, EstudianteDocumentos>();
         CreateMap<TelefonoAcudienteForCreationDto, TelefonoAcudiente>();
+        CreateMap<DireccionAcudienteForCreationDto, DireccionAcudiente>();
+        CreateMap<CupoForCreationDto, Cupo>();
+        CreateMap<RespuestaCupoForCreationDto, RespuestaCupo>();
+        CreateMap<PreMatriculaForCreationDto, PreMatricula>();
+        CreateMap<MatriculaForCreationDto, Matricula>();
 
     }
 }

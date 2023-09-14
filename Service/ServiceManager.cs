@@ -13,6 +13,9 @@ public sealed class ServiceManager : IServiceManager
     private readonly Lazy<IDireccionAcudienteService> _direccionAcudienteService;
     private readonly Lazy<ITelefonoAcudienteService> _telefonoAcudienteService;
     private readonly Lazy<ICupoService> _cupoService;
+    private readonly Lazy<IRespuestaCupoService> _respuestaCupoService;
+    private readonly Lazy<IPreMatriculaService> _preMatriculaService;
+    private readonly Lazy<IMatriculaService> _matriculaService;
 
     public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
     {
@@ -33,6 +36,14 @@ public sealed class ServiceManager : IServiceManager
 
         _cupoService = new Lazy<ICupoService>(() =>
             new CupoService(repositoryManager, logger, mapper));
+        
+        _respuestaCupoService = new Lazy<IRespuestaCupoService>(() =>
+            new RespuestaCupoService(repositoryManager, logger, mapper));
+
+        _preMatriculaService = new Lazy<IPreMatriculaService>(() =>
+            new PreMatriculaService(repositoryManager, logger, mapper));
+        _matriculaService = new Lazy<IMatriculaService>(() =>
+            new MatriculaService(repositoryManager, logger, mapper));
 
     }
 
@@ -42,6 +53,9 @@ public sealed class ServiceManager : IServiceManager
     public IDireccionAcudienteService DireccionAcudienteService => _direccionAcudienteService.Value;
     public ITelefonoAcudienteService TelefonoAcudienteService => _telefonoAcudienteService.Value;
     public ICupoService CupoService => _cupoService.Value;
+    public IRespuestaCupoService RespuestaCupoService => _respuestaCupoService.Value;
+    public IPreMatriculaService PreMatriculaService => _preMatriculaService.Value;
+    public IMatriculaService MatriculaService => _matriculaService.Value;
 }
 
 
