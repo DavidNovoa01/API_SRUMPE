@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Entities.Models.D_Estudiante;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

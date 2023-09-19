@@ -1,5 +1,5 @@
 ﻿using Contracts;
-using Entities.Models;
+using Entities.Models.D_Estudiante;
 
 namespace Repository
 {

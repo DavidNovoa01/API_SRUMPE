@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models
+namespace Entities.Models.D_Acudiente
 {
     public partial class DireccionAcudiente
     {

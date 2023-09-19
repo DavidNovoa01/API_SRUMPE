@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models
+namespace Entities.Models.D_Estudiante
 {
     public partial class EstudianteDocumentos
 
@@ -15,12 +15,12 @@ namespace Entities.Models
         [Key]
         public Guid EstudianteDocumentosId { get; set; }
         public string NombreDocumento { get; set; }
-        public string TipoDocumento { get; set; }
+        public string? TipoDocumento { get; set; }
         public int NumeroDocumento { get; set; }
         public bool Estado { get; set; }
-        public string Observaciones { get; set; }
+        public string? Observaciones { get; set; }
         public DateTime? FechaActualizacion { get; set; }
-        public string Ubicacion { get; set; }
+        public string? Ubicacion { get; set; }
         public int Tamaño { get; set; }
 
         //Llave

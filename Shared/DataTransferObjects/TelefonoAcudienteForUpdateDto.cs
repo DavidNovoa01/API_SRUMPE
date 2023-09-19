@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Entities.Models.D_Acudiente;
 using System;
 using System.Collections.Generic;
 using System.Linq;

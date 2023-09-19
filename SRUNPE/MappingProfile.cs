@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Entities.Models;
+using Entities.Models.D_Acudiente;
+using Entities.Models.D_Estudiante;
 using Shared.DataTransferObjects;
 
 namespace CompanyEmployees;

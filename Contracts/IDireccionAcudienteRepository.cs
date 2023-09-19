@@ -1,4 +1,4 @@
-﻿using Entities.Models;
+﻿using Entities.Models.D_Acudiente;
 
 namespace Contracts;
 public interface IDireccionAcudienteRepository

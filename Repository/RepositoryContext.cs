@@ -1,4 +1,6 @@
 ﻿using Entities.Models;
+using Entities.Models.D_Acudiente;
+using Entities.Models.D_Estudiante;
 using Microsoft.EntityFrameworkCore;
 using Repository.Configuration;
 
@@ -27,4 +29,11 @@ public class RepositoryContext : DbContext
 	public DbSet<CandidatoEstudiante>? CandidatoEstudiantes { get; set; }
 	public DbSet<EstudianteDocumentos>? EstudianteDocumentos { get; set; }
     public DbSet<Acudiente>? Acudiente { get; set; }
+    public DbSet<DireccionAcudiente>? DireccionAcudiente { get; set; }
+    public DbSet<TelefonoAcudiente>? TelefonoAcudiente { get; set; }
+    public DbSet<Cupo>? Cupo { get; set; }
+    public DbSet<RespuestaCupo>? RespuestaCupo { get; set; }
+    public DbSet<PreMatricula>? PreMatricula { get; set; }
+    public DbSet<Matricula>? Matricula { get; set; }
+
 }

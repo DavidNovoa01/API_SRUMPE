@@ -1,4 +1,5 @@
-﻿using Entities.Models; // Asegúrate de que la importación del espacio de nombres sea correcta
+﻿using Entities.Models;
+using Entities.Models.D_Acudiente;
 
 namespace Contracts;
 
