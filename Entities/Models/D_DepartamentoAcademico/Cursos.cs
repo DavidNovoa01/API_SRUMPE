@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Entities.Models.D_DepartamentoAcademico
 {
     public partial class Cursos
     {
+        [Key]
         public Guid CursoId { get; set; }
         public string Codigo { get; set; }
         public string Descripcion { get; set; }

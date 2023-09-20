@@ -1,3 +1,3 @@
 ﻿namespace Shared.DataTransferObjects;
 
-public record DireccionAcudienteForCreationDto(int CodigoPostal, string Pais, string ColoniaBarrio);
+public record DireccionAcudienteForCreationDto(string Calle,string ColoniaBarrio,string CiudadLocalidad, string CodigoPostal, string EstadoProvincia,string Pais);
