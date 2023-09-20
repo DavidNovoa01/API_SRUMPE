@@ -14,7 +14,7 @@ namespace Entities.Models.D_Estudiante
 
         [Key]
         public Guid EstudianteDocumentosId { get; set; }
-        public string NombreDocumento { get; set; }
+        public string? NombreDocumento { get; set; }
         public string? TipoDocumento { get; set; }
         public int NumeroDocumento { get; set; }
         public bool Estado { get; set; }
