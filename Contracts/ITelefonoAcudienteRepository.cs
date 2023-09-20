@@ -1,5 +1,4 @@
-﻿using Entities.Models;
-using Entities.Models.D_Acudiente;
+﻿using Entities.Models.D_Acudiente;
 
 namespace Contracts;
 

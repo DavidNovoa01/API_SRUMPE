@@ -8,7 +8,7 @@ namespace Entities.Models.D_DepartamentoAcademico
 {
     public partial class Horarios
     {
-        public int HorarioId { get; set; }
+        public Guid HorarioId { get; set; }
 
        // public int IdMateria { get; set; }
        //public int IdAula { get; set; }

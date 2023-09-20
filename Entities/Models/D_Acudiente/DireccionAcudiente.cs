@@ -5,33 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models.D_Acudiente
+namespace Entities.Models.D_Acudiente;
+
+public partial class DireccionAcudiente
 {
-    public partial class DireccionAcudiente
-    {
-        [Key]
-        public Guid DireccionAcudienteId { get; set; } // ID de Dirección
-
-        [Required]
-        public Guid AcudienteId { get; set; } // ID de Acudiente
-
-        [Required]
-        [StringLength(100)]
-        public string Calle { get; set; } // Calle
-
-        [StringLength(100)]
-        public string ColoniaBarrio { get; set; } // Colonia o Barrio
-
-        [StringLength(100)]
-        public string CiudadLocalidad { get; set; } // Ciudad o Localidad
-
-        [StringLength(20)]
-        public string CodigoPostal { get; set; } // Código Postal
-
-        [StringLength(100)]
-        public string EstadoProvincia { get; set; } // Estado o Provincia
-
-        [StringLength(100)]
-        public string Pais { get; set; } // País
-    }
+    [Key]
+    public Guid DireccionAcudienteId { get; set; } // ID de Dirección
+    //public Guid AcudienteId { get; set; } // ID de Acudiente
+    public string Calle { get; set; } // Calle
+    public string ColoniaBarrio { get; set; } // Colonia o Barrio
+    public string CiudadLocalidad { get; set; } // Ciudad o Localidad
+    public string CodigoPostal { get; set; } // Código Postal
+    public string EstadoProvincia { get; set; } // Estado o Provincia
+    public string Pais { get; set; } // País
 }

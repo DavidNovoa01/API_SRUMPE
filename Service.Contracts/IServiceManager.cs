@@ -11,5 +11,9 @@ public interface IServiceManager
     IRespuestaCupoService RespuestaCupoService { get; }
     IPreMatriculaService PreMatriculaService { get; }
     IMatriculaService MatriculaService { get; }
+    IAulaService AulaService { get; }
+    ICursoService CursoService { get; }
+    IHorarioService HorarioService { get; }
+    IMateriaService MateriaService { get; }
 }
 

@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using Entities.Models.D_Acudiente;
+using Entities.Models.D_DepartamentoAcademico;
 using Entities.Models.D_Estudiante;
 using Microsoft.EntityFrameworkCore;
 using Repository.Configuration;
@@ -24,6 +25,10 @@ public class RepositoryContext : DbContext
         modelBuilder.ApplyConfiguration(new RespuestaCupoConfiguration());
         modelBuilder.ApplyConfiguration(new PreMatriculaConfiguration());
         modelBuilder.ApplyConfiguration(new MatriculaConfiguration());
+        modelBuilder.ApplyConfiguration(new AulaConfiguration());
+        modelBuilder.ApplyConfiguration(new CursoConfiguration());
+        modelBuilder.ApplyConfiguration(new HorarioConfiguration());
+        modelBuilder.ApplyConfiguration(new MateriaConfiguration());
     }
 
 	public DbSet<CandidatoEstudiante>? CandidatoEstudiantes { get; set; }
@@ -35,5 +40,10 @@ public class RepositoryContext : DbContext
     public DbSet<RespuestaCupo>? RespuestaCupo { get; set; }
     public DbSet<PreMatricula>? PreMatricula { get; set; }
     public DbSet<Matricula>? Matricula { get; set; }
+    public DbSet<Aulas>? Aulas { get; set; }
+    public DbSet<Cursos>? Cursos { get; set; }
+    public DbSet<Horarios>? Horarios { get; set; }
+    public DbSet<Materias>? Materias { get; set; }
+
 
 }

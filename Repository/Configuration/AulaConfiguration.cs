@@ -11,7 +11,7 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
         builder.HasData(
             new Aulas
             {
-                AulaId = 1,
+                AulaId = Guid.NewGuid(),
                 NombreNumero = "Aula 101",
                 Ubicacion = "Edificio Principal",
                 Capacidad = 50,
@@ -25,7 +25,7 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
             },
             new Aulas
             {
-                AulaId = 2,
+                AulaId = Guid.NewGuid(),
                 NombreNumero = "Aula 102",
                 Ubicacion = "Edificio de Ciencias",
                 Capacidad = 30,
@@ -39,7 +39,7 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
             },
             new Aulas
             {
-                AulaId = 3,
+                AulaId = Guid.NewGuid(),
                 NombreNumero = "Aula 103",
                 Ubicacion = "Edificio de Eventos",
                 Capacidad = 100,
@@ -53,7 +53,7 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
             },
             new Aulas
             {
-                AulaId = 4,
+                AulaId = Guid.NewGuid(),
                 NombreNumero = "Aula 104",
                 Ubicacion = "Edificio Principal",
                 Capacidad = 40,
@@ -67,7 +67,7 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
             },
             new Aulas
             {
-                AulaId = 5,
+                AulaId = Guid.NewGuid(),
                 NombreNumero = "Aula 105",
                 Ubicacion = "Biblioteca",
                 Capacidad = 10,

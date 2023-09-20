@@ -1,10 +1,6 @@
 ﻿using Contracts;
 using Entities.Models.D_Acudiente;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Repository
 {

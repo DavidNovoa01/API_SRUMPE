@@ -8,7 +8,7 @@ namespace Entities.Models.D_DepartamentoAcademico
 {
     public partial class Materias
     {
-        public int MateriaId { get; set; }
+        public Guid MateriaId { get; set; }
         public string? Nombre { get; set; }
         public string? Descripcion { get; set; }
         public string? DepartamentoAcademico { get; set; }

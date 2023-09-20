@@ -11,7 +11,7 @@ public class HorarioConfiguration : IEntityTypeConfiguration<Horarios>
         builder.HasData(
             new Horarios
             {
-                HorarioId = 1,
+                HorarioId = Guid.NewGuid(),
                 DiaSemana = "Lunes",
                 HoraInicio = TimeSpan.Parse("09:00:00"),
                 HoraFin = TimeSpan.Parse("11:00:00"),
@@ -27,7 +27,7 @@ public class HorarioConfiguration : IEntityTypeConfiguration<Horarios>
             },
             new Horarios
             {
-                HorarioId = 2,
+                HorarioId = Guid.NewGuid(),
                 DiaSemana = "Martes",
                 HoraInicio = TimeSpan.Parse("14:00:00"),
                 HoraFin = TimeSpan.Parse("16:00:00"),
@@ -43,7 +43,7 @@ public class HorarioConfiguration : IEntityTypeConfiguration<Horarios>
             },
             new Horarios
             {
-                HorarioId = 3,
+                HorarioId = Guid.NewGuid(),
                 DiaSemana = "Miércoles",
                 HoraInicio = TimeSpan.Parse("11:30:00"),
                 HoraFin = TimeSpan.Parse("13:30:00"),
@@ -59,7 +59,7 @@ public class HorarioConfiguration : IEntityTypeConfiguration<Horarios>
             },
             new Horarios
             {
-                HorarioId = 4,
+                HorarioId = Guid.NewGuid(),
                 DiaSemana = "Jueves",
                 HoraInicio = TimeSpan.Parse("16:30:00"),
                 HoraFin = TimeSpan.Parse("18:30:00"),
@@ -75,7 +75,7 @@ public class HorarioConfiguration : IEntityTypeConfiguration<Horarios>
             },
             new Horarios
             {
-                HorarioId = 5,
+                HorarioId = Guid.NewGuid(),
                 DiaSemana = "Viernes",
                 HoraInicio = TimeSpan.Parse("08:00:00"),
                 HoraFin = TimeSpan.Parse("10:00:00"),

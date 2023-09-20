@@ -16,6 +16,10 @@ public sealed class ServiceManager : IServiceManager
     private readonly Lazy<IRespuestaCupoService> _respuestaCupoService;
     private readonly Lazy<IPreMatriculaService> _preMatriculaService;
     private readonly Lazy<IMatriculaService> _matriculaService;
+    private readonly Lazy<IAulaService> _aulaService;
+    private readonly Lazy<ICursoService> _cursoService;
+    private readonly Lazy<IHorarioService> _horarioService;
+    private readonly Lazy<IMateriaService> _materiaService;
 
     public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
     {
@@ -44,6 +48,14 @@ public sealed class ServiceManager : IServiceManager
             new PreMatriculaService(repositoryManager, logger, mapper));
         _matriculaService = new Lazy<IMatriculaService>(() =>
             new MatriculaService(repositoryManager, logger, mapper));
+        _aulaService = new Lazy<IAulaService>(() =>
+            new AulaService(repositoryManager, logger, mapper));
+        _cursoService = new Lazy<ICursoService>(() =>
+            new CursoService(repositoryManager, logger, mapper));
+        _horarioService = new Lazy<IHorarioService>(() =>
+            new HorarioService(repositoryManager, logger, mapper));
+        _materiaService = new Lazy<IMateriaService>(() =>
+            new MateriaService(repositoryManager, logger, mapper));
 
     }
 
@@ -56,6 +68,10 @@ public sealed class ServiceManager : IServiceManager
     public IRespuestaCupoService RespuestaCupoService => _respuestaCupoService.Value;
     public IPreMatriculaService PreMatriculaService => _preMatriculaService.Value;
     public IMatriculaService MatriculaService => _matriculaService.Value;
+    public IAulaService AulaService => _aulaService.Value;
+    public ICursoService CursoService => _cursoService.Value;
+    public IHorarioService HorarioService => _horarioService.Value;
+    public IMateriaService MateriaService => _materiaService.Value;
 }
 
 

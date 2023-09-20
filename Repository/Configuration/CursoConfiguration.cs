@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository.Configuration;
 
-public class CursoEstudianteConfiguration : IEntityTypeConfiguration<Cursos>
+public class CursoConfiguration : IEntityTypeConfiguration<Cursos>
 {
     public void Configure(EntityTypeBuilder<Cursos> builder)
     {
         builder.HasData(
             new Cursos
             {
-                CursoId = 1,
+                CursoId = Guid.NewGuid(),
                 Codigo = "CS101",
                 Descripcion = "Introducción a la Programación",
                 DepartamentoAcademico = "Ciencias de la Computación",
@@ -23,7 +23,7 @@ public class CursoEstudianteConfiguration : IEntityTypeConfiguration<Cursos>
             },
             new Cursos
             {
-                CursoId = 2,
+                CursoId = Guid.NewGuid(),
                 Codigo = "ENG201",
                 Descripcion = "Advanced English Composition",
                 DepartamentoAcademico = "English Department",
@@ -35,7 +35,7 @@ public class CursoEstudianteConfiguration : IEntityTypeConfiguration<Cursos>
             },
             new Cursos
             {
-                CursoId = 3,
+                CursoId = Guid.NewGuid(),
                 Codigo = "MATH301",
                 Descripcion = "Advanced Calculus",
                 DepartamentoAcademico = "Mathematics Department",
@@ -47,7 +47,7 @@ public class CursoEstudianteConfiguration : IEntityTypeConfiguration<Cursos>
             },
             new Cursos
             {
-                CursoId = 4,
+                CursoId = Guid.NewGuid(),
                 Codigo = "CHEM201",
                 Descripcion = "Organic Chemistry",
                 DepartamentoAcademico = "Chemistry Department",
@@ -59,7 +59,7 @@ public class CursoEstudianteConfiguration : IEntityTypeConfiguration<Cursos>
             },
             new Cursos
             {
-                CursoId = 5,
+                CursoId = Guid.NewGuid(),
                 Codigo = "HIST101",
                 Descripcion = "Introduction to History",
                 DepartamentoAcademico = "History Department",

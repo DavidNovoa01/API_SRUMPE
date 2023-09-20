@@ -10,7 +10,7 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
         builder.HasData(
             new Materias
             {
-                MateriaId = 1,
+                MateriaId = Guid.NewGuid(),
                 Nombre = "Matemáticas",
                 Descripcion = "Curso de Matemáticas Avanzadas",
                 DepartamentoAcademico = "Departamento de Matemáticas",
@@ -24,7 +24,7 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
             },
             new Materias
             {
-                MateriaId = 2,
+                MateriaId = Guid.NewGuid(),
                 Nombre = "Historia",
                 Descripcion = "Curso de Historia Mundial",
                 DepartamentoAcademico = "Departamento de Historia",
@@ -38,7 +38,7 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
             },
             new Materias
             {
-                MateriaId = 6,
+                MateriaId = Guid.NewGuid(),
                 Nombre = "Ciencias de la Computación",
                 Descripcion = "Curso de Ciencias de la Computación",
                 DepartamentoAcademico = "Departamento de Informática",
@@ -52,7 +52,7 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
             },
             new Materias
             {
-                MateriaId = 7,
+                MateriaId = Guid.NewGuid(),
                 Nombre = "Literatura",
                 Descripcion = "Curso de Literatura Universal",
                 DepartamentoAcademico = "Departamento de Literatura",
@@ -66,7 +66,7 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
             },
             new Materias
             {
-                MateriaId = 8,
+                MateriaId = Guid.NewGuid(),
                 Nombre = "Física",
                 Descripcion = "Curso de Física Avanzada",
                 DepartamentoAcademico = "Departamento de Física",
@@ -80,7 +80,7 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
             },
             new Materias
             {
-                MateriaId = 9,
+                MateriaId = Guid.NewGuid(),
                 Nombre = "Economía",
                 Descripcion = "Curso de Economía Moderna",
                 DepartamentoAcademico = "Departamento de Economía",
@@ -94,7 +94,7 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
             },
             new Materias
             {
-                MateriaId = 10,
+                MateriaId = Guid.NewGuid(),
                 Nombre = "Arte",
                 Descripcion = "Curso de Arte Contemporáneo",
                 DepartamentoAcademico = "Departamento de Arte",

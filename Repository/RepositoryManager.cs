@@ -14,7 +14,10 @@ public sealed class RepositoryManager : IRepositoryManager
     private readonly Lazy<IRespuestaCupoRepository> _respuestaCupoRepository;
     private readonly Lazy<IPreMatriculaRepository> _preMatriculaRepository;
     private readonly Lazy<IMatriculaRepository> _matriculaRepository;
-
+    private readonly Lazy<IAulaRepository> _aulaRepository;
+    private readonly Lazy<ICursoRepository> _cursoRepository;
+    private readonly Lazy<IHorarioRepository> _horarioRepository;
+    private readonly Lazy<IMateriaRepository> _materiaRepository;
     public RepositoryManager(RepositoryContext repositoryContext)
 	{
 		_repositoryContext = repositoryContext;
@@ -37,6 +40,14 @@ public sealed class RepositoryManager : IRepositoryManager
 
         _matriculaRepository = new Lazy<IMatriculaRepository>(() => new MatriculaRepository(repositoryContext));
 
+        _aulaRepository = new Lazy<IAulaRepository>(() => new AulaRepository(repositoryContext));
+
+        _cursoRepository = new Lazy<ICursoRepository>(() => new CursoRepository(repositoryContext));
+
+        _horarioRepository = new Lazy<IHorarioRepository>(() => new HorarioRepository(repositoryContext));
+
+        _materiaRepository = new Lazy<IMateriaRepository>(() => new MateriaRepository(repositoryContext));
+
     }
 
     public ICandidatoEstudianteRepository CandidatoEstudiante => _candidatoEstudianteRepository.Value;
@@ -56,6 +67,10 @@ public sealed class RepositoryManager : IRepositoryManager
     public IPreMatriculaRepository PreMatricula => _preMatriculaRepository.Value;
 
     public IMatriculaRepository Matricula => _matriculaRepository.Value;
+    public IAulaRepository Aula => _aulaRepository.Value;
+    public ICursoRepository Curso => _cursoRepository.Value;
+    public IHorarioRepository Horario => _horarioRepository.Value;
+    public IMateriaRepository Materia => _materiaRepository.Value;
 
     public void Save() => _repositoryContext.SaveChanges();
 }

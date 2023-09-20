@@ -11,5 +11,9 @@ public interface IRepositoryManager
     IRespuestaCupoRepository RespuestaCupo { get; }
     IPreMatriculaRepository PreMatricula { get; }
     IMatriculaRepository Matricula { get; }
+    IAulaRepository Aula { get; }
+    ICursoRepository Curso { get; }
+    IHorarioRepository Horario { get; }
+    IMateriaRepository Materia { get; }
     void Save();
 }
