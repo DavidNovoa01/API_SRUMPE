@@ -10,7 +10,7 @@
         public string? Ubicacion { get; set; }
         public bool Estado { get; set; }
         public TimeSpan Duracion { get; set; }
-        public Guid CandidatoEstudianteId { get; set; }
-        public string? Comentarios { get; set; }
+
+        //public Guid CandidatoEstudianteId { get; set; }
     }
 }

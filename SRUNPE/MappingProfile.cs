@@ -72,9 +72,9 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Descripcion))
             .ForMember(dest => dest.Ubicacion, opt => opt.MapFrom(src => src.Ubicacion))
             .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
-            .ForMember(dest => dest.Duracion, opt => opt.MapFrom(src => src.Duracion))
-            .ForMember(dest => dest.CandidatoEstudianteId, opt => opt.MapFrom(src => src.CandidatoEstudianteId))
-            .ForMember(dest => dest.Comentarios, opt => opt.MapFrom(src => src.Comentarios));
+            .ForMember(dest => dest.Duracion, opt => opt.MapFrom(src => src.Duracion));
+            //.ForMember(dest => dest.CandidatoEstudianteId, opt => opt.MapFrom(src => src.CandidatoEstudianteId))
+            //.ForMember(dest => dest.Comentarios, opt => opt.MapFrom(src => src.Comentarios));
 
         CreateMap<RespuestaCupoForUpdateDto, RespuestaCupo>();
         CreateMap<RespuestaCupo, RespuestaCupoDto>()

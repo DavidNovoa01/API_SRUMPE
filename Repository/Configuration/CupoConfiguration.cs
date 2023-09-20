@@ -27,8 +27,7 @@ public class CupoConfiguration : IEntityTypeConfiguration<Cupo>
                 Ubicacion = "Salón principal",
                 Estado = true,
                 Duracion = TimeSpan.FromHours(2),
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Comentarios = "Cupo para estudiantes universitarios"
+                //CandidatoEstudianteId = Guid.NewGuid(),
             },
             new Cupo
             {
@@ -40,8 +39,7 @@ public class CupoConfiguration : IEntityTypeConfiguration<Cupo>
                 Ubicacion = "Aula 101",
                 Estado = true,
                 Duracion = TimeSpan.FromHours(3),
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Comentarios = "Cupo para desarrolladores junior"
+                //CandidatoEstudianteId = Guid.NewGuid(),
             },
             new Cupo
             {
@@ -53,8 +51,7 @@ public class CupoConfiguration : IEntityTypeConfiguration<Cupo>
                 Ubicacion = "Aula 102",
                 Estado = true,
                 Duracion = TimeSpan.FromHours(4),
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Comentarios = "Cupo para profesionales de marketing"
+                //CandidatoEstudianteId = Guid.NewGuid(),
             },
             new Cupo
             {
@@ -66,8 +63,7 @@ public class CupoConfiguration : IEntityTypeConfiguration<Cupo>
                 Ubicacion = "Aula 103",
                 Estado = true,
                 Duracion = TimeSpan.FromHours(2),
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Comentarios = "Cupo para diseñadores creativos"
+                //CandidatoEstudianteId = Guid.NewGuid(),
             },
 
             new Cupo
@@ -80,8 +76,7 @@ public class CupoConfiguration : IEntityTypeConfiguration<Cupo>
                 Ubicacion = "Aula 104",
                 Estado = true,
                 Duracion = TimeSpan.FromHours(1),
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Comentarios = "Cupo para establecer contactos profesionales"
+                //CandidatoEstudianteId = Guid.NewGuid(),
             }
         );
     }

@@ -21,7 +21,6 @@ namespace Shared.DataTransferObjects
                 Descripcion = dto.Descripcion,
                 Estado = dto.Estado,
                 Duracion=dto.Duracion,
-                Comentarios=dto.Comentarios
             };
         }
     }
