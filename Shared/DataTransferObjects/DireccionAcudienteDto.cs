@@ -6,8 +6,6 @@ namespace Shared.DataTransferObjects
     {
         public Guid DireccionAcudienteId { get; init; }
 
-        public Guid AcudienteId { get; init; }
-
         public string Calle { get; init; }
 
         public string ColoniaBarrio { get; init; }
