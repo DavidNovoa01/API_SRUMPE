@@ -2,7 +2,7 @@
 namespace Shared.DataTransferObjects;
 public record AulaDto
 {
-    public int AulaId { get; set; }
+    public Guid AulaId { get; set; }
     public string NombreNumero { get; set; }
     public string Ubicacion { get; set; }
     public int Capacidad { get; set; }

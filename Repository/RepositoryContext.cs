@@ -2,6 +2,7 @@
 using Entities.Models.D_Acudiente;
 using Entities.Models.D_DepartamentoAcademico;
 using Entities.Models.D_Estudiante;
+using Entities.Models.D_Notas;
 using Microsoft.EntityFrameworkCore;
 using Repository.Configuration;
 
@@ -29,6 +30,8 @@ public class RepositoryContext : DbContext
         modelBuilder.ApplyConfiguration(new CursoConfiguration());
         modelBuilder.ApplyConfiguration(new HorarioConfiguration());
         modelBuilder.ApplyConfiguration(new MateriaConfiguration());
+        modelBuilder.ApplyConfiguration(new AsistenciaConfiguration());
+        modelBuilder.ApplyConfiguration(new EstadisticaConfiguration());
     }
 
 	public DbSet<CandidatoEstudiante>? CandidatoEstudiantes { get; set; }
@@ -44,6 +47,8 @@ public class RepositoryContext : DbContext
     public DbSet<Cursos>? Cursos { get; set; }
     public DbSet<Horarios>? Horarios { get; set; }
     public DbSet<Materias>? Materias { get; set; }
+    public DbSet<Asistencia>? Asistencia { get; set; }
+    public DbSet<Estadisticas>? Estadisticas { get; set; }
 
 
 }

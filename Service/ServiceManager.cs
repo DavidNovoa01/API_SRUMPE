@@ -20,6 +20,8 @@ public sealed class ServiceManager : IServiceManager
     private readonly Lazy<ICursoService> _cursoService;
     private readonly Lazy<IHorarioService> _horarioService;
     private readonly Lazy<IMateriaService> _materiaService;
+    private readonly Lazy<IAsistenciaService> _asistenciaService;
+    private readonly Lazy<IEstadisticaService> _estadisticaService;
 
     public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
     {
@@ -56,6 +58,11 @@ public sealed class ServiceManager : IServiceManager
             new HorarioService(repositoryManager, logger, mapper));
         _materiaService = new Lazy<IMateriaService>(() =>
             new MateriaService(repositoryManager, logger, mapper));
+        _asistenciaService = new Lazy<IAsistenciaService>(() =>
+            new AsistenciaService(repositoryManager, logger, mapper));
+        _estadisticaService = new Lazy<IEstadisticaService>(() =>
+            new EstadisticaService(repositoryManager, logger, mapper));
+
 
     }
 
@@ -72,6 +79,9 @@ public sealed class ServiceManager : IServiceManager
     public ICursoService CursoService => _cursoService.Value;
     public IHorarioService HorarioService => _horarioService.Value;
     public IMateriaService MateriaService => _materiaService.Value;
+    public IAsistenciaService AsistenciaService => _asistenciaService.Value;
+    public IEstadisticaService EstadisticaService => _estadisticaService.Value;
 }
+
 
 

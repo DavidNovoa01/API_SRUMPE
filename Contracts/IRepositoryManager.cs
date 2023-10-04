@@ -15,5 +15,7 @@ public interface IRepositoryManager
     ICursoRepository Curso { get; }
     IHorarioRepository Horario { get; }
     IMateriaRepository Materia { get; }
+    IAsistenciaRepository Asistencia { get; }
+    IEstadisticaRepository Estadistica { get; }
     void Save();
 }

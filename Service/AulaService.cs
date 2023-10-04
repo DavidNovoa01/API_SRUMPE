@@ -21,11 +21,11 @@ internal sealed class AulaService : IAulaService
 
     public IEnumerable<AulaDto> GetAllAulas(bool trackChanges)
     {
-        var aulas = _repository.Aula.GetAllAulas(trackChanges);
+        var aula = _repository.Aula.GetAllAulas(trackChanges);
 
-        var aulasDto = _mapper.Map<IEnumerable<AulaDto>>(aulas);
+        var aulaDto = _mapper.Map<IEnumerable<AulaDto>>(aula);
 
-        return aulasDto;
+        return aulaDto;
     }
 
     public AulaDto GetAula(Guid id, bool trackChanges)

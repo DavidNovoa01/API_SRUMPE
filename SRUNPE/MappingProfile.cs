@@ -3,6 +3,7 @@ using Entities.Models;
 using Entities.Models.D_Acudiente;
 using Entities.Models.D_DepartamentoAcademico;
 using Entities.Models.D_Estudiante;
+using Entities.Models.D_Notas;
 using Shared.DataTransferObjects;
 
 namespace CompanyEmployees;
@@ -157,6 +158,19 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.GrupoSeccionMateria, opt => opt.MapFrom(src => src.GrupoSeccionMateria))
             .ForMember(dest => dest.MetodosEnsenanza, opt => opt.MapFrom(src => src.MetodosEnsenanza));
 
+        CreateMap<EstadisticaForUpdateDto, Estadisticas>();
+        CreateMap<Estadisticas, EstadisticaDto>()
+            .ForMember(dest => dest.EstadisticaId, opt => opt.MapFrom(src => src.EstadisticaId))
+            .ForMember(dest => dest.Materia, opt => opt.MapFrom(src => src.Materia))
+            .ForMember(dest => dest.NotaPromedio, opt => opt.MapFrom(src => src.NotaPromedio))
+            .ForMember(dest => dest.NotaMaxima, opt => opt.MapFrom(src => src.NotaMaxima))
+            .ForMember(dest => dest.NotaMinima, opt => opt.MapFrom(src => src.NotaMinima))
+            .ForMember(dest => dest.CantidadExamenes, opt => opt.MapFrom(src => src.CantidadExamenes))
+            .ForMember(dest => dest.FechaRegistro, opt => opt.MapFrom(src => src.FechaRegistro))
+            .ForMember(dest => dest.AñoEscolar, opt => opt.MapFrom(src => src.AñoEscolar))
+            .ForMember(dest => dest.PeriodoEscolar, opt => opt.MapFrom(src => src.PeriodoEscolar));
+
+
 
         //MapCreate
         CreateMap<CandidatoEstudianteForCreationDto, CandidatoEstudiante>();
@@ -172,6 +186,7 @@ public class MappingProfile : Profile
         CreateMap<CursoForCreationDto, Cursos>();
         CreateMap<HorarioForCreationDto, Horarios>();
         CreateMap<MateriaForCreationDto, Materias>();
+        CreateMap<EstadisticaForCreationDto, Estadisticas>();
 
 
     }

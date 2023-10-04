@@ -13,7 +13,7 @@ internal sealed class AulaRepository : RepositoryBase<Aulas>, IAulaRepository
 
     public IEnumerable<Aulas> GetAllAulas(bool trackChanges) =>
         FindAll(trackChanges)
-    .OrderBy(a => a.AulaId)
+    .OrderBy(a => a.EstadoAula)
             .ToList();
 
     public Aulas GetAula(Guid aulaId, bool trackChanges) =>

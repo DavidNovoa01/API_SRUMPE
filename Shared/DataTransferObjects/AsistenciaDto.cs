@@ -1,5 +1,6 @@
-﻿namespace Entities.Models.D_Notas;
-public partial class Asistencia
+﻿namespace Shared.DataTransferObjects;
+
+public record AsistenciaDto
 {
     public int AsistenciaId { get; set; }
     public string NombreAsistente { get; set; }

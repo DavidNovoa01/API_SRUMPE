@@ -18,6 +18,8 @@ public sealed class RepositoryManager : IRepositoryManager
     private readonly Lazy<ICursoRepository> _cursoRepository;
     private readonly Lazy<IHorarioRepository> _horarioRepository;
     private readonly Lazy<IMateriaRepository> _materiaRepository;
+    private readonly Lazy<IAsistenciaRepository> _asistenciaRepository;
+    private readonly Lazy<IEstadisticaRepository> _estadisticaRepository;
     public RepositoryManager(RepositoryContext repositoryContext)
 	{
 		_repositoryContext = repositoryContext;
@@ -48,6 +50,9 @@ public sealed class RepositoryManager : IRepositoryManager
 
         _materiaRepository = new Lazy<IMateriaRepository>(() => new MateriaRepository(repositoryContext));
 
+        _asistenciaRepository = new Lazy<IAsistenciaRepository>(() => new AsistenciaRepository(repositoryContext));
+        _estadisticaRepository = new Lazy<IEstadisticaRepository>(() => new EstadisticaRepository(repositoryContext));
+
     }
 
     public ICandidatoEstudianteRepository CandidatoEstudiante => _candidatoEstudianteRepository.Value;
@@ -71,6 +76,7 @@ public sealed class RepositoryManager : IRepositoryManager
     public ICursoRepository Curso => _cursoRepository.Value;
     public IHorarioRepository Horario => _horarioRepository.Value;
     public IMateriaRepository Materia => _materiaRepository.Value;
-
+    public IAsistenciaRepository Asistencia => _asistenciaRepository.Value;
+    public IEstadisticaRepository Estadistica => _estadisticaRepository.Value;
     public void Save() => _repositoryContext.SaveChanges();
 }

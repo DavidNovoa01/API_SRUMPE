@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entities.Models.D_Notas;
-public partial class Estadisticas
+namespace Shared.DataTransferObjects;
+
+public record EstadisticaDto
 {
-    [Key]
     public int EstadisticaId { get; set; }
     public string Materia { get; set; }
     public decimal NotaPromedio { get; set; }
@@ -14,4 +18,3 @@ public partial class Estadisticas
     public int AñoEscolar { get; set; }
     public string PeriodoEscolar { get; set; }
 }
-

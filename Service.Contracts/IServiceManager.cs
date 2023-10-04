@@ -15,5 +15,7 @@ public interface IServiceManager
     ICursoService CursoService { get; }
     IHorarioService HorarioService { get; }
     IMateriaService MateriaService { get; }
+    IAsistenciaService AsistenciaService { get; }
+    IEstadisticaService EstadisticaService { get; }
 }
 
