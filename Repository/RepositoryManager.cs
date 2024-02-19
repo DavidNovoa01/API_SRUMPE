@@ -20,6 +20,8 @@ public sealed class RepositoryManager : IRepositoryManager
     private readonly Lazy<IMateriaRepository> _materiaRepository;
     private readonly Lazy<IAsistenciaRepository> _asistenciaRepository;
     private readonly Lazy<IEstadisticaRepository> _estadisticaRepository;
+    private readonly Lazy<IDocenteRepository> _docenteRepository;
+    private readonly Lazy<INotaRepository> _notaRepository;
     public RepositoryManager(RepositoryContext repositoryContext)
 	{
 		_repositoryContext = repositoryContext;
@@ -51,26 +53,23 @@ public sealed class RepositoryManager : IRepositoryManager
         _materiaRepository = new Lazy<IMateriaRepository>(() => new MateriaRepository(repositoryContext));
 
         _asistenciaRepository = new Lazy<IAsistenciaRepository>(() => new AsistenciaRepository(repositoryContext));
+
         _estadisticaRepository = new Lazy<IEstadisticaRepository>(() => new EstadisticaRepository(repositoryContext));
+
+        _docenteRepository = new Lazy<IDocenteRepository>(() => new DocenteRepository(repositoryContext));
+
+        _notaRepository = new Lazy<INotaRepository>(() => new NotaRepository(repositoryContext));
 
     }
 
     public ICandidatoEstudianteRepository CandidatoEstudiante => _candidatoEstudianteRepository.Value;
-
     public IEstudianteDocumentosRepository EstudianteDocumentos => _estudianteDocumentosRepository.Value;
-
     public IAcudienteRepository Acudiente => _acudientesRepository.Value;
-
     public IDireccionAcudienteRepository DireccionAcudiente => _direccionAcudienteRepository.Value;
-
     public ITelefonoAcudienteRepository TelefonoAcudiente => _telefonoAcudienteRepository.Value;
-
     public ICupoRepository Cupo => _cupoRepository.Value;
-
     public IRespuestaCupoRepository RespuestaCupo => _respuestaCupoRepository.Value;
-
     public IPreMatriculaRepository PreMatricula => _preMatriculaRepository.Value;
-
     public IMatriculaRepository Matricula => _matriculaRepository.Value;
     public IAulaRepository Aula => _aulaRepository.Value;
     public ICursoRepository Curso => _cursoRepository.Value;
@@ -78,5 +77,7 @@ public sealed class RepositoryManager : IRepositoryManager
     public IMateriaRepository Materia => _materiaRepository.Value;
     public IAsistenciaRepository Asistencia => _asistenciaRepository.Value;
     public IEstadisticaRepository Estadistica => _estadisticaRepository.Value;
+    public IDocenteRepository Docente => _docenteRepository.Value;
+    public INotaRepository Nota => _notaRepository.Value;
     public void Save() => _repositoryContext.SaveChanges();
 }

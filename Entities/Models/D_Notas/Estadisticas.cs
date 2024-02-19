@@ -4,6 +4,7 @@ namespace Entities.Models.D_Notas;
 public partial class Estadisticas
 {
     [Key]
+
     public int EstadisticaId { get; set; }
     public string Materia { get; set; }
     public decimal NotaPromedio { get; set; }

@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Shared.DataTransferObjects;
 
-namespace Entities.Models.D_Notas;
-
-public partial class Notas
-
+public partial class NotaDto
 {
-    [Key]
     public int NotaId { get; set; }
     public string Titulo { get; set; }
     public int Valor { get; set; }

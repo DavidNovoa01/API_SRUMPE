@@ -17,5 +17,7 @@ public interface IRepositoryManager
     IMateriaRepository Materia { get; }
     IAsistenciaRepository Asistencia { get; }
     IEstadisticaRepository Estadistica { get; }
+    IDocenteRepository Docente { get; }
+    INotaRepository Nota { get; }
     void Save();
 }

@@ -23,9 +23,9 @@ internal sealed class AsistenciaService : IAsistenciaService
     {
         var asistencias = _repository.Asistencia.GetAllAsistencias(trackChanges);
 
-        var asistenciasDto = _mapper.Map<IEnumerable<AsistenciaDto>>(asistencias);
+        var asistenciaDto = _mapper.Map<IEnumerable<AsistenciaDto>>(asistencias);
 
-        return asistenciasDto;
+        return asistenciaDto;
     }
 
     public AsistenciaDto GetAsistencia(int id, bool trackChanges)

@@ -1,8 +1,8 @@
 ﻿using API.Presentation.ModelBinders;
+using Entities.Models.D_Estudiante;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
-
 
 namespace API.Presentation.Controllers;
 
@@ -11,6 +11,7 @@ namespace API.Presentation.Controllers;
 public class CandidatoEstudiantesController : ControllerBase
 {
     private readonly IServiceManager _service;
+
 
     public CandidatoEstudiantesController(IServiceManager service) => _service = service;
 
@@ -38,7 +39,7 @@ public class CandidatoEstudiantesController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateCandidatoEstudiantey([FromBody] CandidatoEstudianteForCreationDto candidatoEstudiante)
+    public IActionResult CreateCandidatoEstudiante([FromBody] CandidatoEstudianteForCreationDto candidatoEstudiante)
     {
         if (candidatoEstudiante is null)
             return BadRequest("CandidatoEstudianteForCreationDto object is null");
@@ -54,9 +55,8 @@ public class CandidatoEstudiantesController : ControllerBase
         var result = _service.CandidatoEstudianteService.CreateCandidatoEstudianteCollection(candidatoEstudianteCollection);
 
         return CreatedAtRoute("CandidatoEstudianteCollection", new { result.ids }, result.candidatoEstudiantes);
-
-
     }
+
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteCandidatoEstudiante(Guid id)
     {
@@ -73,4 +73,5 @@ public class CandidatoEstudiantesController : ControllerBase
         _service.CandidatoEstudianteService.UpdateCandidatoEstudiante(id, candidatoEstudiante, trackChanges: true);
         return NoContent();
     }
+
 }

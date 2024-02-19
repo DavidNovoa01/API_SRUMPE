@@ -12,7 +12,6 @@ namespace Entities.Models.D_Estudiante
 
     {
 
-        [Key]
         public Guid EstudianteDocumentosId { get; set; }
         public string? NombreDocumento { get; set; }
         public string? TipoDocumento { get; set; }
@@ -23,8 +22,7 @@ namespace Entities.Models.D_Estudiante
         public string? Ubicacion { get; set; }
         public int Tamaño { get; set; }
 
-        //Llave
-        public Guid CandidatoEstudianteId { get; set; }
+
 
     }
 

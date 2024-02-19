@@ -13,82 +13,72 @@ public class CandidatoEstudianteConfiguration : IEntityTypeConfiguration<Candida
             new CandidatoEstudiante
             {
                 CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Axl",
-                Apellido = "Acuña",
-                FechaNacimiento = new DateTime(1995, 5, 15),
-                TipoPersona = "Estudiante"
+                Nombre = "John",
+                Apellido = "Doe",
+                FechaNacimiento = null,
+                TipoPersona = "Persona",
+                TipoDocumento = "cedula",
+                NumeroDocumento = 123456789,
+                NumeroContacto = 987654321,
+                Direccion = "123 Main Street",
+                Genero = "Masculino",
+                AdjuntarDocumentos = "Si"
             },
             new CandidatoEstudiante
             {
                 CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Juan",
-                Apellido = "Castro",
-                FechaNacimiento = new DateTime(1990, 8, 22),
-                TipoPersona = "Estudiante"
+                Nombre = "Jane",
+                Apellido = "Smith",
+                FechaNacimiento = new DateTime(1985, 8, 25),
+                TipoPersona = "Persona",
+                TipoDocumento = "Cedula",
+                NumeroDocumento = 987654321,
+                NumeroContacto = 123456789,
+                Direccion = "456 Oak Avenue",
+                Genero = "Femenino",
+                AdjuntarDocumentos = "Si"
             },
             new CandidatoEstudiante
             {
                 CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Carlos",
-                Apellido = "Sánchez",
-                FechaNacimiento = new DateTime(1987, 3, 10),
-                TipoPersona = "Estudiante"
+                Nombre = "Bob",
+                Apellido = "Johnson",
+                FechaNacimiento = new DateTime(1995, 3, 10),
+                TipoPersona = "Persona",
+                TipoDocumento = "Tarjeta de Identidad",
+                NumeroDocumento = 456789012,
+                NumeroContacto = 555555555,
+                Direccion = "789 Pine Road",
+                Genero = "No binario",
+                AdjuntarDocumentos = "Si"
             },
             new CandidatoEstudiante
             {
                 CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Laura",
-                Apellido = "López",
-                FechaNacimiento = new DateTime(2000, 11, 7),
-                TipoPersona = "Estudiante"
+                Nombre = "Alice",
+                Apellido = "Williams",
+                FechaNacimiento = new DateTime(1980, 12, 5),
+                TipoPersona = "Persona",
+                TipoDocumento = "Tarjeta de Identidad",
+                NumeroDocumento = 333222111,
+                NumeroContacto = 444555666,
+                Direccion = "101 Cedar Lane",
+                Genero = "Otro",
+                AdjuntarDocumentos = "No"
             },
             new CandidatoEstudiante
             {
                 CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Pedro",
-                Apellido = "Ramírez",
-                FechaNacimiento = new DateTime(1998, 9, 3),
-                TipoPersona = "Estudiante"
-            },
-            new CandidatoEstudiante
-            {
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Ana",
-                Apellido = "Martínez",
-                FechaNacimiento = new DateTime(1993, 7, 18),
-                TipoPersona = "Estudiante"
-            },
-            new CandidatoEstudiante
-            {
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Roberto",
-                Apellido = "Fernández",
-                FechaNacimiento = new DateTime(1989, 12, 5),
-                TipoPersona = "Estudiante"
-            },
-            new CandidatoEstudiante
-            {
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Isabel",
-                Apellido = "Gómez",
-                FechaNacimiento = new DateTime(1996, 2, 25),
-                TipoPersona = "Estudiante"
-            },
-            new CandidatoEstudiante
-            {
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Francisco",
-                Apellido = "Díaz",
-                FechaNacimiento = new DateTime(1991, 6, 14),
-                TipoPersona = "Estudiante"
-            },
-            new CandidatoEstudiante
-            {
-                CandidatoEstudianteId = Guid.NewGuid(),
-                Nombre = "Sofía",
-                Apellido = "Hernández",
-                FechaNacimiento = new DateTime(1994, 4, 30),
-                TipoPersona = "Estudiante"
+                Nombre = "Charlie",
+                Apellido = "Brown",
+                FechaNacimiento = new DateTime(1992, 7, 20),
+                TipoPersona = "Persona",
+                TipoDocumento = "Tarjeta de Identidad",
+                NumeroDocumento = 999888777,
+                NumeroContacto = 111222333,
+                Direccion = "202 Elm Street",
+                Genero = "Masculino",
+                AdjuntarDocumentos = "Si"
             }
         );
     }

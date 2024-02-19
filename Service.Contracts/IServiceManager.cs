@@ -17,5 +17,7 @@ public interface IServiceManager
     IMateriaService MateriaService { get; }
     IAsistenciaService AsistenciaService { get; }
     IEstadisticaService EstadisticaService { get; }
+    INotaService NotaService { get; }
+    IDocenteService DocenteService { get; }
 }
 
