@@ -1,7 +1,6 @@
-﻿
-namespace Shared.DataTransferObjects;
+﻿namespace Shared.DataTransferObjects;
 
-public record AcudienteDto
+public class AcudienteDto
 {
     public Guid AcudienteId { get; set; }
     public string? Nombres { get; set; }
@@ -13,4 +12,7 @@ public record AcudienteDto
     public string? EstadoCivil { get; set; }
     public string? Ocupacion { get; set; }
     public DateTime? FechaRegistro { get; set; }
+
+    public long NumeroIdentificacionEstudiante { get; set; } // Cambio de nombre
+    public ICollection<CandidatoEstudianteDto> CandidatoEstudiantes { get; set; }
 }

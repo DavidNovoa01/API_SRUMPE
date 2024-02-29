@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using Entities.Models.D_Docente;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
@@ -26,5 +27,14 @@ namespace Repository
                 .ToList();
 
         public void DeleteDocente(Docente docente) => Delete(docente);
+
+        public Docente GetDocenteWithRelations(Guid id, bool trackChanges)
+        {
+            return FindByCondition(d => d.DocenteId.Equals(id), trackChanges)
+                .Include(d => d.Materias)
+                .FirstOrDefault();
+        }
+
+
     }
 }

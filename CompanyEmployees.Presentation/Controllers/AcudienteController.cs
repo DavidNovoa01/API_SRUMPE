@@ -1,74 +1,110 @@
 ﻿using API.Presentation.ModelBinders;
+using Entities.Models.D_Acudiente;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Repository;
 using Service.Contracts;
 using Shared.DataTransferObjects;
 
-namespace API.Presentation.Controllers;
-
-[Route("api/acudiente")]
-[ApiController]
-public class AcudientesController : ControllerBase
+namespace API.Presentation.Controllers
 {
-    private readonly IServiceManager _service;
-
-    public AcudientesController(IServiceManager service) => _service = service;
-
-    [HttpGet]
-    public IActionResult GetAcudientes()
+    [Route("api/acudiente")]
+    [ApiController]
+    public class AcudientesController : ControllerBase
     {
-        var acudientes = _service.AcudienteService.GetAllAcudiente(trackChanges: false);
+        private readonly IServiceManager _service;
+        private readonly RepositoryContext _context;
 
-        return Ok(acudientes);
-    }
+        public AcudientesController(IServiceManager service, RepositoryContext context)
+        {
+            _service = service;
+            _context = context;
+        }
 
-    [HttpGet("{id:guid}", Name = "AcudienteById")]
-    public IActionResult GetAcudiente(Guid id)
-    {
-        var acudiente = _service.AcudienteService.GetAcudiente(id, trackChanges: false);
-        return Ok(acudiente);
-    }
+        [HttpGet]
+        public IActionResult GetAcudientes()
+        {
+            var acudientes = _context.Acudientes.ToList();
 
-    [HttpGet("collection/({ids})", Name = "AcudienteCollection")]
-    public IActionResult GetAcudienteCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
-    {
-        var acudientes = _service.AcudienteService.GetByIds(ids, trackChanges: false);
+            var acudientesDto = acudientes.Select(a => new
+            {
+                a.AcudienteId,
+                a.Nombres,
+                a.Apellidos,
+                a.NumeroIdentificacion,
+                a.Edad,
+                a.CorreoElectronico,
+                a.RelacionConEstudiante,
+                a.EstadoCivil,
+                a.Ocupacion,
+                a.FechaRegistro,
+                EstudiantesRelacionados = _context.CandidatoEstudiantes
+                    .Where(c => c.NumeroIdentificacionAcudiente == a.NumeroIdentificacion)
+                    .Select(c => $"{c.Nombre} {c.Apellido}")
+                    .ToList()
+            }).ToList();
 
-        return Ok(acudientes);
-    }
+            return Ok(acudientesDto);
+        }
 
-    [HttpPost]
-    public IActionResult CreateAcudiente([FromBody] AcudienteForCreationDto acudiente)
-    {
-        if (acudiente is null)
-            return BadRequest("AcudienteForCreationDto object is null");
 
-        var createdAcudiente = _service.AcudienteService.CreateAcudiente(acudiente);
+        [HttpGet("{id:guid}", Name = "AcudienteById")]
+        public IActionResult GetAcudiente(Guid id)
+        {
+            var acudiente = _service.AcudienteService.GetAcudiente(id, trackChanges: false);
+            return Ok(acudiente);
+        }
 
-        return CreatedAtRoute("AcudienteById", new { id = createdAcudiente.AcudienteId }, createdAcudiente);
-    }
+        [HttpGet("collection/({ids})", Name = "AcudienteCollection")]
+        public IActionResult GetAcudienteCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
+        {
+            var acudientes = _service.AcudienteService.GetByIds(ids, trackChanges: false);
+            return Ok(acudientes);
+        }
 
-    [HttpPost("collection")]
-    public IActionResult CreateAcudienteCollection([FromBody] IEnumerable<AcudienteForCreationDto> acudienteCollection)
-    {
-        var result = _service.AcudienteService.CreateAcudienteCollection(acudienteCollection);
+        [HttpPost]
+        public async Task<ActionResult<Acudiente>> CreateAcudiente([FromBody] AcudienteForCreationDto acudiente)
+        {
+            if (acudiente is null)
+                return BadRequest("AcudienteForCreationDto object is null");
 
-        return CreatedAtRoute("AcudienteCollection", new { result.ids }, result.acudiente);
-    }
+            var createdAcudiente = _service.AcudienteService.CreateAcudiente(acudiente);
+            return CreatedAtRoute("AcudienteById", new { id = createdAcudiente.AcudienteId }, createdAcudiente);
+        }
 
-    [HttpDelete("{id:guid}")]
-    public IActionResult DeleteAcudiente(Guid id)
-    {
-        _service.AcudienteService.DeleteAcudiente(id, trackChanges: false);
-        return NoContent();
-    }
+        [HttpPost("byNumber")]
+        public async Task<ActionResult<Acudiente>> PostAcudienteByNumber(Acudiente acudiente)
+        {
+            var candidatoEstudiante = await _context.CandidatoEstudiantes.FirstOrDefaultAsync(c => c.NumeroDocumento == acudiente.NumeroIdentificacionEstudiante);
 
-    [HttpPut("{id:guid}")]
-    public IActionResult UpdateAcudiente(Guid id, [FromBody] AcudienteForUpdateDto acudiente)
-    {
-        if (acudiente is null)
-            return BadRequest("AcudienteForUpdateDto object is null");
-        _service.AcudienteService.UpdateAcudiente(id, acudiente, trackChanges: true);
-        return NoContent();
+            if (candidatoEstudiante != null)
+            {
+                candidatoEstudiante.Acudientes.Add(acudiente);
+                _context.Acudientes.Add(acudiente); // Corrección aquí
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetAcudiente", new { id = acudiente.AcudienteId }, acudiente);
+            }
+            else
+            {
+                return BadRequest("No se encontró el candidato estudiante con el número de identificación proporcionado.");
+            }
+        }
+
+        [HttpDelete("{id:guid}")]
+        public IActionResult DeleteAcudiente(Guid id)
+        {
+            _service.AcudienteService.DeleteAcudiente(id, trackChanges: false);
+            return NoContent();
+        }
+
+        [HttpPut("{id:guid}")]
+        public IActionResult UpdateAcudiente(Guid id, [FromBody] AcudienteForUpdateDto acudiente)
+        {
+            if (acudiente is null)
+                return BadRequest("AcudienteForUpdateDto object is null");
+
+            _service.AcudienteService.UpdateAcudiente(id, acudiente, trackChanges: true);
+            return NoContent();
+        }
     }
 }
-

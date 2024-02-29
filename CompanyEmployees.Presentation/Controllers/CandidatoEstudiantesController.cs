@@ -1,8 +1,13 @@
 ﻿using API.Presentation.ModelBinders;
 using Entities.Models.D_Estudiante;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Repository;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API.Presentation.Controllers;
 
@@ -11,16 +16,26 @@ namespace API.Presentation.Controllers;
 public class CandidatoEstudiantesController : ControllerBase
 {
     private readonly IServiceManager _service;
+    private readonly RepositoryContext _context;
 
-
-    public CandidatoEstudiantesController(IServiceManager service) => _service = service;
+    public CandidatoEstudiantesController(IServiceManager service, RepositoryContext context)
+    {
+        _service = service;
+        _context = context;
+    }
 
     [HttpGet]
     public IActionResult GetCandidatoEstudiantes()
     {
-        var candidatoEstudiantes = _service.CandidatoEstudianteService.GetAllCandidatoEstudiantes(trackChanges: false);
-
-        return Ok(candidatoEstudiantes);
+        try
+        {
+            var candidatoEstudiantes = _service.CandidatoEstudianteService.GetAllCandidatoEstudiantes(trackChanges: false);
+            return Ok(candidatoEstudiantes);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Error al obtener la lista de estudiantes: {ex.Message}");
+        }
     }
 
     [HttpGet("{id:guid}", Name = "CandidatoEstudianteById")]
@@ -28,14 +43,6 @@ public class CandidatoEstudiantesController : ControllerBase
     {
         var candidatoEstudiante = _service.CandidatoEstudianteService.GetCandidatoEstudiante(id, trackChanges: false);
         return Ok(candidatoEstudiante);
-    }
-
-    [HttpGet("collection/({ids})", Name = "CandidatoEstudianteCollection")]
-    public IActionResult GetCandidatoEstudianteCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
-    {
-        var candidatoEstudiantes = _service.CandidatoEstudianteService.GetByIds(ids, trackChanges: false);
-
-        return Ok(candidatoEstudiantes);
     }
 
     [HttpPost]
@@ -49,21 +56,12 @@ public class CandidatoEstudiantesController : ControllerBase
         return CreatedAtRoute("CandidatoEstudianteById", new { id = createdCandidatoEstudiante.CandidatoEstudianteId }, createdCandidatoEstudiante);
     }
 
-    [HttpPost("collection")]
-    public IActionResult CreateCandidatoEstudianteCollection([FromBody] IEnumerable<CandidatoEstudianteForCreationDto> candidatoEstudianteCollection)
-    {
-        var result = _service.CandidatoEstudianteService.CreateCandidatoEstudianteCollection(candidatoEstudianteCollection);
-
-        return CreatedAtRoute("CandidatoEstudianteCollection", new { result.ids }, result.candidatoEstudiantes);
-    }
-
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteCandidatoEstudiante(Guid id)
     {
         _service.CandidatoEstudianteService.DeleteCandidatoEstudiante(id, trackChanges: false);
         return NoContent();
     }
-
 
     [HttpPut("{id:guid}")]
     public IActionResult UpdateCandidatoEstudiante(Guid id, [FromBody] CandidatoEstudianteForUpdateDto candidatoEstudiante)
@@ -73,5 +71,24 @@ public class CandidatoEstudiantesController : ControllerBase
         _service.CandidatoEstudianteService.UpdateCandidatoEstudiante(id, candidatoEstudiante, trackChanges: true);
         return NoContent();
     }
+
+    [HttpPost("acudiente")]
+    public async Task<ActionResult<CandidatoEstudiante>> PostCandidatoEstudiante(CandidatoEstudiante candidatoEstudiante)
+    {
+        var acudiente = await _context.Acudientes.FirstOrDefaultAsync(a => a.NumeroIdentificacion == candidatoEstudiante.NumeroIdentificacionAcudiente);
+
+        if (acudiente != null)
+        {
+            candidatoEstudiante.Acudientes.Add(acudiente);
+            _context.CandidatoEstudiantes.Add(candidatoEstudiante);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetCandidatoEstudiante", new { id = candidatoEstudiante.CandidatoEstudianteId }, candidatoEstudiante);
+        }
+        else
+        {
+            return BadRequest("No se encontró el acudiente con el número de identificación proporcionado.");
+        }
+    }
+
 
 }

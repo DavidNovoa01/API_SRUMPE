@@ -11,12 +11,9 @@ public static class CursoMapper
     {
         return new Cursos
         {
-            Codigo = dto.Codigo,
             Descripcion = dto.Descripcion,
             DepartamentoAcademico= dto.DepartamentoAcademico,
             Nivel = dto.Nivel,
-            ProfesorAsignado= dto.ProfesorAsignado,
-            AulasAsignadas= dto.AulasAsignadas,
             FechaLimiteInscripcion=dto.FechaLimiteInscripcion,
             MetodosEnsenanza= dto.MetodosEnsenanza,
         };

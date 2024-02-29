@@ -1,6 +1,6 @@
 ﻿
 namespace Shared.DataTransferObjects;
-public record AulaDto
+public class AulaDto
 {
     public Guid AulaId { get; set; }
     public string NombreNumero { get; set; }
@@ -11,6 +11,7 @@ public record AulaDto
     public string HorarioDisponibilidad { get; set; }
     public string NotasAdicionales { get; set; }
     public DateTime UltimaActualizacion { get; set; }
-    public string ResponsableAula { get; set; }
     public string RegistrosIncidentesProblemas { get; set; }
+
+    public DocenteDto Docente { get; set; }
 }

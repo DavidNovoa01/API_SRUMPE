@@ -2,16 +2,18 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Repository.Configuration;
 
 public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
 {
     public void Configure(EntityTypeBuilder<Aulas> builder)
     {
+
         builder.HasData(
             new Aulas
             {
-                AulaId = Guid.NewGuid(),
+                AulaId = new Guid("bd249220-eec2-4bbd-c57e-8619cb666ece"),
                 NombreNumero = "Aula 101",
                 Ubicacion = "Edificio Principal",
                 Capacidad = 50,
@@ -20,12 +22,12 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
                 HorarioDisponibilidad = "Lunes a Viernes, 08:00 AM - 06:00 PM",
                 NotasAdicionales = "Equipada con proyector",
                 UltimaActualizacion = new DateTime(2023, 09, 15),
-                ResponsableAula = "Profesor Responsable 1",
-                RegistrosIncidentesProblemas = "Ninguno"
+                RegistrosIncidentesProblemas = "Ninguno",
+                DocenteId = new Guid("a007fb2e-89c1-433a-609b-81a34b070e20")  // Asignar un nuevo ID de Docente
             },
             new Aulas
             {
-                AulaId = Guid.NewGuid(),
+                AulaId = new Guid("53c29e9a-f7b8-433b-983f-a85b823c4733"),
                 NombreNumero = "Aula 102",
                 Ubicacion = "Edificio de Ciencias",
                 Capacidad = 30,
@@ -34,51 +36,11 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
                 HorarioDisponibilidad = "Lunes a Viernes, 10:00 AM - 05:00 PM",
                 NotasAdicionales = "Equipado con computadoras de última generación",
                 UltimaActualizacion = new DateTime(2023, 09, 10),
-                ResponsableAula = "Profesor Responsable 2",
-                RegistrosIncidentesProblemas = "Reporte de fallo en una computadora"
-            },
-            new Aulas
-            {
-                AulaId = Guid.NewGuid(),
-                NombreNumero = "Aula 103",
-                Ubicacion = "Edificio de Eventos",
-                Capacidad = 100,
-                TipoAula = "Sala de Conferencias",
-                EstadoAula = "Disponible",
-                HorarioDisponibilidad = "Disponible previa reserva",
-                NotasAdicionales = "Equipada con proyector y sistema de sonido",
-                UltimaActualizacion = new DateTime(2023, 09, 20),
-                ResponsableAula = "Personal de Eventos",
-                RegistrosIncidentesProblemas = "Ninguno"
-            },
-            new Aulas
-            {
-                AulaId = Guid.NewGuid(),
-                NombreNumero = "Aula 104",
-                Ubicacion = "Edificio Principal",
-                Capacidad = 40,
-                TipoAula = "Salón de Clases",
-                EstadoAula = "En Mantenimiento",
-                HorarioDisponibilidad = "No disponible temporalmente",
-                NotasAdicionales = "Mantenimiento programado",
-                UltimaActualizacion = new DateTime(2023, 09, 25),
-                ResponsableAula = "Personal de Mantenimiento",
-                RegistrosIncidentesProblemas = "Reporte de fugas de agua en el techo"
-            },
-            new Aulas
-            {
-                AulaId = Guid.NewGuid(),
-                NombreNumero = "Aula 105",
-                Ubicacion = "Biblioteca",
-                Capacidad = 10,
-                TipoAula = "Sala de Estudio",
-                EstadoAula = "Disponible",
-                HorarioDisponibilidad = "Lunes a Domingo, 09:00 AM - 11:00 PM",
-                NotasAdicionales = "Área de estudio tranquila",
-                UltimaActualizacion = new DateTime(2023, 09, 18),
-                ResponsableAula = "Bibliotecario",
-                RegistrosIncidentesProblemas = "Ninguno"
+                RegistrosIncidentesProblemas = "Reporte de fallo en una computadora",
+                DocenteId = new Guid("57aa9a84-70b2-4e68-235d-987650f3b246") // Asignar un nuevo ID de Docente
             }
+
         );
+
     }
 }

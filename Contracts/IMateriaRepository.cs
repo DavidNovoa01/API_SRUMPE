@@ -1,4 +1,6 @@
 ﻿using Entities.Models.D_DepartamentoAcademico;
+using System;
+using System.Collections.Generic;
 
 namespace Contracts;
 
@@ -9,4 +11,6 @@ public interface IMateriaRepository
     void CreateMateria(Materias materia);
     IEnumerable<Materias> GetByIds(IEnumerable<Guid> ids, bool trackChanges);
     void DeleteMateria(Materias materia);
+    IEnumerable<Materias> GetMaterias(IEnumerable<Guid> materiaIds, bool trackChanges); // Agregar este método
 }
+

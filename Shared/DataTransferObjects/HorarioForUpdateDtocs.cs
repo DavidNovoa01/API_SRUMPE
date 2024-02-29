@@ -1,10 +1,24 @@
 ﻿using Entities.Models.D_DepartamentoAcademico;
+using Entities.Models.D_Docente;
 using Entities.Models.D_Estudiante;
-
 
 namespace Shared.DataTransferObjects
 {
-    public record HorarioForUpdateDto(string DiaSemana, TimeSpan HoraInicio, TimeSpan HoraFin, string PeriodoAcademico, string GrupoSeccion, DateTime FechaInicioClases, DateTime FechaFinClases, string EstadoHorario, int DuracionClaseMinutos, string SalaAula, string ProfesorAsistente, string NotificacionCambioHorario);
+    public record HorarioForUpdateDto
+    (
+        string DiaSemana,
+        TimeSpan HoraInicio,
+        TimeSpan HoraFin,
+        string PeriodoAcademico,
+        string GrupoSeccion,
+        DateTime FechaInicioClases,
+        DateTime FechaFinClases,
+        string EstadoHorario,
+        int DuracionClaseMinutos,
+        string NotificacionCambioHorario,
+
+        string? DocenteNombre
+    );
 
     public static class HorarioMapper
     {
@@ -13,17 +27,16 @@ namespace Shared.DataTransferObjects
             return new Horarios
             {
                 DiaSemana = dto.DiaSemana,
-                HoraFin = dto.HoraFin,
                 HoraInicio = dto.HoraInicio,
+                HoraFin = dto.HoraFin,
                 PeriodoAcademico = dto.PeriodoAcademico,
                 GrupoSeccion = dto.GrupoSeccion,
+                FechaInicioClases = dto.FechaInicioClases,
                 FechaFinClases = dto.FechaFinClases,
-                FechaInicioClases = dto.FechaFinClases,
                 EstadoHorario = dto.EstadoHorario,
-                DuracionClaseMinutos= dto.DuracionClaseMinutos,
-                SalaAula = dto.SalaAula,
-                ProfesorAsistente=dto.ProfesorAsistente,
-                NotificacionCambioHorario=dto.NotificacionCambioHorario,
+                DuracionClaseMinutos = dto.DuracionClaseMinutos,
+                NotificacionCambioHorario = dto.NotificacionCambioHorario,
+                Docente = new Docente { Nombre = dto.DocenteNombre }
             };
         }
     }

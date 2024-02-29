@@ -1,12 +1,25 @@
-﻿using Entities.Models.D_Estudiante;
-
+﻿using Entities.Models.D_Acudiente;
+using Entities.Models.D_Estudiante;
+using System;
+using System.Collections.Generic;
 
 namespace Shared.DataTransferObjects
 {
-    public record CandidatoEstudianteForUpdateDto(string Nombre, string Apellido, DateTime? FechaNacimiento, string? TipoPersona, string? TipoDocumento, long NumeroDocumento, long NumeroContacto, string? Direccion,  string? Genero,  string AdjuntarDocumentos);
+    public record CandidatoEstudianteForUpdateDto
+    (
+        string Nombre,
+        string Apellido,
+        DateTime? FechaNacimiento,
+        string TipoPersona,
+        string TipoDocumento,
+        long NumeroDocumento,
+        long NumeroContacto,
+        string Direccion,
+        string Genero,
+        string AdjuntarDocumentos,
 
-
-    public static class CandidatoEstudianteMapper
+        string NombreAcudienteRelacionado // Nombre del acudiente relacionado
+    )
     {
         public static CandidatoEstudiante MapToCandidatoEstudiante(CandidatoEstudianteForUpdateDto dto)
         {
@@ -17,10 +30,10 @@ namespace Shared.DataTransferObjects
                 FechaNacimiento = dto.FechaNacimiento,
                 TipoPersona = dto.TipoPersona,
                 TipoDocumento = dto.TipoDocumento,
-                NumeroContacto = dto.NumeroContacto,
                 NumeroDocumento = dto.NumeroDocumento,
+                NumeroContacto = dto.NumeroContacto,
                 Direccion = dto.Direccion,
-                Genero = dto.Genero,    
+                Genero = dto.Genero,
                 AdjuntarDocumentos = dto.AdjuntarDocumentos
             };
         }

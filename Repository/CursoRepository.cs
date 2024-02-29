@@ -26,4 +26,6 @@ internal sealed class CursoRepository : RepositoryBase<Cursos>, ICursoRepository
     .ToList();
 
     public void DeleteCurso(Cursos curso) => Delete(curso);
+    public IEnumerable<Cursos> GetCursos(IEnumerable<Guid> cursoIds, bool trackChanges) =>
+            FindByCondition(x => cursoIds.Contains(x.CursoId), trackChanges).ToList();
 }

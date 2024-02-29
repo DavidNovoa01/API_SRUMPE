@@ -1,8 +1,10 @@
 ﻿using API.Presentation.ModelBinders;
+using Entities.Exceptions;
+using Entities.Models.D_Docente;
 using Microsoft.AspNetCore.Mvc;
+using Repository;
 using Service.Contracts;
 using Shared.DataTransferObjects;
-using System;
 using System.Collections.Generic;
 
 namespace API.Presentation.Controllers
@@ -12,8 +14,13 @@ namespace API.Presentation.Controllers
     public class DocentesController : ControllerBase
     {
         private readonly IServiceManager _service;
+        private readonly RepositoryContext _context;
 
-        public DocentesController(IServiceManager service) => _service = service;
+        public DocentesController(IServiceManager service, RepositoryContext context)
+        {
+            _service = service;
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult GetDocentes()
@@ -30,13 +37,15 @@ namespace API.Presentation.Controllers
             return Ok(docente);
         }
 
-        [HttpGet("collection/({ids})", Name = "DocenteCollection")]
+
+        [HttpGet("collection/{ids}", Name = "DocenteCollection")]
         public IActionResult GetDocenteCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
             var docentes = _service.DocenteService.GetByIds(ids, trackChanges: false);
-
             return Ok(docentes);
         }
+
+
 
         [HttpPost]
         public IActionResult CreateDocente([FromBody] DocenteForCreationDto docente)
@@ -69,9 +78,40 @@ namespace API.Presentation.Controllers
         {
             if (docente is null)
                 return BadRequest("DocenteForUpdateDto object is null");
+
             _service.DocenteService.UpdateDocente(id, docente, trackChanges: true);
+            return NoContent();
+        }
+
+        [HttpPut("{docenteId:guid}/horario/{horarioId:guid}")]
+        public IActionResult AssignHorarioToDocente(Guid docenteId, Guid horarioId)
+        {
+            _service.DocenteService.AssignHorarioToDocente(docenteId, horarioId);
+            return NoContent();
+        }
+
+        [HttpPut("{docenteId:guid}/aula/{aulaId:guid}")]
+        public IActionResult AssignAulaToDocente(Guid docenteId, Guid aulaId)
+        {
+            _service.DocenteService.AssignAulaToDocente(docenteId, aulaId);
+            return NoContent();
+        }
+
+        [HttpPut("{docenteId:guid}/cursos")]
+        public IActionResult AssignCursosToDocente(Guid docenteId, [FromBody] IEnumerable<Guid> cursoIds)
+        {
+            _service.DocenteService.AssignCursosToDocente(docenteId, cursoIds);
+            return NoContent();
+        }
+
+        [HttpPut("{docenteId:guid}/materias")]
+        public IActionResult AssignMateriasToDocente(Guid docenteId, [FromBody] AssignMateriasDto dto)
+        {
+            _service.DocenteService.AssignMateriasToDocente(docenteId, dto.MateriaIds);
             return NoContent();
         }
     }
 }
+
+
 

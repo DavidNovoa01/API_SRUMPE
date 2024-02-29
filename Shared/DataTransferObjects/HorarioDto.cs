@@ -1,6 +1,8 @@
-﻿namespace Shared.DataTransferObjects;
+﻿using Entities.Models.D_Docente;
 
-public record HorarioDto
+namespace Shared.DataTransferObjects;
+
+public class HorarioDto
 {
     public Guid HorarioId { get; set; }
     public string DiaSemana { get; set; }
@@ -12,7 +14,8 @@ public record HorarioDto
     public DateTime FechaFinClases { get; set; }
     public string EstadoHorario { get; set; }
     public int DuracionClaseMinutos { get; set; }
-    public string SalaAula { get; set; }
-    public string ProfesorAsistente { get; set; }
     public string NotificacionCambioHorario { get; set; }
+
+    public Docente Docente { get; set; }
+
 }

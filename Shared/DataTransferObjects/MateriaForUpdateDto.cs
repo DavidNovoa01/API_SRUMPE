@@ -16,7 +16,6 @@ namespace Shared.DataTransferObjects
                 Descripcion = dto.Descripcion,
                 DepartamentoAcademico=dto.DepartamentoAcademico,
                 Nivel = dto.Nivel,
-                ProfesorAsignado=dto.ProfesorAsignado,
                 ModalidadEnsenanza=dto.ModalidadEnsenanza,
                 Estado=dto.Estado,
                 NotasAdicionales=dto.NotasAdicionales,  

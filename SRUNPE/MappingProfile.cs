@@ -25,20 +25,11 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.NumeroContacto, opt => opt.MapFrom(src => src.NumeroContacto))
             .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion))
             .ForMember(dest => dest.Genero, opt => opt.MapFrom(src => src.Genero))
-            .ForMember(dest => dest.AdjuntarDocumentos, opt => opt.MapFrom(src => src.AdjuntarDocumentos));
+            .ForMember(dest => dest.AdjuntarDocumentos, opt => opt.MapFrom(src => src.AdjuntarDocumentos))
 
-
-        CreateMap<EstudianteDocumentosForUpdateDto, EstudianteDocumentos>();
-        CreateMap<EstudianteDocumentos, EstudianteDocumentosDto>()
-            .ForMember(dest => dest.EstudianteDocumentosId, opt => opt.MapFrom(src => src.EstudianteDocumentosId))
-            .ForMember(dest => dest.NombreDocumento, opt => opt.MapFrom(src => src.NombreDocumento))
-            .ForMember(dest => dest.TipoDocumento, opt => opt.MapFrom(src => src.TipoDocumento))
-            .ForMember(dest => dest.NumeroDocumento, opt => opt.MapFrom(src => src.NumeroDocumento))
-            .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
-            .ForMember(dest => dest.Observaciones, opt => opt.MapFrom(src => src.Observaciones))
-            .ForMember(dest => dest.FechaActualizacion, opt => opt.MapFrom(src => src.FechaActualizacion))
-            .ForMember(dest => dest.Ubicacion, opt => opt.MapFrom(src => src.Ubicacion))
-            .ForMember(dest => dest.Tamaño, opt => opt.MapFrom(src => src.Tamaño));
+            .ForMember(dest => dest.NumeroIdentificacionAcudiente, opt => opt.MapFrom(src => src.NumeroIdentificacionAcudiente))
+            .ForMember(dest => dest.Acudientes, opt => opt.Ignore())
+            .ForMember(dest => dest.Acudientes, opt => opt.MapFrom(src => src.Acudientes.Select(a => a.Nombres)));
 
         CreateMap<AcudienteForUpdateDto, Acudiente>();
         CreateMap<Acudiente, AcudienteDto>()
@@ -51,8 +42,23 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.EstadoCivil, opt => opt.MapFrom(src => src.EstadoCivil))
             .ForMember(dest => dest.Ocupacion, opt => opt.MapFrom(src => src.Ocupacion))
             .ForMember(dest => dest.Edad, opt => opt.MapFrom(src => src.Edad))
-            .ForMember(dest => dest.FechaRegistro, opt => opt.MapFrom(src => src.FechaRegistro));
+            .ForMember(dest => dest.FechaRegistro, opt => opt.MapFrom(src => src.FechaRegistro))
 
+            .ForMember(dest => dest.NumeroIdentificacionEstudiante, opt => opt.MapFrom(src => src.NumeroIdentificacionEstudiante))
+            .ForMember(dest => dest.CandidatoEstudiantes, opt => opt.Ignore())
+            .ForMember(dest => dest.CandidatoEstudiantes, opt => opt.MapFrom(src => src.CandidatoEstudiantes.Select(c => c.Nombre)));
+
+        CreateMap<EstudianteDocumentosForUpdateDto, EstudianteDocumentos>();
+                CreateMap<EstudianteDocumentos, EstudianteDocumentosDto>()
+                    .ForMember(dest => dest.EstudianteDocumentosId, opt => opt.MapFrom(src => src.EstudianteDocumentosId))
+                    .ForMember(dest => dest.NombreDocumento, opt => opt.MapFrom(src => src.NombreDocumento))
+                    .ForMember(dest => dest.TipoDocumento, opt => opt.MapFrom(src => src.TipoDocumento))
+                    .ForMember(dest => dest.NumeroDocumento, opt => opt.MapFrom(src => src.NumeroDocumento))
+                    .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
+                    .ForMember(dest => dest.Observaciones, opt => opt.MapFrom(src => src.Observaciones))
+                    .ForMember(dest => dest.FechaActualizacion, opt => opt.MapFrom(src => src.FechaActualizacion))
+                    .ForMember(dest => dest.Ubicacion, opt => opt.MapFrom(src => src.Ubicacion))
+                    .ForMember(dest => dest.Tamaño, opt => opt.MapFrom(src => src.Tamaño));
         CreateMap<TelefonoAcudienteForUpdateDto, TelefonoAcudiente>();
         CreateMap<TelefonoAcudiente, TelefonoAcudienteDto>()
             .ForMember(dest => dest.TelefonoAcudienteId, opt => opt.MapFrom(src => src.TelefonoAcudienteId))
@@ -116,7 +122,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.EstadoPreMatricula, opt => opt.MapFrom(src => src.EstadoPreMatricula))
             .ForMember(dest => dest.RequisitosDocumentacion, opt => opt.MapFrom(src => src.RequisitosDocumentacion));
 
-        CreateMap<AulaForUpdateDto, Aulas>();
+        CreateMap<AulaForUpdateDto, Aulas>()
+            .ForMember(dest => dest.Docente, opt => opt.MapFrom(src => new Docente { Nombre = src.DocenteNombre }));
         CreateMap<Aulas, AulaDto>()
             .ForMember(dest => dest.AulaId, opt => opt.MapFrom(src => src.AulaId))
             .ForMember(dest => dest.NombreNumero, opt => opt.MapFrom(src => src.NombreNumero))
@@ -127,54 +134,45 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.HorarioDisponibilidad, opt => opt.MapFrom(src => src.HorarioDisponibilidad))
             .ForMember(dest => dest.NotasAdicionales, opt => opt.MapFrom(src => src.NotasAdicionales))
             .ForMember(dest => dest.UltimaActualizacion, opt => opt.MapFrom(src => src.UltimaActualizacion))
-            .ForMember(dest => dest.ResponsableAula, opt => opt.MapFrom(src => src.ResponsableAula))
             .ForMember(dest => dest.RegistrosIncidentesProblemas, opt => opt.MapFrom(src => src.RegistrosIncidentesProblemas));
 
         CreateMap<CursoForUpdateDto, Cursos>();
         CreateMap<Cursos, CursoDto>()
             .ForMember(dest => dest.CursoId, opt => opt.MapFrom(src => src.CursoId))
-            .ForMember(dest => dest.Codigo, opt => opt.MapFrom(src => src.Codigo))
             .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Descripcion))
             .ForMember(dest => dest.DepartamentoAcademico, opt => opt.MapFrom(src => src.DepartamentoAcademico))
             .ForMember(dest => dest.Nivel, opt => opt.MapFrom(src => src.Nivel))
-            .ForMember(dest => dest.ProfesorAsignado, opt => opt.MapFrom(src => src.ProfesorAsignado))
-            .ForMember(dest => dest.AulasAsignadas, opt => opt.MapFrom(src => src.AulasAsignadas))
             .ForMember(dest => dest.FechaLimiteInscripcion, opt => opt.MapFrom(src => src.FechaLimiteInscripcion))
             .ForMember(dest => dest.MetodosEnsenanza, opt => opt.MapFrom(src => src.MetodosEnsenanza));
 
-        CreateMap<HorarioForUpdateDto, Horarios>();
+        CreateMap<HorarioForUpdateDto, Horarios>()
+            .ForMember(dest => dest.Docente, opt => opt.MapFrom(src => new Docente { Nombre = src.DocenteNombre }));
         CreateMap<Horarios, HorarioDto>()
             .ForMember(dest => dest.HorarioId, opt => opt.MapFrom(src => src.HorarioId))
             .ForMember(dest => dest.DiaSemana, opt => opt.MapFrom(src => src.DiaSemana))
             .ForMember(dest => dest.HoraInicio, opt => opt.MapFrom(src => src.HoraInicio))
             .ForMember(dest => dest.HoraFin, opt => opt.MapFrom(src => src.HoraFin))
-            .ForMember(dest => dest.PeriodoAcademico, opt => opt.MapFrom(src => src.PeriodoAcademico));
+            .ForMember(dest => dest.PeriodoAcademico, opt => opt.MapFrom(src => src.PeriodoAcademico))
+            .ForMember(dest => dest.GrupoSeccion, opt => opt.MapFrom(src => src.GrupoSeccion))
+            .ForMember(dest => dest.FechaInicioClases, opt => opt.MapFrom(src => src.FechaInicioClases))
+            .ForMember(dest => dest.FechaFinClases, opt => opt.MapFrom(src => src.FechaFinClases))
+            .ForMember(dest => dest.EstadoHorario, opt => opt.MapFrom(src => src.EstadoHorario))
+            .ForMember(dest => dest.DuracionClaseMinutos, opt => opt.MapFrom(src => src.DuracionClaseMinutos))
+            .ForMember(dest => dest.NotificacionCambioHorario, opt => opt.MapFrom(src => src.NotificacionCambioHorario));
 
-        CreateMap<MateriaForUpdateDto, Materias>(); 
+
+        CreateMap<MateriaForUpdateDto, Materias>();
         CreateMap<Materias, MateriaDto>()
             .ForMember(dest => dest.MateriaId, opt => opt.MapFrom(src => src.MateriaId))
             .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
             .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Descripcion))
             .ForMember(dest => dest.DepartamentoAcademico, opt => opt.MapFrom(src => src.DepartamentoAcademico))
             .ForMember(dest => dest.Nivel, opt => opt.MapFrom(src => src.Nivel))
-            .ForMember(dest => dest.ProfesorAsignado, opt => opt.MapFrom(src => src.ProfesorAsignado))
             .ForMember(dest => dest.ModalidadEnsenanza, opt => opt.MapFrom(src => src.ModalidadEnsenanza))
             .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
             .ForMember(dest => dest.NotasAdicionales, opt => opt.MapFrom(src => src.NotasAdicionales))
             .ForMember(dest => dest.GrupoSeccionMateria, opt => opt.MapFrom(src => src.GrupoSeccionMateria))
             .ForMember(dest => dest.MetodosEnsenanza, opt => opt.MapFrom(src => src.MetodosEnsenanza));
-
-        CreateMap<EstadisticaForUpdateDto, Estadisticas>();
-        CreateMap<Estadisticas, EstadisticaDto>()
-            .ForMember(dest => dest.EstadisticaId, opt => opt.MapFrom(src => src.EstadisticaId))
-            .ForMember(dest => dest.Materia, opt => opt.MapFrom(src => src.Materia))
-            .ForMember(dest => dest.NotaPromedio, opt => opt.MapFrom(src => src.NotaPromedio))
-            .ForMember(dest => dest.NotaMaxima, opt => opt.MapFrom(src => src.NotaMaxima))
-            .ForMember(dest => dest.NotaMinima, opt => opt.MapFrom(src => src.NotaMinima))
-            .ForMember(dest => dest.CantidadExamenes, opt => opt.MapFrom(src => src.CantidadExamenes))
-            .ForMember(dest => dest.FechaRegistro, opt => opt.MapFrom(src => src.FechaRegistro))
-            .ForMember(dest => dest.AñoEscolar, opt => opt.MapFrom(src => src.AñoEscolar))
-            .ForMember(dest => dest.PeriodoEscolar, opt => opt.MapFrom(src => src.PeriodoEscolar));
 
         CreateMap<DocenteForUpdateDto, Docente>();
         CreateMap<Docente, DocenteDto>()
@@ -191,7 +189,26 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.EstadoLaboral, opt => opt.MapFrom(src => src.EstadoLaboral))
             .ForMember(dest => dest.NumeroIdentificacion, opt => opt.MapFrom(src => src.NumeroIdentificacion))
             .ForMember(dest => dest.ComentariosNotas, opt => opt.MapFrom(src => src.ComentariosNotas))
-            .ForMember(dest => dest.NivelExperiencia, opt => opt.MapFrom(src => src.NivelExperiencia));
+            .ForMember(dest => dest.NivelExperiencia, opt => opt.MapFrom(src => src.NivelExperiencia))
+            .ForMember(dest => dest.Cursos, opt => opt.MapFrom(src => src.Cursos))
+            .ForMember(dest => dest.Materias, opt => opt.MapFrom(src => src.Materias))
+            .ForMember(dest => dest.Horario, opt => opt.MapFrom(src => src.Horario))
+            .ForMember(dest => dest.Aula, opt => opt.MapFrom(src => src.Aula));
+
+
+        CreateMap<EstadisticaForUpdateDto, Estadisticas>();
+        CreateMap<Estadisticas, EstadisticaDto>()
+            .ForMember(dest => dest.EstadisticaId, opt => opt.MapFrom(src => src.EstadisticaId))
+            .ForMember(dest => dest.Materia, opt => opt.MapFrom(src => src.Materia))
+            .ForMember(dest => dest.NotaPromedio, opt => opt.MapFrom(src => src.NotaPromedio))
+            .ForMember(dest => dest.NotaMaxima, opt => opt.MapFrom(src => src.NotaMaxima))
+            .ForMember(dest => dest.NotaMinima, opt => opt.MapFrom(src => src.NotaMinima))
+            .ForMember(dest => dest.CantidadExamenes, opt => opt.MapFrom(src => src.CantidadExamenes))
+            .ForMember(dest => dest.FechaRegistro, opt => opt.MapFrom(src => src.FechaRegistro))
+            .ForMember(dest => dest.AñoEscolar, opt => opt.MapFrom(src => src.AñoEscolar))
+            .ForMember(dest => dest.PeriodoEscolar, opt => opt.MapFrom(src => src.PeriodoEscolar));
+
+        
 
         CreateMap<NotaForUpdateDto, Notas>();
         CreateMap<Notas, NotaDto>()
