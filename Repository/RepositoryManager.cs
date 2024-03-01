@@ -79,5 +79,24 @@ public sealed class RepositoryManager : IRepositoryManager
     public IEstadisticaRepository Estadistica => _estadisticaRepository.Value;
     public IDocenteRepository Docente => _docenteRepository.Value;
     public INotaRepository Nota => _notaRepository.Value;
-    public void Save() => _repositoryContext.SaveChanges();
+
+    public void Save()
+    {
+        try
+        {
+            _repositoryContext.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            // Log the exception or handle it as needed
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+        foreach (var entry in _repositoryContext.ChangeTracker.Entries())
+        {
+            Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State.ToString()}");
+        }
+
+    }
+
 }

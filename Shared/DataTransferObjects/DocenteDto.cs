@@ -18,7 +18,7 @@ public class DocenteDto
     public string NivelExperiencia { get; set; }
 
     public ICollection<CursoDto> Cursos { get; set; }
-    public ICollection<MateriaDto> Materias { get; set; }
+    public ICollection<MateriaDto> Materias { get; set; } = new List<MateriaDto>();
     public HorarioDto Horario { get; set; }
     public AulaDto Aula { get; set; }
 }

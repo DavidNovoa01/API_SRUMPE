@@ -105,11 +105,13 @@ namespace API.Presentation.Controllers
         }
 
         [HttpPut("{docenteId:guid}/materias")]
-        public IActionResult AssignMateriasToDocente(Guid docenteId, [FromBody] AssignMateriasDto dto)
+        public IActionResult AssignMateriasToDocente(Guid docenteId, [FromBody] IEnumerable<Guid> materiaIds)
         {
-            _service.DocenteService.AssignMateriasToDocente(docenteId, dto.MateriaIds);
+            _service.DocenteService.AssignMateriasToDocente(docenteId, materiaIds);
+       
             return NoContent();
         }
+
     }
 }
 

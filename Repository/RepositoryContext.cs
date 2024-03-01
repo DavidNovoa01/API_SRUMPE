@@ -73,17 +73,19 @@ namespace Repository
                       );
             });
 
-            modelBuilder.Entity<Materias>(entity =>
             {
-                entity.HasKey(e => e.MateriaId);
-                entity.HasMany(e => e.Docentes)
-                      .WithMany(d => d.Materias)
-                      .UsingEntity<Dictionary<string, object>>(
-                          "MateriasDocente", // Nombre de la tabla de relación
-                          j => j.HasOne<Docente>().WithMany(),
-                          j => j.HasOne<Materias>().WithMany()
-                      );
-            });
+                modelBuilder.Entity<Docente>()
+                    .HasMany(d => d.Materias)
+                    .WithMany(m => m.Docentes)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "DocenteMateria",
+                        j => j.HasOne<Materias>().WithMany().HasForeignKey("MateriaId"),
+                        j => j.HasOne<Docente>().WithMany().HasForeignKey("DocenteId"),
+                        j =>
+                        {
+                            j.HasKey("DocenteId", "MateriaId");
+                        });
+            }
 
 
             modelBuilder.ApplyConfiguration(new CandidatoEstudianteConfiguration());

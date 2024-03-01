@@ -14,8 +14,8 @@ public record DocenteForCreationDto(
     string NumeroIdentificacion,
     string ComentariosNotas,
     string NivelExperiencia,
-    ICollection<Guid>? CursoIds,
-    ICollection<Guid>? MateriaIds,
+    ICollection<Guid> CursoIds,
+    ICollection<Guid> MateriaIds,
     Guid HorarioId,
     Guid AulaId
 );

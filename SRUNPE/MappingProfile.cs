@@ -190,6 +190,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.NumeroIdentificacion, opt => opt.MapFrom(src => src.NumeroIdentificacion))
             .ForMember(dest => dest.ComentariosNotas, opt => opt.MapFrom(src => src.ComentariosNotas))
             .ForMember(dest => dest.NivelExperiencia, opt => opt.MapFrom(src => src.NivelExperiencia))
+
             .ForMember(dest => dest.Cursos, opt => opt.MapFrom(src => src.Cursos))
             .ForMember(dest => dest.Materias, opt => opt.MapFrom(src => src.Materias))
             .ForMember(dest => dest.Horario, opt => opt.MapFrom(src => src.Horario))

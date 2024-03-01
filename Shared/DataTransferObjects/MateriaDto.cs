@@ -1,4 +1,6 @@
-﻿namespace Shared.DataTransferObjects;
+﻿using Entities.Models.D_Docente;
+
+namespace Shared.DataTransferObjects;
 
 public record MateriaDto
 {
@@ -13,4 +15,7 @@ public record MateriaDto
     public string? NotasAdicionales { get; set; }
     public string? GrupoSeccionMateria { get; set; }
     public string? MetodosEnsenanza { get; set; }
+
+    public ICollection<Docente> Docentes { get; set; }
+
 }

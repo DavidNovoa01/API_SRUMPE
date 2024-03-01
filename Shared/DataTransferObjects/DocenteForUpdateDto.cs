@@ -1,6 +1,6 @@
-﻿using Entities.Models.D_DepartamentoAcademico;
+﻿using Contracts;
+using Entities.Models.D_DepartamentoAcademico;
 using Entities.Models.D_Docente;
-
 
 namespace Shared.DataTransferObjects;
 
@@ -25,10 +25,11 @@ public record DocenteForUpdateDto(
 )
 
 {
-    public static Docente MapToDocente(DocenteForUpdateDto dto)
+    public static Docente MapToDocente(DocenteForUpdateDto dto, IMateriaRepository materiaRepository)
     {
-        return new Docente
+        var docente = new Docente
         {
+            // Asignar las propiedades básicas
             Nombre = dto.Nombre,
             FechaNacimiento = dto.FechaNacimiento,
             Genero = dto.Genero,
@@ -41,7 +42,16 @@ public record DocenteForUpdateDto(
             EstadoLaboral = dto.EstadoLaboral,
             NumeroIdentificacion = dto.NumeroIdentificacion,
             ComentariosNotas = dto.ComentariosNotas,
-            NivelExperiencia = dto.NivelExperiencia,
+            NivelExperiencia = dto.NivelExperiencia
         };
+
+        // Convertir los Guid de las materias a objetos Materias
+        if (dto.MateriaIds != null)
+        {
+            var materias = materiaRepository.GetMaterias(dto.MateriaIds, trackChanges: false).ToList();
+            docente.Materias = materias;
+        }
+
+        return docente;
     }
 }

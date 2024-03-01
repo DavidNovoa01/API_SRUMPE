@@ -4,9 +4,7 @@ using Entities.Exceptions;
 using Entities.Models.D_Docente;
 using Service.Contracts;
 using Shared.DataTransferObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Repository;
 
 namespace Service;
 
@@ -15,17 +13,20 @@ internal sealed class DocenteService : IDocenteService
     private readonly IRepositoryManager _repository;
     private readonly ILoggerManager _logger;
     private readonly IMapper _mapper;
+    private readonly RepositoryContext _context;
 
-    public DocenteService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+
+    public DocenteService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, RepositoryContext context)
     {
         _repository = repository;
         _logger = logger;
         _mapper = mapper;
+        _context = context;
     }
 
     public DocenteDto GetDocente(Guid id, bool trackChanges)
     {
-        var docente = _repository.Docente.GetDocente(id, trackChanges);
+        var docente = _repository.Docente.GetDocenteWithRelations(id, trackChanges);
         if (docente == null)
         {
             throw new DocenteNotFoundException(id);
@@ -140,21 +141,36 @@ internal sealed class DocenteService : IDocenteService
         _repository.Save();
     }
 
-    public void AssignMateriasToDocente(Guid docenteId, IEnumerable<Guid> materiaIds)
+    public bool AssignMateriasToDocente(Guid docenteId, IEnumerable<Guid> materiaIds)
     {
-        var docente = _repository.Docente.GetDocente(docenteId, trackChanges: false);
-        if (docente is null)
+        var docente = _repository.Docente.GetDocenteWithRelations(docenteId, trackChanges: false);
+        if (docente == null)
+        {
             throw new DocenteNotFoundException(docenteId);
+        }
 
-        // Asignar las materias al docente
         var materias = _repository.Materia.GetMaterias(materiaIds, trackChanges: false).ToList();
         foreach (var materia in materias)
         {
-            docente.Materias.Add(materia);
+            if (!docente.Materias.Any(m => m.MateriaId == materia.MateriaId)) // Verifica si la materia ya está asignada
+            {
+                docente.Materias.Add(materia);
+            }
         }
 
-        _repository.Save();
+        try
+        {
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error al asignar materias al docente con ID {docenteId}: {ex.Message}");
+            return false;
+        }
     }
+
+
 
     public IEnumerable<DocenteDto> GetAllDocente(bool trackChanges)
     {

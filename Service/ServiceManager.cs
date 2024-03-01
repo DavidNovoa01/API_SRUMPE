@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities.Models;
+using Repository;
 using Service.Contracts;
 
 namespace Service;
@@ -25,7 +26,9 @@ public sealed class ServiceManager : IServiceManager
     private readonly Lazy<INotaService> _notaService;
     private readonly Lazy<IDocenteService> _docenteService;
 
-    public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
+    private readonly RepositoryContext _context;
+
+    public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, RepositoryContext context)
     {
         _candidatoEstudianteService = new Lazy<ICandidatoEstudianteService>(() =>
             new CandidatoEstudianteService(repositoryManager, logger, mapper));
@@ -67,8 +70,7 @@ public sealed class ServiceManager : IServiceManager
         _notaService = new Lazy<INotaService>(() =>
             new NotaService(repositoryManager, logger, mapper));
         _docenteService = new Lazy<IDocenteService>(() =>
-            new DocenteService(repositoryManager, logger, mapper));
-
+            new DocenteService(repositoryManager, logger, mapper, context));
 
 
     }
