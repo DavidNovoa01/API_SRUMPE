@@ -68,7 +68,6 @@ namespace API.Presentation.Controllers
         {
             if (materiaForUpdate is null)
                 return BadRequest("MateriaForUpdateDto object is null");
-
             _service.MateriaService.UpdateMateria(id, materiaForUpdate, trackChanges: true);
             return NoContent();
         }

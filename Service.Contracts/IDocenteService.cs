@@ -17,7 +17,7 @@ public interface IDocenteService
     void AssignHorarioToDocente(Guid docenteId, Guid horarioId);
     void AssignAulaToDocente(Guid docenteId, Guid aulaId);
     void AssignCursosToDocente(Guid docenteId, IEnumerable<Guid> cursoIds);
-    bool AssignMateriasToDocente(Guid docenteId, IEnumerable<Guid> materiaIds);
+    bool AssignMateriasToDocente(Guid docenteId, AssignMateriasDto dto);
 
 
 }

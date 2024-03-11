@@ -27,16 +27,29 @@ public class CandidatoEstudiantesController : ControllerBase
     [HttpGet]
     public IActionResult GetCandidatoEstudiantes()
     {
-        try
-        {
-            var candidatoEstudiantes = _service.CandidatoEstudianteService.GetAllCandidatoEstudiantes(trackChanges: false);
-            return Ok(candidatoEstudiantes);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Error al obtener la lista de estudiantes: {ex.Message}");
-        }
+        var candidatoEstudiante = _context.CandidatoEstudiantes
+            .Select(ce => new
+            {
+                ce.CandidatoEstudianteId,
+                ce.Nombre,
+                ce.Apellido,
+                ce.FechaNacimiento,
+                ce.TipoPersona,
+                ce.TipoDocumento,
+                ce.NumeroDocumento,
+                ce.NumeroContacto,
+                ce.Direccion,
+                ce.Genero,
+                ce.AdjuntarDocumentos,
+                AcudienteRelacionado = _context.Acudientes
+                .Where(c => c.NumeroIdentificacionEstudiante == ce.NumeroDocumento)
+                .Select(c => $"{c.Nombres} {c.Apellidos}")
+                .ToList()
+            }).ToList();
+
+        return Ok(candidatoEstudiante);
     }
+
 
     [HttpGet("{id:guid}", Name = "CandidatoEstudianteById")]
     public IActionResult GetCandidatoEstudiante(Guid id)
@@ -72,23 +85,6 @@ public class CandidatoEstudiantesController : ControllerBase
         return NoContent();
     }
 
-    [HttpPost("acudiente")]
-    public async Task<ActionResult<CandidatoEstudiante>> PostCandidatoEstudiante(CandidatoEstudiante candidatoEstudiante)
-    {
-        var acudiente = await _context.Acudientes.FirstOrDefaultAsync(a => a.NumeroIdentificacion == candidatoEstudiante.NumeroIdentificacionAcudiente);
-
-        if (acudiente != null)
-        {
-            candidatoEstudiante.Acudientes.Add(acudiente);
-            _context.CandidatoEstudiantes.Add(candidatoEstudiante);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetCandidatoEstudiante", new { id = candidatoEstudiante.CandidatoEstudianteId }, candidatoEstudiante);
-        }
-        else
-        {
-            return BadRequest("No se encontró el acudiente con el número de identificación proporcionado.");
-        }
-    }
-
+    
 
 }

@@ -24,7 +24,6 @@ namespace Repository.Configuration
                 EstadoCivil = "Casado",
                 Ocupacion = "Ingeniero",
                 FechaRegistro = DateTime.Now,
-                NumeroIdentificacionEstudiante = 987654321
             },
 
             new Acudiente
@@ -39,7 +38,6 @@ namespace Repository.Configuration
                 EstadoCivil = "Casada",
                 Ocupacion = "Abogada",
                 FechaRegistro = DateTime.Now,
-                NumeroIdentificacionEstudiante = 123456789
             }
 
         );

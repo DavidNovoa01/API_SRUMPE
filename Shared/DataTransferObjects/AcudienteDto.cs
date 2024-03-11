@@ -1,4 +1,6 @@
-﻿namespace Shared.DataTransferObjects;
+﻿using Entities.Models.D_Estudiante;
+
+namespace Shared.DataTransferObjects;
 
 public class AcudienteDto
 {
@@ -14,5 +16,8 @@ public class AcudienteDto
     public DateTime? FechaRegistro { get; set; }
 
     public long NumeroIdentificacionEstudiante { get; set; } // Cambio de nombre
-    public ICollection<CandidatoEstudianteDto> CandidatoEstudiantes { get; set; }
+    public ICollection<CandidatoEstudiante> CandidatoEstudiantes { get; set; }
+
+    public ICollection<TelefonoAcudienteDto>? TelefonosAcudiente { get; set; }
+    public DireccionAcudienteDto? DireccionAcudiente { get; set; }
 }

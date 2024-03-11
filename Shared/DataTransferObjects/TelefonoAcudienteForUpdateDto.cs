@@ -1,25 +1,22 @@
-﻿using Entities.Models;
-using Entities.Models.D_Acudiente;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities.Models.D_Acudiente;
 
-namespace Shared.DataTransferObjects
+namespace Shared.DataTransferObjects;
+
+public record TelefonoAcudienteForUpdateDto(
+    int Numero,
+    string Tipo,
+    string Indicativo,
+    Guid AcudienteId
+)
 {
-    public record TelefonoAcudienteForUpdateDto(int Numero, string? Tipo, string Indicativo);
-
-    public static class TelefonoAcudienteMapper
+    public static TelefonoAcudiente MapToTelefonoAcudiente(TelefonoAcudienteForUpdateDto dto)
     {
-        public static TelefonoAcudiente MapToTelefonoAcudiente(TelefonoAcudienteForUpdateDto dto)
+        return new TelefonoAcudiente
         {
-            return new TelefonoAcudiente
-            {
-                Numero = dto.Numero,
-                Tipo = dto.Tipo,
-                Indicativo = dto.Indicativo
-            };
-        }
+            Numero = dto.Numero,
+            Tipo = dto.Tipo,
+            Indicativo = dto.Indicativo,
+            AcudienteId = dto.AcudienteId
+        };
     }
 }

@@ -11,4 +11,8 @@
     <None Remove="Models\AcudienteEstudiante1.cs~RF9d858cd.TMP" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.0" />
+  </ItemGroup>
+
 </Project>

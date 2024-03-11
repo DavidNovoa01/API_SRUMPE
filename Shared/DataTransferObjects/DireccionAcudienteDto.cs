@@ -4,18 +4,15 @@ namespace Shared.DataTransferObjects
 {
     public record DireccionAcudienteDto
     {
-        public Guid DireccionAcudienteId { get; init; }
+        public Guid DireccionAcudienteId { get; set; }
+        public string Calle { get; set; }
+        public string ColoniaBarrio { get; set; }
+        public string CiudadLocalidad { get; set; }
+        public string CodigoPostal { get; set; }
+        public string EstadoProvincia { get; set; }
+        public string Pais { get; set; }
 
-        public string Calle { get; init; }
-
-        public string ColoniaBarrio { get; init; }
-
-        public string CiudadLocalidad { get; init; }
-
-        public string CodigoPostal { get; init; }
-
-        public string EstadoProvincia { get; init; }
-
-        public string Pais { get; init; }
+        // Clave foránea para Acudiente
+        public Guid AcudienteId { get; set; }
     }
 }

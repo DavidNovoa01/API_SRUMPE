@@ -1,5 +1,6 @@
 ﻿using API.Presentation.ModelBinders;
 using Entities.Exceptions;
+using Entities.Models.D_DepartamentoAcademico;
 using Entities.Models.D_Docente;
 using Microsoft.AspNetCore.Mvc;
 using Repository;
@@ -105,12 +106,16 @@ namespace API.Presentation.Controllers
         }
 
         [HttpPut("{docenteId:guid}/materias")]
-        public IActionResult AssignMateriasToDocente(Guid docenteId, [FromBody] IEnumerable<Guid> materiaIds)
+        public IActionResult AssignMateriasToDocente(Guid docenteId, [FromBody] AssignMateriasDto dto)
         {
-            _service.DocenteService.AssignMateriasToDocente(docenteId, materiaIds);
-       
+            var result = _service.DocenteService.AssignMateriasToDocente(docenteId, dto);
+            if (!result)
+            {
+                return BadRequest("No se pudo asignar las materias al docente.");
+            }
             return NoContent();
         }
+
 
     }
 }

@@ -24,7 +24,6 @@ namespace Repository.Configuration
                 Direccion = "Calle 123",
                 Genero = "Masculino",
                 AdjuntarDocumentos = "Documentos adjuntos",
-                NumeroIdentificacionAcudiente = 123456789
             },
 
             new CandidatoEstudiante
@@ -40,7 +39,6 @@ namespace Repository.Configuration
                 Direccion = "Carrera 456",
                 Genero = "Femenino",
                 AdjuntarDocumentos = "Documentos adjuntos",
-                NumeroIdentificacionAcudiente = 987654321
             }
 
         );

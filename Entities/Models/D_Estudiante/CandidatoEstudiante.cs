@@ -18,6 +18,7 @@ public partial class CandidatoEstudiante
     public string Genero { get; set; }
     public string AdjuntarDocumentos { get; set; }
 
+    // Clave foránea y propiedad de navegación para Acudiente
     public long NumeroIdentificacionAcudiente { get; set; } // Cambio de nombre
     public ICollection<Acudiente> Acudientes { get; set; }
 }

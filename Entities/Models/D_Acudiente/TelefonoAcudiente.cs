@@ -3,12 +3,13 @@
 public partial class TelefonoAcudiente
 {
     public Guid TelefonoAcudienteId { get; set; }
-
     public int Numero { get; set; }
+    public string Tipo { get; set; }
+    public string Indicativo { get; set; }
 
-    public string? Tipo { get; set; }
-    public string Indicativo { get; set; } = null!;
+    // Clave foránea para Acudiente
+    public Guid AcudienteId { get; set; }
 
-    // Foreign Key
-    public int? AcudienteId { get; set; }
+    // Propiedad de navegación
+    public Acudiente Acudiente { get; set; }
 }

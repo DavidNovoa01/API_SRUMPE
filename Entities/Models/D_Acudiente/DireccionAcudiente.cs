@@ -11,11 +11,16 @@ public partial class DireccionAcudiente
 {
     [Key]
     public Guid DireccionAcudienteId { get; set; }
-    //public Guid AcudienteId { get; set; } 
     public string Calle { get; set; } 
     public string ColoniaBarrio { get; set; }
     public string CiudadLocalidad { get; set; } 
     public string CodigoPostal { get; set; } 
     public string EstadoProvincia { get; set; }
-    public string Pais { get; set; } 
+    public string Pais { get; set; }
+
+    // Clave foránea para Acudiente
+    public Guid AcudienteId { get; set; }
+
+    // Propiedad de navegación
+    public Acudiente Acudiente { get; set; }
 }

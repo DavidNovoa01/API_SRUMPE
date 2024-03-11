@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shared.DataTransferObjects;
+﻿namespace Shared.DataTransferObjects;
 
 public class AssignMateriasDto
 {
-    public IEnumerable<Guid> MateriaIds { get; set; }
+    public IEnumerable<Guid> materiaIds { get; set; }
 }

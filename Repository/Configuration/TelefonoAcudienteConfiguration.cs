@@ -16,7 +16,7 @@ public class TelefonoAcudienteConfiguration : IEntityTypeConfiguration<TelefonoA
                 Numero = 555-123-4567,
                 Tipo = "Móvil",
                 Indicativo = "+1",
-                AcudienteId = 1
+                AcudienteId = Guid.Parse("49b5de78-1d3f-494e-a912-90f179c32853"), // Reemplazar con el ID real del Acudiente
             },
             new TelefonoAcudiente
             {
@@ -24,71 +24,7 @@ public class TelefonoAcudienteConfiguration : IEntityTypeConfiguration<TelefonoA
                 Numero = 555-987-6543,
                 Tipo = "Móvil",
                 Indicativo = "+1",
-                AcudienteId = 2
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero = 555-234-5678,
-                Tipo = "Fijo",
-                Indicativo = "+1",
-                AcudienteId = 3
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero = 555-876-5432,
-                Tipo = "Móvil",
-                Indicativo = "+1",
-                AcudienteId = 4
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero = 911,
-                Tipo = "Emergencia",
-                Indicativo = "+1",
-                AcudienteId = 5
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero =555-111-1111,
-                Tipo = "Móvil",
-                Indicativo = "+1",
-                AcudienteId = 1
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero = 555-222-2222,
-                Tipo = "Móvil",
-                Indicativo = "+1",
-                AcudienteId = 2
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero = 555-333-3333,
-                Tipo = "Fijo",
-                Indicativo = "+1",
-                AcudienteId = 3
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero = 555-444-4444,
-                Tipo = "Móvil",
-                Indicativo = "+1",
-                AcudienteId = 4
-            },
-            new TelefonoAcudiente
-            {
-                TelefonoAcudienteId = Guid.NewGuid(),
-                Numero = 555-555-5555,
-                Tipo = "Emergencia",
-                Indicativo = "+1",
-                AcudienteId = 5
+                AcudienteId = Guid.Parse("dac65adb-1b26-49a8-b61f-5bacbf6b2708"), // Reemplazar con el ID real del Acudiente
             }
         );
     }

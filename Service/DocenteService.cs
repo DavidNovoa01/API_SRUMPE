@@ -141,7 +141,7 @@ internal sealed class DocenteService : IDocenteService
         _repository.Save();
     }
 
-    public bool AssignMateriasToDocente(Guid docenteId, IEnumerable<Guid> materiaIds)
+    public bool AssignMateriasToDocente(Guid docenteId, AssignMateriasDto dto)
     {
         var docente = _repository.Docente.GetDocenteWithRelations(docenteId, trackChanges: false);
         if (docente == null)
@@ -149,7 +149,8 @@ internal sealed class DocenteService : IDocenteService
             throw new DocenteNotFoundException(docenteId);
         }
 
-        var materias = _repository.Materia.GetMaterias(materiaIds, trackChanges: false).ToList();
+        // Corrección: Usa dto.materiaIds en lugar de materiaIds
+        var materias = _repository.Materia.GetMaterias(dto.materiaIds, trackChanges: false).ToList();
         foreach (var materia in materias)
         {
             if (!docente.Materias.Any(m => m.MateriaId == materia.MateriaId)) // Verifica si la materia ya está asignada
@@ -169,6 +170,7 @@ internal sealed class DocenteService : IDocenteService
             return false;
         }
     }
+
 
 
 

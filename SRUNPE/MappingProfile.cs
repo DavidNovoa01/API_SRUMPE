@@ -44,9 +44,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Edad, opt => opt.MapFrom(src => src.Edad))
             .ForMember(dest => dest.FechaRegistro, opt => opt.MapFrom(src => src.FechaRegistro))
 
-            .ForMember(dest => dest.NumeroIdentificacionEstudiante, opt => opt.MapFrom(src => src.NumeroIdentificacionEstudiante))
-            .ForMember(dest => dest.CandidatoEstudiantes, opt => opt.Ignore())
-            .ForMember(dest => dest.CandidatoEstudiantes, opt => opt.MapFrom(src => src.CandidatoEstudiantes.Select(c => c.Nombre)));
+            .ForMember(dest => dest.NumeroIdentificacionEstudiante, opt => opt.MapFrom(src => src.NumeroIdentificacionEstudiante));
 
         CreateMap<EstudianteDocumentosForUpdateDto, EstudianteDocumentos>();
                 CreateMap<EstudianteDocumentos, EstudianteDocumentosDto>()
@@ -59,13 +57,17 @@ public class MappingProfile : Profile
                     .ForMember(dest => dest.FechaActualizacion, opt => opt.MapFrom(src => src.FechaActualizacion))
                     .ForMember(dest => dest.Ubicacion, opt => opt.MapFrom(src => src.Ubicacion))
                     .ForMember(dest => dest.Tamaño, opt => opt.MapFrom(src => src.Tamaño));
+
+        // Mapeo para TelefonoAcudiente
         CreateMap<TelefonoAcudienteForUpdateDto, TelefonoAcudiente>();
         CreateMap<TelefonoAcudiente, TelefonoAcudienteDto>()
             .ForMember(dest => dest.TelefonoAcudienteId, opt => opt.MapFrom(src => src.TelefonoAcudienteId))
             .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Numero))
             .ForMember(dest => dest.Tipo, opt => opt.MapFrom(src => src.Tipo))
-            .ForMember(dest => dest.Indicativo, opt => opt.MapFrom(src => src.Indicativo));
+            .ForMember(dest => dest.Indicativo, opt => opt.MapFrom(src => src.Indicativo))
+            .ForMember(dest => dest.AcudienteId, opt => opt.MapFrom(src => src.AcudienteId));
 
+        // Mapeo para DireccionAcudiente
         CreateMap<DireccionAcudienteForUpdateDto, DireccionAcudiente>();
         CreateMap<DireccionAcudiente, DireccionAcudienteDto>()
             .ForMember(dest => dest.DireccionAcudienteId, opt => opt.MapFrom(src => src.DireccionAcudienteId))
@@ -74,7 +76,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.CiudadLocalidad, opt => opt.MapFrom(src => src.CiudadLocalidad))
             .ForMember(dest => dest.CodigoPostal, opt => opt.MapFrom(src => src.CodigoPostal))
             .ForMember(dest => dest.EstadoProvincia, opt => opt.MapFrom(src => src.EstadoProvincia))
-            .ForMember(dest => dest.Pais, opt => opt.MapFrom(src => src.Pais));
+            .ForMember(dest => dest.Pais, opt => opt.MapFrom(src => src.Pais))
+            .ForMember(dest => dest.AcudienteId, opt => opt.MapFrom(src => src.AcudienteId));
 
         CreateMap<CupoForUpdateDto, Cupo>();
         CreateMap<Cupo, CupoDto>()

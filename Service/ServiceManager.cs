@@ -26,7 +26,11 @@ public sealed class ServiceManager : IServiceManager
     private readonly Lazy<INotaService> _notaService;
     private readonly Lazy<IDocenteService> _docenteService;
 
+    private readonly TokenService _tokenService;
+
     private readonly RepositoryContext _context;
+
+
 
     public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, RepositoryContext context)
     {
@@ -72,8 +76,12 @@ public sealed class ServiceManager : IServiceManager
         _docenteService = new Lazy<IDocenteService>(() =>
             new DocenteService(repositoryManager, logger, mapper, context));
 
+        // Inicialización de otros servicios
+        _tokenService = new TokenService("tu_clave_secreta_aqui");
 
     }
+
+    public TokenService TokenService => _tokenService;
 
     public ICandidatoEstudianteService CandidatoEstudianteService => _candidatoEstudianteService.Value;
     public IEstudianteDocumentosService EstudianteDocumentosService => _estudianteDocumentosService.Value;

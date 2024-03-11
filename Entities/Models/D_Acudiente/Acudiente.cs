@@ -1,5 +1,4 @@
 ﻿using Entities.Models.D_Estudiante;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models.D_Acudiente;
 
@@ -16,7 +15,11 @@ public partial class Acudiente
     public string? Ocupacion { get; set; }
     public DateTime? FechaRegistro { get; set; }
 
+    // Propiedades de navegación
+
     public long NumeroIdentificacionEstudiante { get; set; } // Cambio de nombre
     public ICollection<CandidatoEstudiante> CandidatoEstudiantes { get; set; }
-}
 
+    public ICollection<TelefonoAcudiente> TelefonosAcudiente { get; set; }
+    public DireccionAcudiente DireccionAcudiente { get; set; }
+}

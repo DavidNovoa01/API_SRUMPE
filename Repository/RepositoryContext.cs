@@ -7,6 +7,7 @@ using Entities.Models.D_Notas;
 using Microsoft.EntityFrameworkCore;
 using Repository.Configuration;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Entities.Models.LOGIN;
 
 namespace Repository
 {
@@ -26,6 +27,12 @@ namespace Repository
                     "AcudienteCandidatoEstudiante",
                     j => j.HasOne<CandidatoEstudiante>().WithMany().HasForeignKey("CandidatoEstudianteId"),
                     j => j.HasOne<Acudiente>().WithMany().HasForeignKey("AcudienteId"));
+
+            modelBuilder.Entity<Aulas>(entity =>
+            {
+                entity.HasKey(e => e.AulaId);
+                // Otras configuraciones...
+            });
 
             modelBuilder.Entity<Aulas>(entity =>
             {
@@ -87,6 +94,25 @@ namespace Repository
                         });
             }
 
+            // Configuración para Acudiente
+            modelBuilder.Entity<Acudiente>()
+                .HasMany(a => a.TelefonosAcudiente)
+                .WithOne(t => t.Acudiente)
+                .HasForeignKey(t => t.AcudienteId);
+
+            modelBuilder.Entity<Acudiente>()
+                .HasOne(a => a.DireccionAcudiente)
+                .WithOne(d => d.Acudiente)
+                .HasForeignKey<DireccionAcudiente>(d => d.AcudienteId);
+
+            // Configuración para TelefonoAcudiente
+            modelBuilder.Entity<TelefonoAcudiente>()
+                .HasKey(t => t.TelefonoAcudienteId);
+
+            // Configuración para DireccionAcudiente
+            modelBuilder.Entity<DireccionAcudiente>()
+                .HasKey(d => d.DireccionAcudienteId);
+
 
             modelBuilder.ApplyConfiguration(new CandidatoEstudianteConfiguration());
             modelBuilder.ApplyConfiguration(new AcudienteConfiguration());
@@ -127,5 +153,7 @@ namespace Repository
         public DbSet<Estadisticas> Estadisticas { get; set; }
         public DbSet<Docente> Docentes { get; set; }
         public DbSet<Notas> Notas { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
