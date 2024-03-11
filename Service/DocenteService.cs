@@ -5,6 +5,7 @@ using Entities.Models.D_Docente;
 using Service.Contracts;
 using Shared.DataTransferObjects;
 using Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Service;
 
@@ -26,7 +27,11 @@ internal sealed class DocenteService : IDocenteService
 
     public DocenteDto GetDocente(Guid id, bool trackChanges)
     {
-        var docente = _repository.Docente.GetDocenteWithRelations(id, trackChanges);
+        var docente = _repository.Docente.GetAllDocentes(trackChanges)
+            .Include(d => d.Horario)
+            .Include(d => d.Aula)
+            .FirstOrDefault(d => d.DocenteId == id);
+
         if (docente == null)
         {
             throw new DocenteNotFoundException(id);
@@ -34,6 +39,17 @@ internal sealed class DocenteService : IDocenteService
         return _mapper.Map<DocenteDto>(docente);
     }
 
+
+    public IEnumerable<DocenteDto> GetAllDocente(bool trackChanges)
+    {
+        var docentes = _repository.Docente.GetAllDocentes(trackChanges)
+            .Include(d => d.Horario)
+            .Include(d => d.Aula)
+            .ToList();
+
+        var docentesDto = _mapper.Map<IEnumerable<DocenteDto>>(docentes);
+        return docentesDto;
+    }
 
     public DocenteDto CreateDocente(DocenteForCreationDto docente)
     {
@@ -46,6 +62,7 @@ internal sealed class DocenteService : IDocenteService
 
         return docenteToReturn;
     }
+    
 
     public IEnumerable<DocenteDto> GetByIds(IEnumerable<Guid> ids, bool trackChanges)
     {
@@ -169,15 +186,6 @@ internal sealed class DocenteService : IDocenteService
             _logger.LogError($"Error al asignar materias al docente con ID {docenteId}: {ex.Message}");
             return false;
         }
-    }
-
-
-
-
-    public IEnumerable<DocenteDto> GetAllDocente(bool trackChanges)
-    {
-        var docentes = _repository.Docente.GetAllDocentes(trackChanges);
-        return _mapper.Map<IEnumerable<DocenteDto>>(docentes);
     }
 
 

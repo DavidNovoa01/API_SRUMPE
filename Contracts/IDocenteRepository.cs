@@ -5,7 +5,7 @@ namespace Contracts;
 
 public interface IDocenteRepository
 {
-    IEnumerable<Docente> GetAllDocentes(bool trackChanges);
+    IQueryable<Docente> GetAllDocentes(bool trackChanges);
     Docente GetDocente(Guid docenteId, bool trackChanges);
     void CreateDocente(Docente docente);
     IEnumerable<Docente> GetByIds(IEnumerable<Guid> ids, bool trackChanges);

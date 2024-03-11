@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,9 +43,22 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Administrador"));
     options.AddPolicy("RequireTeacherRole", policy => policy.RequireRole("Docente"));
+    options.AddPolicy("RequireStudenRole", policy => policy.RequireRole("Estudiante"));
+});
+
+// Register TokenService
+builder.Services.AddScoped<TokenService>(provider =>
+{
+    var configuration = provider.GetRequiredService<IConfiguration>();
+    var secretKey = configuration["TokenKey"];
+    return new TokenService(secretKey);
 });
 
 var app = builder.Build();
+
+// Verificar la longitud de la clave (solo para depuración)
+var key = Convert.FromBase64String(builder.Configuration["TokenKey"]);
+Console.WriteLine($"Longitud de la clave: {key.Length} bytes"); // Debe ser al menos 64 bytes
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

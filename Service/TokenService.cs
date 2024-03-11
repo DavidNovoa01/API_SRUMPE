@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
 
 
 namespace Service;
@@ -39,5 +40,14 @@ public class TokenService
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
+    }
+    public static string GenerateSecureKey()
+    {
+        using (var rng = new RNGCryptoServiceProvider())
+        {
+            var key = new byte[64]; // 512 bits
+            rng.GetBytes(key);
+            return Convert.ToBase64String(key);
+        }
     }
 }
