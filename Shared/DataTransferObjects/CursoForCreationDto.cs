@@ -1,4 +1,15 @@
 ﻿namespace Shared.DataTransferObjects;
 
-public record CursoForCreationDto(string Codigo,string Descripcion,string DepartamentoAcademico,string Nivel,string ProfesorAsignado,string AulasAsignadas,DateTime FechaLimiteInscripcion,string MetodosEnsenanza,
-IEnumerable<CursoForCreationDto>? Cursos);
+public record CursoForCreationDto(
+string CodigoCurso,
+string Descripcion,
+string DepartamentoAcademico,
+string Nivel,
+string MetodosEnsenanza,
+int Año,
+int CupoMaximo,
+int CupoActual,
+string Estado,
+string Modalidad,
+DateTime FechaInicio,
+DateTime FechaFinalizacion);

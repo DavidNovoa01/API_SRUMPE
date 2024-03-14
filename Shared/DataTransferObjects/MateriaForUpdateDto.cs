@@ -1,10 +1,23 @@
 ﻿using Entities.Models.D_DepartamentoAcademico;
+using Entities.Models.D_Docente;
 using Entities.Models.D_Estudiante;
 
 
 namespace Shared.DataTransferObjects
 {
-    public record MateriaForUpdateDto(string Nombre, string Descripcion, string DepartamentoAcademico, string Nivel, string ProfesorAsignado, string ModalidadEnsenanza, string Estado, string? NotasAdicionales, string? GrupoSeccionMateria, string? MetodosEnsenanza);
+    public record MateriaForUpdateDto(string Nombre,
+    string Descripcion,
+    string DepartamentoAcademico,
+    string Nivel,
+    int Creditos,
+    string Estado,
+    string NotasAdicionales,
+    string MetodosEnsenanza,
+    int HorasTeoricas,
+    int HorasPracticas,
+    
+    string? DocenteNombre
+    );
 
     public static class MateriaEstudianteMapper
     {
@@ -16,11 +29,14 @@ namespace Shared.DataTransferObjects
                 Descripcion = dto.Descripcion,
                 DepartamentoAcademico=dto.DepartamentoAcademico,
                 Nivel = dto.Nivel,
-                ModalidadEnsenanza=dto.ModalidadEnsenanza,
+                Creditos=dto.Creditos,
                 Estado=dto.Estado,
                 NotasAdicionales=dto.NotasAdicionales,  
-                GrupoSeccionMateria=dto.GrupoSeccionMateria,
                 MetodosEnsenanza=dto.MetodosEnsenanza,
+                HorasPracticas=dto.HorasPracticas,
+                HorasTeoricas=dto.HorasTeoricas,
+
+                Docentes = new List<Docente> { new Docente { Nombres = dto.DocenteNombre } }
             };
         }
     }

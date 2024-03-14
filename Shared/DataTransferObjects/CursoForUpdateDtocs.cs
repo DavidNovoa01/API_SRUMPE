@@ -3,7 +3,19 @@
 
 namespace Shared.DataTransferObjects;
 
-public record CursoForUpdateDto(string Codigo, string Descripcion, string DepartamentoAcademico, string Nivel, string ProfesorAsignado, string AulasAsignadas, DateTime FechaLimiteInscripcion, string MetodosEnsenanza);
+public record CursoForUpdateDto(
+string CodigoCurso,
+string Descripcion,
+string DepartamentoAcademico,
+string Nivel,
+string MetodosEnsenanza,
+int Año,
+int CupoMaximo,
+int CupoActual,
+string Estado,
+string Modalidad,
+DateTime FechaInicio,
+DateTime FechaFinalizacion);
 
 public static class CursoMapper
 {
@@ -11,11 +23,18 @@ public static class CursoMapper
     {
         return new Cursos
         {
+            CodigoCurso = dto.CodigoCurso,
             Descripcion = dto.Descripcion,
             DepartamentoAcademico= dto.DepartamentoAcademico,
-            Nivel = dto.Nivel,
-            FechaLimiteInscripcion=dto.FechaLimiteInscripcion,
+            Nivel= dto.Nivel,
             MetodosEnsenanza= dto.MetodosEnsenanza,
+            Año=dto.Año,
+            CupoActual= dto.CupoActual,
+            CupoMaximo= dto.CupoMaximo,
+            Estado= dto.Estado,
+            Modalidad= dto.Modalidad,
+            FechaFinalizacion= dto.FechaFinalizacion,
+            FechaInicio= dto.FechaInicio,
         };
     }
 }

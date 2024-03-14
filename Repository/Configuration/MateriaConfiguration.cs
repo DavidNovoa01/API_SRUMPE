@@ -11,93 +11,72 @@ public class MateriaConfiguration : IEntityTypeConfiguration<Materias>
             new Materias
             {
                 MateriaId = Guid.NewGuid(),
-                Nombre = "Matemáticas",
-                Descripcion = "Curso de Matemáticas Avanzadas",
-                DepartamentoAcademico = "Departamento de Matemáticas",
-                Nivel = "Avanzado",
-                ModalidadEnsenanza = "Presencial",
-                Estado = "En progreso",
-                NotasAdicionales = "Se requiere calculadora científica.",
-                GrupoSeccionMateria = "Grupo A",
-                MetodosEnsenanza = "Clases teóricas y prácticas"
+                Nombre = "Matemáticas Básicas",
+                Descripcion = "Fundamentos de aritmética y álgebra",
+                DepartamentoAcademico = "Matemáticas",
+                Nivel = "Secundaria",
+                Creditos = 4,
+                Estado = "Activa",
+                NotasAdicionales = "Ninguna",
+                MetodosEnsenanza = "Clases teóricas y ejercicios prácticos",
+                HorasTeoricas = 3,
+                HorasPracticas = 2
             },
             new Materias
             {
                 MateriaId = Guid.NewGuid(),
-                Nombre = "Historia",
-                Descripcion = "Curso de Historia Mundial",
-                DepartamentoAcademico = "Departamento de Historia",
-                Nivel = "Intermedio",
-                ModalidadEnsenanza = "Presencial",
-                Estado = "Inscripciones abiertas",
-                NotasAdicionales = "Recomendado para estudiantes de Historia.",
-                GrupoSeccionMateria = "Grupo B",
-                MetodosEnsenanza = "Conferencias y debates"
+                Nombre = "Física General",
+                Descripcion = "Introducción a la mecánica, termodinámica y ondas",
+                DepartamentoAcademico = "Física",
+                Nivel = "Universitaria",
+                Creditos = 5,
+                Estado = "Activa",
+                NotasAdicionales = "Requiere calculadora científica",
+                MetodosEnsenanza = "Clases teóricas, laboratorios",
+                HorasTeoricas = 4,
+                HorasPracticas = 3
             },
             new Materias
             {
                 MateriaId = Guid.NewGuid(),
-                Nombre = "Ciencias de la Computación",
-                Descripcion = "Curso de Ciencias de la Computación",
-                DepartamentoAcademico = "Departamento de Informática",
-                Nivel = "Avanzado",
-                ModalidadEnsenanza = "En línea",
-                Estado = "En progreso",
-                NotasAdicionales = "Requiere acceso a una computadora.",
-                GrupoSeccionMateria = "Grupo C",
-                MetodosEnsenanza = "Clases virtuales y proyectos prácticos"
+                Nombre = "Literatura Española",
+                Descripcion = "Estudio de obras literarias españolas clásicas",
+                DepartamentoAcademico = "Humanidades",
+                Nivel = "Secundaria",
+                Creditos = 3,
+                Estado = "Inactiva",
+                NotasAdicionales = "Incluye lecturas obligatorias",
+                MetodosEnsenanza = "Clases teóricas, discusiones en grupo",
+                HorasTeoricas = 3,
+                HorasPracticas = 1
             },
             new Materias
             {
                 MateriaId = Guid.NewGuid(),
-                Nombre = "Literatura",
-                Descripcion = "Curso de Literatura Universal",
-                DepartamentoAcademico = "Departamento de Literatura",
-                Nivel = "Intermedio",
-                ModalidadEnsenanza = "Presencial",
-                Estado = "Inscripciones abiertas",
-                NotasAdicionales = "Apto para amantes de la lectura.",
-                GrupoSeccionMateria = "Grupo D",
-                MetodosEnsenanza = "Lecturas y discusiones literarias"
+                Nombre = "Biología Avanzada",
+                Descripcion = "Análisis profundo de la biología celular",
+                DepartamentoAcademico = "Biología",
+                Nivel = "Universitaria",
+                Creditos = 6,
+                Estado = "Activa",
+                NotasAdicionales = "Requiere conocimientos previos de biología básica",
+                MetodosEnsenanza = "Clases teóricas, laboratorios, proyectos de investigación",
+                HorasTeoricas = 4,
+                HorasPracticas = 4
             },
             new Materias
             {
                 MateriaId = Guid.NewGuid(),
-                Nombre = "Física",
-                Descripcion = "Curso de Física Avanzada",
-                DepartamentoAcademico = "Departamento de Física",
-                Nivel = "Avanzado",
-                ModalidadEnsenanza = "Presencial",
-                Estado = "Completo",
-                NotasAdicionales = "Requiere conocimientos previos de física.",
-                GrupoSeccionMateria = "Grupo E",
-                MetodosEnsenanza = "Experimentos y clases teóricas"
-            },
-            new Materias
-            {
-                MateriaId = Guid.NewGuid(),
-                Nombre = "Economía",
-                Descripcion = "Curso de Economía Moderna",
-                DepartamentoAcademico = "Departamento de Economía",
-                Nivel = "Intermedio",
-                ModalidadEnsenanza = "En línea",
-                Estado = "En progreso",
-                NotasAdicionales = "Abordaremos temas financieros actuales.",
-                GrupoSeccionMateria = "Grupo F",
-                MetodosEnsenanza = "Clases virtuales y análisis económico"
-            },
-            new Materias
-            {
-                MateriaId = Guid.NewGuid(),
-                Nombre = "Arte",
-                Descripcion = "Curso de Arte Contemporáneo",
-                DepartamentoAcademico = "Departamento de Arte",
-                Nivel = "Intermedio",
-                ModalidadEnsenanza = "Presencial",
-                Estado = "Inscripciones abiertas",
-                NotasAdicionales = "No se requiere experiencia previa en arte.",
-                GrupoSeccionMateria = "Grupo G",
-                MetodosEnsenanza = "Prácticas artísticas y exposiciones"
+                Nombre = "Historia Mundial",
+                Descripcion = "Exploración de eventos históricos globales",
+                DepartamentoAcademico = "Historia",
+                Nivel = "Secundaria",
+                Creditos = 3,
+                Estado = "Activa",
+                NotasAdicionales = "Se recomienda visitar museos y sitios históricos",
+                MetodosEnsenanza = "Clases teóricas, análisis de documentos históricos",
+                HorasTeoricas = 3,
+                HorasPracticas = 0
             }
         );
     }

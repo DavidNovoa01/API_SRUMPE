@@ -26,7 +26,7 @@ public class DocentesController : ControllerBase
     [HttpGet]
     public IActionResult GetDocentes()
     {
-        var docentes = _service.DocenteService.GetAllDocente(trackChanges: false);
+        var docentes = _service.DocenteService.GetAllDocentes(trackChanges: false);
 
         return Ok(docentes);
     }
@@ -38,13 +38,14 @@ public class DocentesController : ControllerBase
         return Ok(docente);
     }
 
-
-    [HttpGet("collection/{ids}", Name = "DocenteCollection")]
+    [HttpGet("collection/({ids})", Name = "DocenteCollection")]
     public IActionResult GetDocenteCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
     {
         var docentes = _service.DocenteService.GetByIds(ids, trackChanges: false);
+
         return Ok(docentes);
     }
+
 
 
 

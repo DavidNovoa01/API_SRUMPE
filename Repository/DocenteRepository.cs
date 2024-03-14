@@ -11,11 +11,15 @@ namespace Repository
         {
         }
 
-        public IQueryable<Docente> GetAllDocentes(bool trackChanges) =>
-        FindAll(trackChanges)
-        .Include(d => d.Horario)
-        .Include(d => d.Aula)
-        .OrderBy(c => c.Nombre);
+        public IEnumerable<Docente> GetAllDocentes(bool trackChanges)
+        {
+            return FindAll(trackChanges)
+                .Include(d => d.Horario)
+                .Include(d => d.Aula)
+                .OrderBy(d => d.Nombres)
+                .ToList();
+        }
+
 
 
         public Docente GetDocente(Guid docenteId, bool trackChanges) =>

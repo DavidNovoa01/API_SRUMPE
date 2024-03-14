@@ -36,7 +36,7 @@ namespace Shared.DataTransferObjects
                 EstadoHorario = dto.EstadoHorario,
                 DuracionClaseMinutos = dto.DuracionClaseMinutos,
                 NotificacionCambioHorario = dto.NotificacionCambioHorario,
-                Docente = new Docente { Nombre = dto.DocenteNombre }
+                Docente = new Docente { Nombres = dto.DocenteNombre }
             };
         }
     }

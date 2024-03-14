@@ -23,7 +23,6 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
                 NotasAdicionales = "Equipada con proyector",
                 UltimaActualizacion = new DateTime(2023, 09, 15),
                 RegistrosIncidentesProblemas = "Ninguno",
-                DocenteId = new Guid("a007fb2e-89c1-433a-609b-81a34b070e20")  // Asignar un nuevo ID de Docente
             },
             new Aulas
             {
@@ -37,7 +36,6 @@ public class AulaConfiguration : IEntityTypeConfiguration<Aulas>
                 NotasAdicionales = "Equipado con computadoras de última generación",
                 UltimaActualizacion = new DateTime(2023, 09, 10),
                 RegistrosIncidentesProblemas = "Reporte de fallo en una computadora",
-                DocenteId = new Guid("57aa9a84-70b2-4e68-235d-987650f3b246") // Asignar un nuevo ID de Docente
             }
 
         );

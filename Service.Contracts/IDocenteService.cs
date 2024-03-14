@@ -7,7 +7,7 @@ namespace Service.Contracts;
 
 public interface IDocenteService
 {
-    IEnumerable<DocenteDto> GetAllDocente(bool trackChanges);
+    IEnumerable<DocenteDto> GetAllDocentes(bool trackChanges);
     DocenteDto GetDocente(Guid id, bool trackChanges);
     DocenteDto CreateDocente(DocenteForCreationDto docente);
     IEnumerable<DocenteDto> GetByIds(IEnumerable<Guid> ids, bool trackChanges);

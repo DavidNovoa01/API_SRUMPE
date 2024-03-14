@@ -10,7 +10,6 @@ public record AulaForCreationDto
     string HorarioDisponibilidad,
     string NotasAdicionales,
     DateTime UltimaActualizacion,
-    string ResponsableAula,
     string RegistrosIncidentesProblemas,
 
     DocenteDto? Docente

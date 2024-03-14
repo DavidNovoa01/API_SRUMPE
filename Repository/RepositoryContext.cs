@@ -47,7 +47,7 @@ namespace Repository
                 entity.HasOne(d => d.Aula)
                       .WithOne(a => a.Docente)
                       .HasForeignKey<Docente>(d => d.AulaId)
-                      .IsRequired();
+                      .IsRequired(false);
             });
 
             modelBuilder.Entity<Horarios>(entity =>
@@ -63,7 +63,7 @@ namespace Repository
                 entity.HasOne(d => d.Horario)
                       .WithOne(h => h.Docente)
                       .HasForeignKey<Docente>(d => d.HorarioId)
-                      .IsRequired();
+                      .IsRequired(false);
             });
 
 

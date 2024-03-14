@@ -5,21 +5,21 @@ using Entities.Models.D_Docente;
 namespace Shared.DataTransferObjects;
 
 public record DocenteForUpdateDto(
-    string Nombre,
+    string Nombres,
+    string Apellidos,
     DateTime FechaNacimiento,
     string Genero,
     string Direccion,
     string CorreoElectronico,
+    string TituloAcademico,
     string NumeroTelefono,
     DateTime FechaContratacion,
-    string CursosAsignados,
-    string HorarioClases,
     string EstadoLaboral,
     string NumeroIdentificacion,
     string ComentariosNotas,
     string NivelExperiencia,
-    ICollection<Guid> CursoIds,
-    ICollection<Guid> MateriaIds,
+    ICollection<Guid> CursoId,
+    ICollection<Guid> MateriaId,
     Guid HorarioId,
     Guid AulaId
 )
@@ -30,25 +30,25 @@ public record DocenteForUpdateDto(
         var docente = new Docente
         {
             // Asignar las propiedades básicas
-            Nombre = dto.Nombre,
+            Nombres = dto.Nombres,
+            Apellidos = dto.Apellidos,
             FechaNacimiento = dto.FechaNacimiento,
             Genero = dto.Genero,
             Direccion = dto.Direccion,
             CorreoElectronico = dto.CorreoElectronico,
+            TituloAcademico= dto.TituloAcademico,
             NumeroTelefono = dto.NumeroTelefono,
             FechaContratacion = dto.FechaContratacion,
-            CursosAsignados = dto.CursosAsignados,
-            HorarioClases = dto.HorarioClases,
             EstadoLaboral = dto.EstadoLaboral,
             NumeroIdentificacion = dto.NumeroIdentificacion,
             ComentariosNotas = dto.ComentariosNotas,
-            NivelExperiencia = dto.NivelExperiencia
+            NivelExperiencia = dto.NivelExperiencia,
         };
 
         // Convertir los Guid de las materias a objetos Materias
-        if (dto.MateriaIds != null)
+        if (dto.MateriaId != null)
         {
-            var materias = materiaRepository.GetMaterias(dto.MateriaIds, trackChanges: false).ToList();
+            var materias = materiaRepository.GetMaterias(dto.MateriaId, trackChanges: false).ToList();
             docente.Materias = materias;
         }
 

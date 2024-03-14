@@ -5,7 +5,7 @@ namespace Entities.Models.D_DepartamentoAcademico;
 public partial class Horarios
 {
     public Guid HorarioId { get; set; }
-    public string DiaSemana { get; set; }
+    public string DiaSemana {  get; set; }
     public TimeSpan HoraInicio { get; set; }
     public TimeSpan HoraFin { get; set; }
     public string PeriodoAcademico { get; set; }

@@ -25,31 +25,26 @@ internal sealed class DocenteService : IDocenteService
         _context = context;
     }
 
+    public IEnumerable<DocenteDto> GetAllDocentes(bool trackChanges)
+    {
+        var docentes = _repository.Docente.GetAllDocentes(trackChanges);
+
+        var docenteDto = _mapper.Map<IEnumerable<DocenteDto>>(docentes);
+
+        return docenteDto;
+    }
+
     public DocenteDto GetDocente(Guid id, bool trackChanges)
     {
-        var docente = _repository.Docente.GetAllDocentes(trackChanges)
-            .Include(d => d.Horario)
-            .Include(d => d.Aula)
-            .FirstOrDefault(d => d.DocenteId == id);
-
-        if (docente == null)
-        {
+        var docente = _repository.Docente.GetDocente(id, trackChanges);
+        if (docente is null)
             throw new DocenteNotFoundException(id);
-        }
-        return _mapper.Map<DocenteDto>(docente);
+
+        var docenteDto = _mapper.Map<DocenteDto>(docente);
+        return docenteDto;
     }
 
 
-    public IEnumerable<DocenteDto> GetAllDocente(bool trackChanges)
-    {
-        var docentes = _repository.Docente.GetAllDocentes(trackChanges)
-            .Include(d => d.Horario)
-            .Include(d => d.Aula)
-            .ToList();
-
-        var docentesDto = _mapper.Map<IEnumerable<DocenteDto>>(docentes);
-        return docentesDto;
-    }
 
     public DocenteDto CreateDocente(DocenteForCreationDto docente)
     {

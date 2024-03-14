@@ -5,6 +5,7 @@ using Entities.Models.D_DepartamentoAcademico;
 using Entities.Models.D_Docente;
 using Entities.Models.D_Estudiante;
 using Entities.Models.D_Notas;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Shared.DataTransferObjects;
 
 namespace CompanyEmployees;
@@ -126,7 +127,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.RequisitosDocumentacion, opt => opt.MapFrom(src => src.RequisitosDocumentacion));
 
         CreateMap<AulaForUpdateDto, Aulas>()
-            .ForMember(dest => dest.Docente, opt => opt.MapFrom(src => new Docente { Nombre = src.DocenteNombre }));
+            .ForMember(dest => dest.Docente, opt => opt.MapFrom(src => new Docente { Nombres = src.DocenteNombre }));
         CreateMap<Aulas, AulaDto>()
             .ForMember(dest => dest.AulaId, opt => opt.MapFrom(src => src.AulaId))
             .ForMember(dest => dest.NombreNumero, opt => opt.MapFrom(src => src.NombreNumero))
@@ -142,14 +143,21 @@ public class MappingProfile : Profile
         CreateMap<CursoForUpdateDto, Cursos>();
         CreateMap<Cursos, CursoDto>()
             .ForMember(dest => dest.CursoId, opt => opt.MapFrom(src => src.CursoId))
+            .ForMember(dest => dest.CodigoCurso, opt => opt.MapFrom(src => src.CodigoCurso))
             .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Descripcion))
             .ForMember(dest => dest.DepartamentoAcademico, opt => opt.MapFrom(src => src.DepartamentoAcademico))
             .ForMember(dest => dest.Nivel, opt => opt.MapFrom(src => src.Nivel))
-            .ForMember(dest => dest.FechaLimiteInscripcion, opt => opt.MapFrom(src => src.FechaLimiteInscripcion))
-            .ForMember(dest => dest.MetodosEnsenanza, opt => opt.MapFrom(src => src.MetodosEnsenanza));
+            .ForMember(dest => dest.MetodosEnsenanza, opt => opt.MapFrom(src => src.MetodosEnsenanza))
+            .ForMember(dest => dest.Año, opt => opt.MapFrom(src => src.Año))
+            .ForMember(dest => dest.CupoActual, opt => opt.MapFrom(src => src.CupoActual))
+            .ForMember(dest => dest.CupoMaximo, opt => opt.MapFrom(src => src.CupoMaximo))
+            .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
+            .ForMember(dest => dest.Modalidad, opt => opt.MapFrom(src => src.Modalidad))
+            .ForMember(dest => dest.FechaFinalizacion, opt => opt.MapFrom(src => src.FechaFinalizacion))
+            .ForMember(dest => dest.FechaInicio, opt => opt.MapFrom(src => src.FechaInicio));
 
         CreateMap<HorarioForUpdateDto, Horarios>()
-            .ForMember(dest => dest.Docente, opt => opt.MapFrom(src => new Docente { Nombre = src.DocenteNombre }));
+            .ForMember(dest => dest.Docente, opt => opt.MapFrom(src => new Docente { Nombres = src.DocenteNombre }));
         CreateMap<Horarios, HorarioDto>()
             .ForMember(dest => dest.HorarioId, opt => opt.MapFrom(src => src.HorarioId))
             .ForMember(dest => dest.DiaSemana, opt => opt.MapFrom(src => src.DiaSemana))
@@ -164,31 +172,33 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.NotificacionCambioHorario, opt => opt.MapFrom(src => src.NotificacionCambioHorario));
 
 
-        CreateMap<MateriaForUpdateDto, Materias>();
+        CreateMap<MateriaForUpdateDto, Materias>()
+            .ForMember(dest => dest.Docentes, opt => opt.MapFrom(src => new Docente { Nombres = src.DocenteNombre }));
         CreateMap<Materias, MateriaDto>()
             .ForMember(dest => dest.MateriaId, opt => opt.MapFrom(src => src.MateriaId))
             .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
             .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Descripcion))
             .ForMember(dest => dest.DepartamentoAcademico, opt => opt.MapFrom(src => src.DepartamentoAcademico))
             .ForMember(dest => dest.Nivel, opt => opt.MapFrom(src => src.Nivel))
-            .ForMember(dest => dest.ModalidadEnsenanza, opt => opt.MapFrom(src => src.ModalidadEnsenanza))
+            .ForMember(dest => dest.Creditos, opt => opt.MapFrom(src => src.Creditos))
             .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
             .ForMember(dest => dest.NotasAdicionales, opt => opt.MapFrom(src => src.NotasAdicionales))
-            .ForMember(dest => dest.GrupoSeccionMateria, opt => opt.MapFrom(src => src.GrupoSeccionMateria))
-            .ForMember(dest => dest.MetodosEnsenanza, opt => opt.MapFrom(src => src.MetodosEnsenanza));
+            .ForMember(dest => dest.MetodosEnsenanza, opt => opt.MapFrom(src => src.MetodosEnsenanza))
+            .ForMember(dest => dest.HorasPracticas, opt => opt.MapFrom(src => src.HorasPracticas))
+            .ForMember(dest => dest.HorasTeoricas, opt => opt.MapFrom(src => src.HorasTeoricas));
 
         CreateMap<DocenteForUpdateDto, Docente>();
         CreateMap<Docente, DocenteDto>()
             .ForMember(dest => dest.DocenteId, opt => opt.MapFrom(src => src.DocenteId))
-            .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+            .ForMember(dest => dest.Nombres, opt => opt.MapFrom(src => src.Nombres))
+            .ForMember(dest => dest.Apellidos, opt => opt.MapFrom(src=>src.Apellidos))
             .ForMember(dest => dest.FechaNacimiento, opt => opt.MapFrom(src => src.FechaNacimiento))
             .ForMember(dest => dest.Genero, opt => opt.MapFrom(src => src.Genero))
             .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion))
             .ForMember(dest => dest.CorreoElectronico, opt => opt.MapFrom(src => src.CorreoElectronico))
+            .ForMember(dest => dest.TituloAcademico, opt => opt.MapFrom(src => src.TituloAcademico))
             .ForMember(dest => dest.NumeroTelefono, opt => opt.MapFrom(src => src.NumeroTelefono))
             .ForMember(dest => dest.FechaContratacion, opt => opt.MapFrom(src => src.FechaContratacion))
-            .ForMember(dest => dest.CursosAsignados, opt => opt.MapFrom(src => src.CursosAsignados))
-            .ForMember(dest => dest.HorarioClases, opt => opt.MapFrom(src => src.HorarioClases))
             .ForMember(dest => dest.EstadoLaboral, opt => opt.MapFrom(src => src.EstadoLaboral))
             .ForMember(dest => dest.NumeroIdentificacion, opt => opt.MapFrom(src => src.NumeroIdentificacion))
             .ForMember(dest => dest.ComentariosNotas, opt => opt.MapFrom(src => src.ComentariosNotas))
@@ -196,8 +206,12 @@ public class MappingProfile : Profile
 
             .ForMember(dest => dest.Cursos, opt => opt.MapFrom(src => src.Cursos))
             .ForMember(dest => dest.Materias, opt => opt.MapFrom(src => src.Materias))
-            .ForMember(dest => dest.Horario, opt => opt.MapFrom(src => src.Horario))
-            .ForMember(dest => dest.Aula, opt => opt.MapFrom(src => src.Aula));
+            .ForMember(dest => dest.HorarioId, opt => opt.MapFrom(src => src.HorarioId))
+            .ForMember(dest => dest.AulaId, opt => opt.MapFrom(src => src.AulaId))
+
+
+            .ForMember(dest => dest.DiaSemana, opt => opt.MapFrom(src => src.Horario.DiaSemana))
+            .ForMember(dest => dest.NombreNumero, opt => opt.MapFrom(src => src.Aula.NombreNumero));
 
 
         CreateMap<EstadisticaForUpdateDto, Estadisticas>();

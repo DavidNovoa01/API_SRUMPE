@@ -16,44 +16,73 @@ namespace Repository.Configuration
 
             new Docente
             {
-                DocenteId = new Guid("a007fb2e-89c1-433a-609b-81a34b070e20"),
-                Nombre = "John Smith",
+                DocenteId = Guid.NewGuid(),
+                Nombres = "Juan",
+                Apellidos = "Pérez",
                 FechaNacimiento = new DateTime(1980, 5, 15),
-                Genero = "Male",
-                Direccion = "123 Main Street, Cityville",
-                CorreoElectronico = "john.smith@example.com",
-                NumeroTelefono = "+1 (555) 123-4567",
-                FechaContratacion = new DateTime(2010, 8, 20),
-                CursosAsignados = "Mathematics, Physics",
-                HorarioClases = "Mon-Fri: 8 am - 4 pm",
-                EstadoLaboral = "Active",
-                NumeroIdentificacion = "D123456789",
-                ComentariosNotas = "Excellent teacher with great communication skills.",
-                NivelExperiencia = "Senior",
-                AulaId = new Guid("bd249220-eec2-4bbd-c57e-8619cb666ece"), // Asignar un nuevo ID de Aula
-                HorarioId = new Guid("17793c65-0075-4b33-f071-f84a0774be25") // Asignar un nuevo ID de Horario
+                Genero = "Masculino",
+                Direccion = "Calle Falsa 123",
+                CorreoElectronico = "juan.perez@email.com",
+                TituloAcademico = "Licenciado en Matemáticas",
+                NumeroTelefono = "555-1234",
+                FechaContratacion = new DateTime(2010, 8, 1),
+                EstadoLaboral = "Activo",
+                NumeroIdentificacion = "12345678",
+                ComentariosNotas = "Excelente capacidad de enseñanza",
+                NivelExperiencia = "Alto"
             },
 
             new Docente
             {
-                DocenteId = new Guid ("57aa9a84-70b2-4e68-235d-987650f3b246"),
-                Nombre = "Alice Johnson",
-                FechaNacimiento = new DateTime(1985, 10, 25),
-                Genero = "Female",
-                Direccion = "456 Oak Avenue, Townsville",
-                CorreoElectronico = "alice.johnson@example.com",
-                NumeroTelefono = "+1 (555) 987-6543",
-                FechaContratacion = new DateTime(2015, 3, 10),
-                CursosAsignados = "Literature, History",
-                HorarioClases = "Tue-Thu: 10 am - 6 pm",
-                EstadoLaboral = "Active",
-                NumeroIdentificacion = "D987654321",
-                ComentariosNotas = "Passionate about her subject and dedicated to student success.",
-                NivelExperiencia = "Intermediate",
-                AulaId = new Guid("53c29e9a-f7b8-433b-983f-a85b823c4733"), // Asignar un nuevo ID de Aula
-                HorarioId = new Guid("75acf5e1-58d1-43e5-2385-76f0a8f0f464") // Asignar un nuevo ID de Horario
+                DocenteId = Guid.NewGuid(),
+                Nombres = "María",
+                Apellidos = "González",
+                FechaNacimiento = new DateTime(1985, 3, 20),
+                Genero = "Femenino",
+                Direccion = "Avenida Principal 456",
+                CorreoElectronico = "maria.gonzalez@email.com",
+                TituloAcademico = "Doctora en Historia",
+                NumeroTelefono = "555-5678",
+                FechaContratacion = new DateTime(2012, 9, 15),
+                EstadoLaboral = "Activo",
+                NumeroIdentificacion = "87654321",
+                ComentariosNotas = "Experta en historia antigua",
+                NivelExperiencia = "Medio"
+            },
+            new Docente
+            {
+                DocenteId = Guid.NewGuid(),
+                Nombres = "Carlos",
+                Apellidos = "Martínez",
+                FechaNacimiento = new DateTime(1975, 11, 30),
+                Genero = "Masculino",
+                Direccion = "Boulevard del Río 789",
+                CorreoElectronico = "carlos.martinez@email.com",
+                TituloAcademico = "Magíster en Física",
+                NumeroTelefono = "555-9101",
+                FechaContratacion = new DateTime(2008, 2, 20),
+                EstadoLaboral = "Inactivo",
+                NumeroIdentificacion = "11223344",
+                ComentariosNotas = "Gran habilidad en experimentos prácticos",
+                NivelExperiencia = "Alto"
+            },
+            new Docente
+            {
+                DocenteId = Guid.NewGuid(),
+                Nombres = "Laura",
+                Apellidos = "Rodríguez",
+                FechaNacimiento = new DateTime(1990, 7, 10),
+                Genero = "Femenino",
+                Direccion = "Callejón de los Milagros 101",
+                CorreoElectronico = "laura.rodriguez@email.com",
+                TituloAcademico = "Licenciada en Biología",
+                NumeroTelefono = "555-1213",
+                FechaContratacion = new DateTime(2015, 5, 25),
+                EstadoLaboral = "Activo",
+                NumeroIdentificacion = "44332211",
+                ComentariosNotas = "Especialista en biología marina",
+                NivelExperiencia = "Bajo"
             }
-
         );
         }
     }
