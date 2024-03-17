@@ -22,8 +22,7 @@ public class HorarioConfiguration : IEntityTypeConfiguration<Horarios>
             FechaFinClases = new DateTime(2023, 12, 15),
             EstadoHorario = "Activo",
             DuracionClaseMinutos = 120,
-            NotificacionCambioHorario = "No",
-            DocenteId = new Guid("a007fb2e-89c1-433a-609b-81a34b070e20")
+            NotificacionCambioHorario = "No"
         },
         new Horarios
         {
@@ -37,8 +36,7 @@ public class HorarioConfiguration : IEntityTypeConfiguration<Horarios>
             FechaFinClases = new DateTime(2023, 04, 25),
             EstadoHorario = "Activo",
             DuracionClaseMinutos = 120,
-            NotificacionCambioHorario = "Sí",
-            DocenteId = new Guid("57aa9a84-70b2-4e68-235d-987650f3b246")
+            NotificacionCambioHorario = "Sí"
         }
     );
     }

@@ -3,13 +3,12 @@
 public partial class NotaDto
 {
     public int NotaId { get; set; }
-    public string Titulo { get; set; }
-    public int Valor { get; set; }
+    public string Estudiante { get; set; }
+    public string Curso { get; set; }
+    public string PeriodoAcademico { get; set; }
     public DateTime FechaCreacion { get; set; }
     public string Materia { get; set; }
-    public string Periodo { get; set; }
-
-    //Estudiante
-    //Curso
-    //Docente
+    public int ValorNota { get; set; }
+    public string TipoNota { get; set; }
+    public string DescripcionNota { get; set; }
 }

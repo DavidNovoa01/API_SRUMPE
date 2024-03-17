@@ -231,11 +231,13 @@ public class MappingProfile : Profile
         CreateMap<NotaForUpdateDto, Notas>();
         CreateMap<Notas, NotaDto>()
             .ForMember(dest => dest.NotaId, opt => opt.MapFrom(src => src.NotaId))
-            .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Titulo))
-            .ForMember(dest => dest.Valor, opt => opt.MapFrom(src => src.Valor))
+            .ForMember(dest => dest.Curso, opt => opt.MapFrom(src => src.Curso))
             .ForMember(dest => dest.FechaCreacion, opt => opt.MapFrom(src => src.FechaCreacion))
             .ForMember(dest => dest.Materia, opt => opt.MapFrom(src => src.Materia))
-            .ForMember(dest => dest.Periodo, opt => opt.MapFrom(src => src.Periodo));
+            .ForMember(dest => dest.PeriodoAcademico, opt => opt.MapFrom(src => src.PeriodoAcademico))
+            .ForMember(dest => dest.ValorNota, opt => opt.MapFrom(src => src.ValorNota))
+            .ForMember(dest => dest.TipoNota, opt => opt.MapFrom(src => src.TipoNota))
+            .ForMember(dest => dest.DescripcionNota, opt => opt.MapFrom(src => src.DescripcionNota));
 
 
 

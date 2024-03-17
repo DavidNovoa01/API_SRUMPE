@@ -25,7 +25,10 @@ public class AcudientesController : ControllerBase
     [HttpGet]
     public IActionResult GetAcudientes()
     {
-        var acudientes = _context.Acudientes.ToList();
+        var acudientes = _context.Acudientes
+                                 .Include(a => a.DireccionAcudiente) // Incluye la dirección
+                                 .Include(a => a.TelefonosAcudiente) // Incluye los teléfonos
+                                 .ToList();
 
         var acudientesDto = acudientes.Select(a => new
         {
@@ -39,6 +42,23 @@ public class AcudientesController : ControllerBase
             a.EstadoCivil,
             a.Ocupacion,
             a.FechaRegistro,
+            Direccion = new
+            {
+          
+                a.DireccionAcudiente.Calle,
+                a.DireccionAcudiente.ColoniaBarrio,
+                a.DireccionAcudiente.CiudadLocalidad,
+                a.DireccionAcudiente.CodigoPostal,
+                a.DireccionAcudiente.EstadoProvincia,
+                a.DireccionAcudiente.Pais
+            },
+            Telefonos = a.TelefonosAcudiente.Select(t => new
+            {
+                t.TelefonoAcudienteId,
+                t.Numero,
+                t.Tipo,
+                t.Indicativo
+            }).ToList(),
             EstudiantesRelacionados = _context.CandidatoEstudiantes
                 .Where(c => c.NumeroIdentificacionAcudiente == a.NumeroIdentificacion)
                 .Select(c => $"{c.Nombre} {c.Apellido}")

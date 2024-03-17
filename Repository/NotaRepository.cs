@@ -15,7 +15,7 @@ namespace Repository
 
         public IEnumerable<Notas> GetAllNotas(bool trackChanges) =>
             FindAll(trackChanges)
-                .OrderBy(c => c.Periodo)
+                .OrderBy(c => c.PeriodoAcademico)
                 .ToList();
 
         public Notas GetNota(int notaId, bool trackChanges) =>

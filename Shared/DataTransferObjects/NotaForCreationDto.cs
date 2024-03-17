@@ -1,6 +1,11 @@
-﻿namespace Shared.DataTransferObjects
-{
-    public record NotaForCreationDto(string Titulo,int Valor,DateTime FechaCreacion,string Materia,string Periodo,
-        IEnumerable<NotaForCreationDto>? Notas
-    );
-}
+﻿namespace Shared.DataTransferObjects;
+
+public record NotaForCreationDto(
+string Estudiante,
+string Curso,
+string PeriodoAcademico,
+DateTime FechaCreacion,
+string Materia,
+int ValorNota,
+string TipoNota,
+string DescripcionNota);

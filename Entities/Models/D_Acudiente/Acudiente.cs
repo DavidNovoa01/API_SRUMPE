@@ -20,6 +20,9 @@ public partial class Acudiente
     public long NumeroIdentificacionEstudiante { get; set; } // Cambio de nombre
     public ICollection<CandidatoEstudiante> CandidatoEstudiantes { get; set; }
 
-    public ICollection<TelefonoAcudiente> TelefonosAcudiente { get; set; }
+    // Propiedad de navegación para la dirección
     public DireccionAcudiente DireccionAcudiente { get; set; }
+
+    // Propiedad de navegación para los teléfonos
+    public ICollection<TelefonoAcudiente> TelefonosAcudiente { get; set; }
 }

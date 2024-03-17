@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SRUNPE.Migrations
 {
     /// <inheritdoc />
-    public partial class _002 : Migration
+    public partial class _001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -243,11 +243,14 @@ namespace SRUNPE.Migrations
                 {
                     NotaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Valor = table.Column<int>(type: "int", nullable: false),
+                    Estudiante = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Curso = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PeriodoAcademico = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Materia = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Periodo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ValorNota = table.Column<int>(type: "int", nullable: false),
+                    TipoNota = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DescripcionNota = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -465,8 +468,8 @@ namespace SRUNPE.Migrations
                 columns: new[] { "AcudienteId", "Apellidos", "CorreoElectronico", "Edad", "EstadoCivil", "FechaRegistro", "Nombres", "NumeroIdentificacion", "NumeroIdentificacionEstudiante", "Ocupacion", "RelacionConEstudiante" },
                 values: new object[,]
                 {
-                    { new Guid("18c5b92b-de36-41cb-b1e9-b1748633871a"), "Lopez", "maria.lopez@example.com", 40, "Casada", new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8615), "Maria", 987654321, 0L, "Abogada", "Madre" },
-                    { new Guid("eb36d9a9-02a6-4cd8-a727-f8ea90aefe3e"), "Perez", "juan.perez@example.com", 45, "Casado", new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8602), "Juan", 123456789, 0L, "Ingeniero", "Padre" }
+                    { new Guid("0bcbd7ec-25e5-480a-89da-6e30362fd47a"), "Lopez", "maria.lopez@example.com", 40, "Casada", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(3848), "Maria", 987654321, 0L, "Abogada", "Madre" },
+                    { new Guid("6461f216-1fd9-4030-9550-72299a14e1b8"), "Perez", "juan.perez@example.com", 45, "Casado", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(3835), "Juan", 123456789, 0L, "Ingeniero", "Padre" }
                 });
 
             migrationBuilder.InsertData(
@@ -496,8 +499,8 @@ namespace SRUNPE.Migrations
                 columns: new[] { "CandidatoEstudianteId", "AdjuntarDocumentos", "Apellido", "Direccion", "FechaNacimiento", "Genero", "Nombre", "NumeroContacto", "NumeroDocumento", "NumeroIdentificacionAcudiente", "TipoDocumento", "TipoPersona" },
                 values: new object[,]
                 {
-                    { new Guid("62793240-c29d-4de0-9fee-d2bba2f98ba0"), "Documentos adjuntos", "Gomez", "Calle 123", new DateTime(2000, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Masculino", "Pedro", 321L, 123L, 0L, "CC", "Estudiante" },
-                    { new Guid("b01f8a25-cddb-449a-9da6-33588d3dcc57"), "Documentos adjuntos", "Rodriguez", "Carrera 456", new DateTime(1998, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Femenino", "Ana", 654L, 456L, 0L, "CC", "Estudiante" }
+                    { new Guid("bc242e8d-2616-439b-982d-f4ed75b3e5d5"), "Documentos adjuntos", "Gomez", "Calle 123", new DateTime(2000, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Masculino", "Pedro", 321L, 123L, 0L, "CC", "Estudiante" },
+                    { new Guid("cea1ab76-37c6-4121-9d28-f356adf108bb"), "Documentos adjuntos", "Rodriguez", "Carrera 456", new DateTime(1998, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Femenino", "Ana", 654L, 456L, 0L, "CC", "Estudiante" }
                 });
 
             migrationBuilder.InsertData(
@@ -505,11 +508,11 @@ namespace SRUNPE.Migrations
                 columns: new[] { "CupoId", "CantidadDisponible", "Descripcion", "Duracion", "Estado", "FechaFin", "FechaInicio", "Ubicacion" },
                 values: new object[,]
                 {
-                    { new Guid("170cca42-b031-4ab9-a4dd-7b54a1648071"), 20, "Cupo para el seminario de marketing", new TimeSpan(0, 4, 0, 0, 0), true, new DateTime(2024, 6, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9486), new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9485), "Aula 102" },
-                    { new Guid("63e6bfad-d8c2-4a5e-be42-5448f9e4baf5"), 5, "Cupo para el taller de programación", new TimeSpan(0, 3, 0, 0, 0), true, new DateTime(2024, 5, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9483), new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9483), "Aula 101" },
-                    { new Guid("85e42172-5ba1-4591-9bfb-a25a507458d9"), 30, "Cupo para el evento de networking", new TimeSpan(0, 1, 0, 0, 0), true, new DateTime(2024, 8, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9490), new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9490), "Aula 104" },
-                    { new Guid("a436c56c-b27f-46fb-853f-5aeac7f0152e"), 10, "Cupo para el evento principal", new TimeSpan(0, 2, 0, 0, 0), true, new DateTime(2024, 4, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9471), new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9470), "Salón principal" },
-                    { new Guid("b0082adb-6674-45e8-8004-bee6179d633d"), 15, "Cupo para el curso de diseño gráfico", new TimeSpan(0, 2, 0, 0, 0), true, new DateTime(2024, 7, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9488), new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9488), "Aula 103" }
+                    { new Guid("4e4b3723-f394-495d-ad45-c388abdcd701"), 5, "Cupo para el taller de programación", new TimeSpan(0, 3, 0, 0, 0), true, new DateTime(2024, 5, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4742), new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4742), "Aula 101" },
+                    { new Guid("689a5da2-d376-4cc6-bc31-a3a4452bce4b"), 10, "Cupo para el evento principal", new TimeSpan(0, 2, 0, 0, 0), true, new DateTime(2024, 4, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4728), new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4727), "Salón principal" },
+                    { new Guid("93794731-cc35-4c72-acbe-ea5377f62454"), 30, "Cupo para el evento de networking", new TimeSpan(0, 1, 0, 0, 0), true, new DateTime(2024, 8, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4750), new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4749), "Aula 104" },
+                    { new Guid("ae23e6e0-db87-4780-b5aa-64dbb9fcef13"), 15, "Cupo para el curso de diseño gráfico", new TimeSpan(0, 2, 0, 0, 0), true, new DateTime(2024, 7, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4748), new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4747), "Aula 103" },
+                    { new Guid("bebd3980-13c3-4dfd-92d1-ffe5e02b24b9"), 20, "Cupo para el seminario de marketing", new TimeSpan(0, 4, 0, 0, 0), true, new DateTime(2024, 6, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4745), new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4745), "Aula 102" }
                 });
 
             migrationBuilder.InsertData(
@@ -517,11 +520,11 @@ namespace SRUNPE.Migrations
                 columns: new[] { "CursoId", "Año", "CodigoCurso", "CupoActual", "CupoMaximo", "DepartamentoAcademico", "Descripcion", "Estado", "FechaFinalizacion", "FechaInicio", "MetodosEnsenanza", "Modalidad", "Nivel" },
                 values: new object[,]
                 {
-                    { new Guid("2cc44dd6-b42b-4c46-bfd0-e59f0d622afa"), 2024, "QUI105", 30, 35, "Química", "Química Orgánica", "Activo", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Virtual", "En línea", "Intermedio" },
-                    { new Guid("2ede4ad2-4e82-4b75-b46d-c7397d3120a6"), 2024, "FIS102", 35, 40, "Ciencias Físicas", "Física General", "Activo", new DateTime(2024, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Virtual", "En línea", "Intermedio" },
-                    { new Guid("50ab6e24-c070-454e-87c6-5e385a779ba9"), 2024, "LIT104", 18, 20, "Literatura", "Literatura Española", "Activo", new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Presencial", "Presencial", "Básico" },
-                    { new Guid("cd056857-0e8d-457d-a4d2-6d77c8cf56ea"), 2024, "MAT101", 25, 30, "Matemáticas", "Introducción a las Matemáticas", "Activo", new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Presencial", "Presencial", "Básico" },
-                    { new Guid("f1d93bfa-3e70-4d5e-8930-89b644b04477"), 2024, "HIS103", 20, 25, "Historia", "Historia del Mundo Contemporáneo", "Activo", new DateTime(2024, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Híbrido", "Híbrido", "Avanzado" }
+                    { new Guid("1966a948-ab8d-449e-9c00-e5ac7319e2c5"), 2024, "HIS103", 20, 25, "Historia", "Historia del Mundo Contemporáneo", "Activo", new DateTime(2024, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Híbrido", "Híbrido", "Avanzado" },
+                    { new Guid("28d44118-f604-49f2-915a-9feee2b97dab"), 2024, "FIS102", 35, 40, "Ciencias Físicas", "Física General", "Activo", new DateTime(2024, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Virtual", "En línea", "Intermedio" },
+                    { new Guid("8b0c44e5-b88f-423c-b998-aed027e23c67"), 2024, "LIT104", 18, 20, "Literatura", "Literatura Española", "Activo", new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Presencial", "Presencial", "Básico" },
+                    { new Guid("e893654a-1852-4f24-ac9f-50c2fa82c221"), 2024, "QUI105", 30, 35, "Química", "Química Orgánica", "Activo", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Virtual", "En línea", "Intermedio" },
+                    { new Guid("f924601c-dff8-4bdb-8d25-34e8c598502c"), 2024, "MAT101", 25, 30, "Matemáticas", "Introducción a las Matemáticas", "Activo", new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Presencial", "Presencial", "Básico" }
                 });
 
             migrationBuilder.InsertData(
@@ -529,8 +532,8 @@ namespace SRUNPE.Migrations
                 columns: new[] { "DireccionAcudienteId", "AcudienteId", "Calle", "CiudadLocalidad", "CodigoPostal", "ColoniaBarrio", "EstadoProvincia", "Pais" },
                 values: new object[,]
                 {
-                    { new Guid("418a8084-f146-4a10-923f-282c2d6290ca"), new Guid("18c5b92b-de36-41cb-b1e9-b1748633871a"), "Carrera 50", "Bogotá", "110221", "Sur", "Bogotá", "Colombia" },
-                    { new Guid("ff77fc50-c0be-424f-8709-7330ab14936a"), new Guid("eb36d9a9-02a6-4cd8-a727-f8ea90aefe3e\r\n"), "Calle 100", "Bogotá", "110111", "Norte", "Bogotá", "Colombia" }
+                    { new Guid("58cf35e1-4f66-45c6-b724-ab1305b49c31"), new Guid("0bcbd7ec-25e5-480a-89da-6e30362fd47a"), "Carrera 50", "Bogotá", "110221", "Sur", "Bogotá", "Colombia" },
+                    { new Guid("7c71017d-7017-416f-89a0-ab08c7287ab2"), new Guid("6461f216-1fd9-4030-9550-72299a14e1b8"), "Calle 100", "Bogotá", "110111", "Norte", "Bogotá", "Colombia" }
                 });
 
             migrationBuilder.InsertData(
@@ -538,10 +541,10 @@ namespace SRUNPE.Migrations
                 columns: new[] { "DocenteId", "Apellidos", "AulaId", "ComentariosNotas", "CorreoElectronico", "Direccion", "EstadoLaboral", "FechaContratacion", "FechaNacimiento", "Genero", "HorarioId", "NivelExperiencia", "Nombres", "NumeroIdentificacion", "NumeroTelefono", "TituloAcademico" },
                 values: new object[,]
                 {
-                    { new Guid("3e332a31-3763-4b54-996c-8afd231fd518"), "González", null, "Experta en historia antigua", "maria.gonzalez@email.com", "Avenida Principal 456", "Activo", new DateTime(2012, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1985, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Femenino", null, "Medio", "María", "87654321", "555-5678", "Doctora en Historia" },
-                    { new Guid("438fe643-9ec7-4da9-816b-b302613b48c1"), "Pérez", null, "Excelente capacidad de enseñanza", "juan.perez@email.com", "Calle Falsa 123", "Activo", new DateTime(2010, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1980, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Masculino", null, "Alto", "Juan", "12345678", "555-1234", "Licenciado en Matemáticas" },
-                    { new Guid("df85ec49-e45d-46ac-8067-d3d2253d186c"), "Martínez", null, "Gran habilidad en experimentos prácticos", "carlos.martinez@email.com", "Boulevard del Río 789", "Inactivo", new DateTime(2008, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1975, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Masculino", null, "Alto", "Carlos", "11223344", "555-9101", "Magíster en Física" },
-                    { new Guid("ebdccc35-c761-4548-aeee-836ef6cc5173"), "Rodríguez", null, "Especialista en biología marina", "laura.rodriguez@email.com", "Callejón de los Milagros 101", "Activo", new DateTime(2015, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1990, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Femenino", null, "Bajo", "Laura", "44332211", "555-1213", "Licenciada en Biología" }
+                    { new Guid("5653517c-ee8f-4f14-9abf-8a5fa8425a45"), "Pérez", null, "Excelente capacidad de enseñanza", "juan.perez@email.com", "Calle Falsa 123", "Activo", new DateTime(2010, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1980, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Masculino", null, "Alto", "Juan", "12345678", "555-1234", "Licenciado en Matemáticas" },
+                    { new Guid("5708253d-efb1-404e-bfc4-a20b20ac4126"), "González", null, "Experta en historia antigua", "maria.gonzalez@email.com", "Avenida Principal 456", "Activo", new DateTime(2012, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1985, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Femenino", null, "Medio", "María", "87654321", "555-5678", "Doctora en Historia" },
+                    { new Guid("75455a69-fe09-4a63-a7e0-2db29bb027a2"), "Rodríguez", null, "Especialista en biología marina", "laura.rodriguez@email.com", "Callejón de los Milagros 101", "Activo", new DateTime(2015, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1990, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Femenino", null, "Bajo", "Laura", "44332211", "555-1213", "Licenciada en Biología" },
+                    { new Guid("ab73ba39-9d7a-4f0d-8983-5df43a7a81ba"), "Martínez", null, "Gran habilidad en experimentos prácticos", "carlos.martinez@email.com", "Boulevard del Río 789", "Inactivo", new DateTime(2008, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1975, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Masculino", null, "Alto", "Carlos", "11223344", "555-9101", "Magíster en Física" }
                 });
 
             migrationBuilder.InsertData(
@@ -549,12 +552,12 @@ namespace SRUNPE.Migrations
                 columns: new[] { "EstadisticaId", "AñoEscolar", "CantidadExamenes", "FechaRegistro", "Materia", "NotaMaxima", "NotaMinima", "NotaPromedio", "PeriodoEscolar" },
                 values: new object[,]
                 {
-                    { 1, 2023, 5, new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1458), "Matemáticas", 9.0m, 7.5m, 8.5m, "Primer Trimestre" },
-                    { 2, 2023, 4, new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1462), "Ciencias", 8.5m, 6.5m, 7.8m, "Segundo Trimestre" },
-                    { 3, 2023, 3, new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1463), "Historia", 9.5m, 8.5m, 9.2m, "Tercer Trimestre" },
-                    { 4, 2023, 5, new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1465), "Lenguaje", 8.0m, 6.0m, 7.2m, "Primer Semestre" },
-                    { 5, 2023, 2, new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1467), "Arte", 9.0m, 8.0m, 8.7m, "Segundo Semestre" },
-                    { 6, 2023, 3, new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1469), "Educación Física", 10.0m, 9.0m, 9.5m, "Trimestre Extra" }
+                    { 1, 2023, 5, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(6757), "Matemáticas", 9.0m, 7.5m, 8.5m, "Primer Trimestre" },
+                    { 2, 2023, 4, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(6762), "Ciencias", 8.5m, 6.5m, 7.8m, "Segundo Trimestre" },
+                    { 3, 2023, 3, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(6764), "Historia", 9.5m, 8.5m, 9.2m, "Tercer Trimestre" },
+                    { 4, 2023, 5, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(6765), "Lenguaje", 8.0m, 6.0m, 7.2m, "Primer Semestre" },
+                    { 5, 2023, 2, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(6767), "Arte", 9.0m, 8.0m, 8.7m, "Segundo Semestre" },
+                    { 6, 2023, 3, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(6769), "Educación Física", 10.0m, 9.0m, 9.5m, "Trimestre Extra" }
                 });
 
             migrationBuilder.InsertData(
@@ -562,16 +565,16 @@ namespace SRUNPE.Migrations
                 columns: new[] { "EstudianteDocumentosId", "Estado", "FechaActualizacion", "NombreDocumento", "NumeroDocumento", "Observaciones", "Tamaño", "TipoDocumento", "Ubicacion" },
                 values: new object[,]
                 {
-                    { new Guid("10a5e754-1570-4be0-8650-2c53d7cfb4d3"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8864), "Fotografía del Estudiante", 1111111, "Foto de perfil", 1024, "Identificación", "ruta/al/documento10" },
-                    { new Guid("2d54a999-187f-4a8c-99db-d17841e7938c"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8845), "Diploma", 987654, "Logros académicos", 2048, "Educativo", "ruta/al/documento2" },
-                    { new Guid("3e68515e-3a47-4a62-a8c7-9f12242d020e"), false, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8848), "Certificado de Graduación", 123456, "Graduación universitaria", 1536, "Educativo", "ruta/al/documento3" },
-                    { new Guid("4a303cce-8c0e-4ae7-89c1-067d0b7741b6"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8849), "Certificado de Matrícula", 789012, "Matrícula escolar", 8192, "Educativo", "ruta/al/documento4" },
-                    { new Guid("5f78d0e1-579e-4dfc-82a1-92010b4191d3"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8851), "Cédula de Identidad", 555555, "Documento oficial", 4096, "Identificación", "ruta/al/documento5" },
+                    { new Guid("10a5e754-1570-4be0-8650-2c53d7cfb4d3"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4115), "Fotografía del Estudiante", 1111111, "Foto de perfil", 1024, "Identificación", "ruta/al/documento10" },
+                    { new Guid("2d54a999-187f-4a8c-99db-d17841e7938c"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4095), "Diploma", 987654, "Logros académicos", 2048, "Educativo", "ruta/al/documento2" },
+                    { new Guid("3e68515e-3a47-4a62-a8c7-9f12242d020e"), false, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4099), "Certificado de Graduación", 123456, "Graduación universitaria", 1536, "Educativo", "ruta/al/documento3" },
+                    { new Guid("4a303cce-8c0e-4ae7-89c1-067d0b7741b6"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4101), "Certificado de Matrícula", 789012, "Matrícula escolar", 8192, "Educativo", "ruta/al/documento4" },
+                    { new Guid("5f78d0e1-579e-4dfc-82a1-92010b4191d3"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4106), "Cédula de Identidad", 555555, "Documento oficial", 4096, "Identificación", "ruta/al/documento5" },
                     { new Guid("6a30c846-4b9d-4cf5-bb17-051a3e9d1b72"), true, null, "Certificado de Nacimiento", 61464465, "Ninguna", 1024, "Identificación", "ruta/al/documento1" },
-                    { new Guid("7e15d9a4-98cb-4d14-9a35-862f8c202725"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8855), "Boleta de Calificaciones", 9876543, "Registro académico", 5120, "Educativo", "ruta/al/documento7" },
-                    { new Guid("8f4a67c2-fd5e-4316-8c50-7249f159d0f1"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8858), "Pasaporte", 1234567, "Documento de viaje", 4096, "Identificación", "ruta/al/documento8" },
-                    { new Guid("9b9d6d8f-72f0-4f0a-8e18-1e75b0182e3f"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8862), "Certificado Médico", 543210, "Informe médico", 2048, "Salud", "ruta/al/documento9" },
-                    { new Guid("f38f6b1a-86e9-4d9d-8a7a-62f17e6f1ba2"), true, new DateTime(2024, 3, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(8853), "Carné de Estudiante", 7890123, "Carné escolar", 3072, "Identificación", "ruta/al/documento6" }
+                    { new Guid("7e15d9a4-98cb-4d14-9a35-862f8c202725"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4110), "Boleta de Calificaciones", 9876543, "Registro académico", 5120, "Educativo", "ruta/al/documento7" },
+                    { new Guid("8f4a67c2-fd5e-4316-8c50-7249f159d0f1"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4112), "Pasaporte", 1234567, "Documento de viaje", 4096, "Identificación", "ruta/al/documento8" },
+                    { new Guid("9b9d6d8f-72f0-4f0a-8e18-1e75b0182e3f"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4114), "Certificado Médico", 543210, "Informe médico", 2048, "Salud", "ruta/al/documento9" },
+                    { new Guid("f38f6b1a-86e9-4d9d-8a7a-62f17e6f1ba2"), true, new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4108), "Carné de Estudiante", 7890123, "Carné escolar", 3072, "Identificación", "ruta/al/documento6" }
                 });
 
             migrationBuilder.InsertData(
@@ -579,8 +582,8 @@ namespace SRUNPE.Migrations
                 columns: new[] { "HorarioId", "DiaSemana", "DocenteId", "DuracionClaseMinutos", "EstadoHorario", "FechaFinClases", "FechaInicioClases", "GrupoSeccion", "HoraFin", "HoraInicio", "NotificacionCambioHorario", "PeriodoAcademico" },
                 values: new object[,]
                 {
-                    { new Guid("17793c65-0075-4b33-f071-f84a0774be25"), "Lunes", new Guid("a007fb2e-89c1-433a-609b-81a34b070e20"), 120, "Activo", new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grupo A", new TimeSpan(0, 11, 0, 0, 0), new TimeSpan(0, 9, 0, 0, 0), "No", "Semestre de Otoño" },
-                    { new Guid("75acf5e1-58d1-43e5-2385-76f0a8f0f464"), "Martes", new Guid("57aa9a84-70b2-4e68-235d-987650f3b246"), 120, "Activo", new DateTime(2023, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grupo B", new TimeSpan(0, 16, 0, 0, 0), new TimeSpan(0, 14, 0, 0, 0), "Sí", "Semestre de Primavera" }
+                    { new Guid("17793c65-0075-4b33-f071-f84a0774be25"), "Lunes", new Guid("00000000-0000-0000-0000-000000000000"), 120, "Activo", new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grupo A", new TimeSpan(0, 11, 0, 0, 0), new TimeSpan(0, 9, 0, 0, 0), "No", "Semestre de Otoño" },
+                    { new Guid("75acf5e1-58d1-43e5-2385-76f0a8f0f464"), "Martes", new Guid("00000000-0000-0000-0000-000000000000"), 120, "Activo", new DateTime(2023, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grupo B", new TimeSpan(0, 16, 0, 0, 0), new TimeSpan(0, 14, 0, 0, 0), "Sí", "Semestre de Primavera" }
                 });
 
             migrationBuilder.InsertData(
@@ -588,11 +591,11 @@ namespace SRUNPE.Migrations
                 columns: new[] { "MateriaId", "Creditos", "DepartamentoAcademico", "Descripcion", "Estado", "HorasPracticas", "HorasTeoricas", "MetodosEnsenanza", "Nivel", "Nombre", "NotasAdicionales" },
                 values: new object[,]
                 {
-                    { new Guid("1a66763d-e4ea-4ebe-a3b8-2e794a359b82"), 4, "Matemáticas", "Fundamentos de aritmética y álgebra", "Activa", 2, 3, "Clases teóricas y ejercicios prácticos", "Secundaria", "Matemáticas Básicas", "Ninguna" },
-                    { new Guid("2638268b-4ae9-48bd-a539-8b7565e0badc"), 3, "Historia", "Exploración de eventos históricos globales", "Activa", 0, 3, "Clases teóricas, análisis de documentos históricos", "Secundaria", "Historia Mundial", "Se recomienda visitar museos y sitios históricos" },
-                    { new Guid("9a6fb2c2-ee53-445d-a722-f1eb7a1cb500"), 5, "Física", "Introducción a la mecánica, termodinámica y ondas", "Activa", 3, 4, "Clases teóricas, laboratorios", "Universitaria", "Física General", "Requiere calculadora científica" },
-                    { new Guid("9a876aff-6e66-4a89-99cf-2c225eebf06a"), 6, "Biología", "Análisis profundo de la biología celular", "Activa", 4, 4, "Clases teóricas, laboratorios, proyectos de investigación", "Universitaria", "Biología Avanzada", "Requiere conocimientos previos de biología básica" },
-                    { new Guid("bc7a91f7-cfcf-4739-99fe-b3cfb6b99081"), 3, "Humanidades", "Estudio de obras literarias españolas clásicas", "Inactiva", 1, 3, "Clases teóricas, discusiones en grupo", "Secundaria", "Literatura Española", "Incluye lecturas obligatorias" }
+                    { new Guid("11c32e7f-ea7a-428d-9d75-152e696b1a59"), 3, "Historia", "Exploración de eventos históricos globales", "Activa", 0, 3, "Clases teóricas, análisis de documentos históricos", "Secundaria", "Historia Mundial", "Se recomienda visitar museos y sitios históricos" },
+                    { new Guid("28888f9a-9c40-44d2-a89c-5213dc92d91b"), 4, "Matemáticas", "Fundamentos de aritmética y álgebra", "Activa", 2, 3, "Clases teóricas y ejercicios prácticos", "Secundaria", "Matemáticas Básicas", "Ninguna" },
+                    { new Guid("74221dc7-9719-41d5-973b-0abcc06091b2"), 5, "Física", "Introducción a la mecánica, termodinámica y ondas", "Activa", 3, 4, "Clases teóricas, laboratorios", "Universitaria", "Física General", "Requiere calculadora científica" },
+                    { new Guid("8856fa12-21c0-41fc-a23a-69c7c9059d7c"), 3, "Humanidades", "Estudio de obras literarias españolas clásicas", "Inactiva", 1, 3, "Clases teóricas, discusiones en grupo", "Secundaria", "Literatura Española", "Incluye lecturas obligatorias" },
+                    { new Guid("b625d030-8105-4374-9831-ce9d9b975133"), 6, "Biología", "Análisis profundo de la biología celular", "Activa", 4, 4, "Clases teóricas, laboratorios, proyectos de investigación", "Universitaria", "Biología Avanzada", "Requiere conocimientos previos de biología básica" }
                 });
 
             migrationBuilder.InsertData(
@@ -600,23 +603,23 @@ namespace SRUNPE.Migrations
                 columns: new[] { "MatriculaId", "CategoriaMatricula", "Comentarios", "EstadoMatricula", "FechaMatricula", "InformacionPlanEstudios", "PeriodoAcademico", "RegistroCambios", "TipoMatricula" },
                 values: new object[,]
                 {
-                    { new Guid("083dc610-1401-4e41-9c08-18692853766b"), "Estudiante de Tiempo Completo", "Comentario sobre la matrícula 5", "Activa", new DateTime(2024, 7, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(112), "Plan de estudios 2023", 2024, "Registro de cambios 5", "Matrícula Regular" },
-                    { new Guid("148c5caf-86c9-4f35-9a92-39d619099972"), "Estudiante de Tiempo Completo", "Comentario sobre la matrícula 4", "Activa", new DateTime(2024, 6, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(110), "Plan de estudios 2023", 2024, "Registro de cambios 4", "Matrícula Regular" },
-                    { new Guid("2ecbd697-cebb-4c31-a58d-2cca2145eef5"), "Estudiante de Tiempo Completo", "Comentario sobre la matrícula 1", "Activa", new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(98), "Plan de estudios 2023", 2024, "Registro de cambios 1", "Matrícula Regular" },
-                    { new Guid("9cb071c5-4d27-4af8-9f65-728ee061d0f9"), "Estudiante de Tiempo Parcial", "Comentario sobre la matrícula 2", "Pendiente", new DateTime(2024, 4, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(102), "Plan de estudios 2023", 2024, "Registro de cambios 2", "Matrícula Parcial" },
-                    { new Guid("a48ed6e3-d696-4c22-8213-cf5b4fe362c7"), "Estudiante Internacional", "Comentario sobre la matrícula 3", "Cancelada", new DateTime(2024, 5, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(106), "Plan de estudios 2023", 2024, "Registro de cambios 3", "Matrícula Regular" }
+                    { new Guid("002e3c1b-1fc8-4ab2-aeda-f46a9ef489e8"), "Estudiante Internacional", "Comentario sobre la matrícula 3", "Cancelada", new DateTime(2024, 5, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(5383), "Plan de estudios 2023", 2024, "Registro de cambios 3", "Matrícula Regular" },
+                    { new Guid("43ed801a-c280-40e7-84f2-72040be6994c"), "Estudiante de Tiempo Completo", "Comentario sobre la matrícula 5", "Activa", new DateTime(2024, 7, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(5389), "Plan de estudios 2023", 2024, "Registro de cambios 5", "Matrícula Regular" },
+                    { new Guid("84520c37-2bf9-4060-a380-544379818213"), "Estudiante de Tiempo Completo", "Comentario sobre la matrícula 4", "Activa", new DateTime(2024, 6, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(5386), "Plan de estudios 2023", 2024, "Registro de cambios 4", "Matrícula Regular" },
+                    { new Guid("d7ee374c-de7f-498a-af8e-452b16479aa4"), "Estudiante de Tiempo Parcial", "Comentario sobre la matrícula 2", "Pendiente", new DateTime(2024, 4, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(5379), "Plan de estudios 2023", 2024, "Registro de cambios 2", "Matrícula Parcial" },
+                    { new Guid("fe768706-1a40-4069-b612-fcc2c7d5b3a5"), "Estudiante de Tiempo Completo", "Comentario sobre la matrícula 1", "Activa", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(5373), "Plan de estudios 2023", 2024, "Registro de cambios 1", "Matrícula Regular" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Notas",
-                columns: new[] { "NotaId", "FechaCreacion", "Materia", "Periodo", "Titulo", "Valor" },
+                columns: new[] { "NotaId", "Curso", "DescripcionNota", "Estudiante", "FechaCreacion", "Materia", "PeriodoAcademico", "TipoNota", "ValorNota" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 3, 13, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1859), "Matemáticas", "Primer Semestre", "Examen de Matemáticas", 85 },
-                    { 2, new DateTime(2024, 3, 8, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1861), "Ciencias", "Segundo Semestre", "Proyecto de Ciencias", 92 },
-                    { 3, new DateTime(2024, 3, 3, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1864), "Historia", "Primer Semestre", "Tarea de Historia", 75 },
-                    { 4, new DateTime(2024, 3, 11, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1865), "Español", "Segundo Semestre", "Presentación de Español", 88 },
-                    { 5, new DateTime(2024, 3, 6, 22, 51, 31, 409, DateTimeKind.Local).AddTicks(1866), "Inglés", "Primer Semestre", "Prueba de Inglés", 95 }
+                    { 1, "Matemáticas", "Examen de mitad de periodo", "Juan Pérez", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(7175), "Álgebra", "Cuarto Periodo", "Examen", 85 },
+                    { 2, "Ciencias", "Informe de laboratorio", "María López", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(7178), "Biología", "Primer Periodo", "Trabajo Práctico", 90 },
+                    { 3, "Historia", "Exposición sobre la Revolución Francesa", "Carlos Gómez", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(7180), "Historia Mundial", "Segundo Periodo", "Exposición", 78 },
+                    { 4, "Literatura", "Análisis del Quijote", "Lucía Fernández", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(7181), "Literatura Española", "Segundo Periodo", "Ensayo", 92 },
+                    { 5, "Física", "Evaluación final del curso", "Andrés Martínez", new DateTime(2024, 3, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(7183), "Física Cuántica", "Primer Periodo", "Examen Final", 88 }
                 });
 
             migrationBuilder.InsertData(
@@ -624,12 +627,12 @@ namespace SRUNPE.Migrations
                 columns: new[] { "PreMatriculaId", "EstadoPreMatricula", "GradoONivel", "Observaciones", "RequisitosDocumentacion", "Turno" },
                 values: new object[,]
                 {
-                    { new Guid("1fa47842-4860-4528-aff9-cfc6ce6af508"), "Pendiente", "Quinto de Primaria", "Estudiante con requerimientos especiales.", "NoCumplio", "Mañana" },
-                    { new Guid("26642c19-18dd-415d-8cc2-14de560431dd"), "Pendiente", "Tercero de Primaria", "Estudiante extranjero.", "SiCumplio", "Mañana" },
-                    { new Guid("a3653d1f-3930-4155-b5a3-f22964682011"), "Activa", "Segundo de Primaria", "Estudiante con discapacidad visual.", "SiCumplio", "Mañana" },
-                    { new Guid("cc576451-7108-422a-bc2e-54a6d31411a3"), "Activa", "Séptimo de Secundaria", "Estudiante de transferencia.", "SiCumplio", "Tarde" },
-                    { new Guid("d9b1d52d-fa44-411b-b5cb-160c690d6648"), "Activa", "Cuarto de Secundaria", "Estudiante con beca deportiva.", "SiCumplio", "Tarde" },
-                    { new Guid("dba80af0-8f99-4017-8f05-069658ccca26"), "Pendiente", "Octavo de Secundaria", "Estudiante sin observaciones adicionales.", "Si cumplio", "Tarde" }
+                    { new Guid("37d27f3e-203e-46b6-9777-f50c91352e5c"), "Pendiente", "Tercero de Primaria", "Estudiante extranjero.", "SiCumplio", "Mañana" },
+                    { new Guid("67573955-2561-4978-8584-1d45be8cb9ae"), "Activa", "Séptimo de Secundaria", "Estudiante de transferencia.", "SiCumplio", "Tarde" },
+                    { new Guid("76bcad57-88d4-467c-8a31-9fdbf63d1517"), "Pendiente", "Octavo de Secundaria", "Estudiante sin observaciones adicionales.", "Si cumplio", "Tarde" },
+                    { new Guid("c9e0f356-1375-4913-9ff4-507fdead3019"), "Pendiente", "Quinto de Primaria", "Estudiante con requerimientos especiales.", "NoCumplio", "Mañana" },
+                    { new Guid("e88611ba-5b15-4c33-a265-fd74d0a61f42"), "Activa", "Cuarto de Secundaria", "Estudiante con beca deportiva.", "SiCumplio", "Tarde" },
+                    { new Guid("ff823196-62eb-4751-b47e-a4453c51436c"), "Activa", "Segundo de Primaria", "Estudiante con discapacidad visual.", "SiCumplio", "Mañana" }
                 });
 
             migrationBuilder.InsertData(
@@ -637,15 +640,15 @@ namespace SRUNPE.Migrations
                 columns: new[] { "RespuestaCupoId", "DuracionRespuesta", "EstadoRespuesta", "FechaRespuesta", "FechaVencimiento", "MensajeRespuesta", "Prioridad", "TipoRespuesta", "UsuarioRespuesta" },
                 values: new object[,]
                 {
-                    { new Guid("43b86753-85d7-4b64-9f68-f6d1faa2e7e3"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 17, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9691), new DateTime(2024, 7, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9692), "Respuesta 4", "Alta", "Aceptación", "Usuario4" },
-                    { new Guid("506c67e5-2a19-4350-aaa3-7b55e1f55fc7"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 14, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9672), new DateTime(2024, 4, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9677), "Respuesta 1", "Alta", "Aceptación", "Usuario1" },
-                    { new Guid("51bbf26b-7678-49cf-a351-677578853fb8"), new TimeSpan(45, 0, 0, 0, 0), "Rechazada", new DateTime(2024, 3, 18, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9693), new DateTime(2024, 8, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9694), "Respuesta 5", "Media", "Rechazo", "Usuario5" },
-                    { new Guid("a0a57bab-8939-4a22-bb3c-b3bdf83a9fe2"), new TimeSpan(60, 0, 0, 0, 0), "Pendiente", new DateTime(2024, 3, 16, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9688), new DateTime(2024, 6, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9689), "Respuesta 3", "Baja", "Pendiente", "Usuario3" },
-                    { new Guid("bb597efa-00ce-4085-a9fb-b5db313d564a"), new TimeSpan(45, 0, 0, 0, 0), "Rechazada", new DateTime(2024, 3, 20, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9698), new DateTime(2024, 10, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9699), "Respuesta 7", "Media", "Rechazo", "Usuario7" },
-                    { new Guid("bcadd5e0-c3db-4718-9b7c-3a2836c79e2c"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 19, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9696), new DateTime(2024, 9, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9696), "Respuesta 6", "Alta", "Aceptación", "Usuario6" },
-                    { new Guid("e388ae95-d2ae-4cf6-8d02-8b533c6a91d1"), new TimeSpan(60, 0, 0, 0, 0), "Pendiente", new DateTime(2024, 3, 21, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9701), new DateTime(2024, 11, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9701), "Respuesta 8", "Baja", "Pendiente", "Usuario8" },
-                    { new Guid("edcbaddb-7d09-4721-a6fe-2f7d44ca35dc"), new TimeSpan(45, 0, 0, 0, 0), "Rechazada", new DateTime(2024, 3, 15, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9682), new DateTime(2024, 5, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9683), "Respuesta 2", "Media", "Rechazo", "Usuario2" },
-                    { new Guid("f4c49057-b095-414b-9821-7c108408a712"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 22, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9703), new DateTime(2024, 12, 13, 22, 51, 31, 408, DateTimeKind.Local).AddTicks(9703), "Respuesta 9", "Alta", "Aceptación", "Usuario9" }
+                    { new Guid("272fb81a-c1e5-4b69-ad7c-f6921c9481ca"), new TimeSpan(60, 0, 0, 0, 0), "Pendiente", new DateTime(2024, 3, 17, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4961), new DateTime(2024, 6, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4962), "Respuesta 3", "Baja", "Pendiente", "Usuario3" },
+                    { new Guid("3671db68-f554-4cf6-9bd4-e4597515ea0f"), new TimeSpan(60, 0, 0, 0, 0), "Pendiente", new DateTime(2024, 3, 22, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4974), new DateTime(2024, 11, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4975), "Respuesta 8", "Baja", "Pendiente", "Usuario8" },
+                    { new Guid("798988cc-991e-4b8d-89ea-f45ac10eff9f"), new TimeSpan(45, 0, 0, 0, 0), "Rechazada", new DateTime(2024, 3, 21, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4971), new DateTime(2024, 10, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4972), "Respuesta 7", "Media", "Rechazo", "Usuario7" },
+                    { new Guid("8036554f-2757-4d1e-ad22-b5b88fa0daa4"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 23, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4976), new DateTime(2024, 12, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4977), "Respuesta 9", "Alta", "Aceptación", "Usuario9" },
+                    { new Guid("97dc5fca-6094-4b3a-8b2f-553963109b3d"), new TimeSpan(45, 0, 0, 0, 0), "Rechazada", new DateTime(2024, 3, 19, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4966), new DateTime(2024, 8, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4967), "Respuesta 5", "Media", "Rechazo", "Usuario5" },
+                    { new Guid("9d443c53-ce64-4581-9849-b5e0a43fd7b8"), new TimeSpan(45, 0, 0, 0, 0), "Rechazada", new DateTime(2024, 3, 16, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4959), new DateTime(2024, 5, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4959), "Respuesta 2", "Media", "Rechazo", "Usuario2" },
+                    { new Guid("a9b42dea-5abd-4f6d-9320-17925bb7fcc6"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 20, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4969), new DateTime(2024, 9, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4970), "Respuesta 6", "Alta", "Aceptación", "Usuario6" },
+                    { new Guid("ac0f50aa-1401-4017-916e-983a8f1c9fe5"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 15, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4944), new DateTime(2024, 4, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4951), "Respuesta 1", "Alta", "Aceptación", "Usuario1" },
+                    { new Guid("d0ed83cf-1a76-4a0c-bd46-e14d1594aa9c"), new TimeSpan(30, 0, 0, 0, 0), "Aceptada", new DateTime(2024, 3, 18, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4964), new DateTime(2024, 7, 14, 17, 10, 33, 396, DateTimeKind.Local).AddTicks(4965), "Respuesta 4", "Alta", "Aceptación", "Usuario4" }
                 });
 
             migrationBuilder.InsertData(
@@ -653,8 +656,8 @@ namespace SRUNPE.Migrations
                 columns: new[] { "TelefonoAcudienteId", "AcudienteId", "Indicativo", "Numero", "Tipo" },
                 values: new object[,]
                 {
-                    { new Guid("d77ce6a4-3cbb-49c5-8170-a2ae242f44f7"), new Guid("18c5b92b-de36-41cb-b1e9-b1748633871a"), "+1", -4135, "Móvil" },
-                    { new Guid("e9ea7058-2620-40cc-a908-9f88f74b6482"), new Guid("eb36d9a9-02a6-4cd8-a727-f8ea90aefe3e"), "+1", -6975, "Móvil" }
+                    { new Guid("c4df71d6-d60b-4ac8-9547-f72f1b92c43a"), new Guid("0bcbd7ec-25e5-480a-89da-6e30362fd47a"), "+1", -4135, "Móvil" },
+                    { new Guid("e5b0800b-4cc4-4850-97b8-e622b1c13076"), new Guid("6461f216-1fd9-4030-9550-72299a14e1b8"), "+1", -6975, "Móvil" }
                 });
 
             migrationBuilder.CreateIndex(
