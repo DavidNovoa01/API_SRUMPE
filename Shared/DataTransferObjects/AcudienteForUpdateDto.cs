@@ -14,7 +14,7 @@ public record AcudienteForUpdateDto(
     DateTime? FechaRegistro,
 
 
-    ICollection<string> NombresEstudiantesRelacionados, // Lista de nombres de estudiantes relacionados
+    ICollection<string>? NombresEstudiantesRelacionados, // Lista de nombres de estudiantes relacionados
     ICollection<TelefonoAcudienteForUpdateDto>? TelefonosAcudiente,
     DireccionAcudienteForUpdateDto? DireccionAcudiente
 )

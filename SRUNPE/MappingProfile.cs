@@ -32,7 +32,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Acudientes, opt => opt.Ignore())
             .ForMember(dest => dest.Acudientes, opt => opt.MapFrom(src => src.Acudientes.Select(a => a.Nombres)));
 
-        CreateMap<AcudienteForUpdateDto, Acudiente>();
+        CreateMap<AcudienteForUpdateDto, Acudiente>()
+        .ForMember(dest => dest.DireccionAcudiente, opt => opt.Ignore());
         CreateMap<Acudiente, AcudienteDto>()
             .ForMember(dest => dest.AcudienteId, opt => opt.MapFrom(src => src.AcudienteId))
             .ForMember(dest => dest.Nombres, opt => opt.MapFrom(src => src.Nombres))
@@ -126,8 +127,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.EstadoPreMatricula, opt => opt.MapFrom(src => src.EstadoPreMatricula))
             .ForMember(dest => dest.RequisitosDocumentacion, opt => opt.MapFrom(src => src.RequisitosDocumentacion));
 
-        CreateMap<AulaForUpdateDto, Aulas>()
-            .ForMember(dest => dest.Docente, opt => opt.MapFrom(src => new Docente { Nombres = src.DocenteNombre }));
+        CreateMap<AulaForUpdateDto, Aulas>();
         CreateMap<Aulas, AulaDto>()
             .ForMember(dest => dest.AulaId, opt => opt.MapFrom(src => src.AulaId))
             .ForMember(dest => dest.NombreNumero, opt => opt.MapFrom(src => src.NombreNumero))
@@ -173,7 +173,7 @@ public class MappingProfile : Profile
 
 
         CreateMap<MateriaForUpdateDto, Materias>()
-            .ForMember(dest => dest.Docentes, opt => opt.MapFrom(src => new Docente { Nombres = src.DocenteNombre }));
+            .ForMember(dest => dest.Docentes, opt => opt.MapFrom(src => new List<Docente> { new Docente { Nombres = src.DocenteNombre } }));
         CreateMap<Materias, MateriaDto>()
             .ForMember(dest => dest.MateriaId, opt => opt.MapFrom(src => src.MateriaId))
             .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))

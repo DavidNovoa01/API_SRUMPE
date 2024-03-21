@@ -18,7 +18,7 @@ namespace Shared.DataTransferObjects
         string Genero,
         string AdjuntarDocumentos,
 
-        string NombreAcudienteRelacionado // Nombre del acudiente relacionado
+        string? NombreAcudienteRelacionado // Nombre del acudiente relacionado
     )
     {
         public static CandidatoEstudiante MapToCandidatoEstudiante(CandidatoEstudianteForUpdateDto dto)

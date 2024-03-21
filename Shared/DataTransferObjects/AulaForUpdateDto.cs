@@ -13,9 +13,7 @@ public record AulaForUpdateDto
     string HorarioDisponibilidad,
     string NotasAdicionales,
     DateTime UltimaActualizacion,
-    string RegistrosIncidentesProblemas,
-
-    string? DocenteNombre
+    string RegistrosIncidentesProblemas
 );
 
 public static class AulaMapper
@@ -33,7 +31,6 @@ public static class AulaMapper
             NotasAdicionales = dto.NotasAdicionales,
             UltimaActualizacion = dto.UltimaActualizacion,
             RegistrosIncidentesProblemas = dto.RegistrosIncidentesProblemas,
-            Docente = new Docente { Nombres = dto.DocenteNombre }
         };
     }
 }

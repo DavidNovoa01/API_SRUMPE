@@ -42,16 +42,16 @@ public class AcudientesController : ControllerBase
             a.EstadoCivil,
             a.Ocupacion,
             a.FechaRegistro,
-            Direccion = new
+            Direccion = a.DireccionAcudiente != null ? new
             {
-          
+                a.DireccionAcudiente.DireccionAcudienteId,
                 a.DireccionAcudiente.Calle,
                 a.DireccionAcudiente.ColoniaBarrio,
                 a.DireccionAcudiente.CiudadLocalidad,
                 a.DireccionAcudiente.CodigoPostal,
                 a.DireccionAcudiente.EstadoProvincia,
                 a.DireccionAcudiente.Pais
-            },
+            } : null,
             Telefonos = a.TelefonosAcudiente.Select(t => new
             {
                 t.TelefonoAcudienteId,
